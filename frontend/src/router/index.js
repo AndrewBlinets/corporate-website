@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from '@/views/Home.vue'
-
 Vue.use(Router)
+
+import Layout from '@/layout'
 
 export const constantRoutes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    name: 'Layout',
+    component: Layout
   },
   {
     path: '/about',

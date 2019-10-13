@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="main-banner banner">
+  <div class="main-banner banner">
       <div class="container">
         <div class="banner-content">
           <span>НИРУП</span>
@@ -46,7 +46,7 @@
               </div>
               <div class="news-info">
                 <h4>
-                  <a href="">С 4 по 30 октября 2019 года в Республике Беларусь пройдет перепись населения</a>
+                  <router-link :to="{ name: 'Article'}">С 4 по 30 октября 2019 года в Республике Беларусь пройдет перепись населения</router-link>
                 </h4>
                 <p>Целью подписания соглашения является взаимодействие и координация деятельности по интеграции автоматизированных систем и электронной торговой площадки «Грузовые перевозки».</p>
               </div>
@@ -108,9 +108,15 @@
         </div>
         <div class="section-body">
           <div class="services-container">
-            <div class="service-item"></div>
-            <div class="service-item"></div>
-            <div class="service-item"></div>
+            <div class="service-item">
+              <img src="../../images/desktop.svg" alt="" srcset="">
+            </div>
+            <div class="service-item">
+              <img src="../../images/layers.svg" alt="" srcset="">
+            </div>
+            <div class="service-item">
+              <img src="../../images/line-chart.svg" alt="" srcset="">
+            </div>
           </div>
         </div>
       </div>
@@ -145,11 +151,20 @@
         </div>
       </div>
     </div>
+    <div class="section-padding">
+      <div class="container">
+        <div class="section-header">
+          <h2>Контакты</h2>
+          <div class="small-border"></div>
+        </div>
+        <div class="section-body"></div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AppMain',
-};
+  name: 'Home'
+}
 </script>

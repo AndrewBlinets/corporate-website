@@ -3,18 +3,31 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-import Layout from '@/layout'
+import MainLayout from '@/layouts/main-layout'
+import AdminLayout from '@/layouts/admin-layout'
 
 export const constantRoutes = [
   {
     path: '/',
     name: 'Layout',
-    component: Layout
+    component: MainLayout,
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: () => import('@/views/home')
+      },
+      {
+        path: 'article',
+        name: 'Article',
+        component: () => import('@/views/article')
+      }
+    ]
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('@/views/About.vue')
+    path: '/dashboard',
+    name: 'AdminLayout',
+    component: AdminLayout
   }
 ]
 

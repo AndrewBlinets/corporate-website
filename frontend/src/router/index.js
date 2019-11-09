@@ -27,7 +27,14 @@ export const constantRoutes = [
   {
     path: '/dashboard',
     name: 'AdminLayout',
-    component: AdminLayout
+    component: AdminLayout,
+    children: [
+      {
+        path: '',
+        name: 'News',
+        component: () => import('@/views/admin-dashboard/news')
+      }
+    ]
   }
 ]
 

@@ -3,10 +3,12 @@
     background-color="#304156"
     text-color="#bfcbd9"
   >
-    <el-menu-item index="1">
-      <i class="el-icon-news"></i>
-      <span>Новоси</span>
-    </el-menu-item>
+    <router-link :to="{ path: '/dashboard/news' }">
+      <el-menu-item index="1">
+        <i class="el-icon-news"></i>
+        <span>Новоси</span>
+      </el-menu-item>
+    </router-link>
     <el-menu-item index="2">
       <i class="el-icon-tickets"></i>
       <span>Проекты</span>

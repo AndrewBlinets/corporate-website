@@ -4,7 +4,11 @@
       <h1>Новости</h1>
     </div>
     <div class="button-container">
-      <el-button type="success" icon="el-icon-plus">Создать</el-button>
+      <el-button
+        type="success"
+        icon="el-icon-plus"
+        @click="toCreateArticle"
+      >Создать</el-button>
     </div>    
     <!-- <text-editor /> -->
     <div class="table-container">
@@ -117,6 +121,9 @@ export default {
     }
   },
   methods: {
+    toCreateArticle() {
+      this.$router.push({ path: 'create'});
+    },
     deleteRow(index, rows) {
       this.$confirm('Вы точно хотите удалить?', {
           confirmButtonText: 'Подтвердить',

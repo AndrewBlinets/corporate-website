@@ -10,9 +10,6 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>frontend</module>
-    <module>OpenPart</module>
-    <module>AdminPart</module>
-    <module>daomodul</module>
   </modules>
 
   <build>

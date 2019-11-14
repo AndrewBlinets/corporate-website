@@ -6,28 +6,38 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="open-part" />
         <module name="frontend" />
-        <module name="dao" />
-        <module name="corporate-website" />
         <module name="admin-part" />
+        <module name="authorization" />
+        <module name="corporate-website" />
+        <module name="dao" />
+      </profile>
+      <profile name="Annotation profile for OpenPart" enabled="true">
+        <sourceOutputDir name="../open-part/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../open-part/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="OpenPart" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="admin-part" target="1.8" />
+      <module name="AdminPart" target="1.8" />
+      <module name="authorization" target="1.8" />
       <module name="corporate-website" target="1.5" />
       <module name="dao" target="1.8" />
       <module name="demo" target="1.8" />
       <module name="frontend" target="1.8" />
-      <module name="open-part" target="1.8" />
+      <module name="OpenPart" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AdminPart" options="-parameters" />
+      <module name="OpenPart" options="-parameters" />
       <module name="admin-part" options="-parameters" />
+      <module name="authorization" options="-parameters" />
       <module name="dao" options="-parameters" />
       <module name="demo" options="-parameters" />
-      <module name="open-part" options="-parameters" />
     </option>
   </component>
 </project>

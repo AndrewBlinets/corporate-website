@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/open-part/pom.xml" />
         <option value="$PROJECT_DIR$/admin-part/pom.xml" />
         <option value="$PROJECT_DIR$/dao/pom.xml" />
+        <option value="$PROJECT_DIR$/authorization/pom.xml" />
       </list>
     </option>
   </component>

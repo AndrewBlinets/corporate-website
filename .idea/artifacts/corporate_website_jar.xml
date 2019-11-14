@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="corporate-website:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/corporate_website_jar</output-path>
+    <root id="archive" name="corporate-website.jar" />
+  </artifact>
+</component>

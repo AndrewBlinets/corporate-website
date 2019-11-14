@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/OpenPart/OpenPart.iml" filepath="$PROJECT_DIR$/OpenPart/OpenPart.iml" />
       <module fileurl="file://$PROJECT_DIR$/admin-part/admin-part.iml" filepath="$PROJECT_DIR$/admin-part/admin-part.iml" />
+      <module fileurl="file://$PROJECT_DIR$/authorization/authorization.iml" filepath="$PROJECT_DIR$/authorization/authorization.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/corporate-website.iml" filepath="$PROJECT_DIR$/.idea/corporate-website.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dao/dao.iml" filepath="$PROJECT_DIR$/dao/dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DAO/dao.iml" filepath="$PROJECT_DIR$/DAO/dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/frontend/frontend.iml" filepath="$PROJECT_DIR$/frontend/frontend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/open-part/open-part.iml" filepath="$PROJECT_DIR$/open-part/open-part.iml" />
     </modules>
   </component>
 </project>

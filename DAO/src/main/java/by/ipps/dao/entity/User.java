@@ -1,5 +1,6 @@
 package by.ipps.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,7 @@ public class User extends BaseEntity implements Serializable {
     @Column(nullable = false, length = 60)
     private String login;
 
-    @Column(nullable = false, length = 33)
+    @Column(nullable = false)
     private String hashPassword;
 
     @Column(nullable = false)
@@ -45,8 +46,11 @@ public class User extends BaseEntity implements Serializable {
     @Column
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "departament", nullable = false)
     private Department department;
+//
+//    @Column
+//    private Boolean block;
 
 }

@@ -14,7 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Images extends BaseEntity implements Serializable {
+public class FileManager extends BaseEntity implements Serializable {
 
     @Column(nullable = false)
     private String fileName;
@@ -23,5 +23,5 @@ public class Images extends BaseEntity implements Serializable {
     private String fileMine;
 
     @Column(nullable = false)
-    private byte[] file;
+    private String path;
 }

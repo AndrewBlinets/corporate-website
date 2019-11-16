@@ -19,19 +19,16 @@ import java.io.Serializable;
 @AllArgsConstructor
 @FilterDef(
         name = FilterName.LANGUAGE,
-        defaultCondition = "id in (select id " +
-                "from projectlanguageversion pv " +
-                "inner join language l on pv.language = l.id " +
-                "where l.codeLanguage =  :language)",
+        defaultCondition = "code_language = :language",
         parameters = {
                 @ParamDef(name = "language", type = "string"),
         }
 )
 public class ProjectLanguageVersion extends BaseEntity implements Serializable {
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "language")
-    private Language language;
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "language")
+//    private Language language;
 
     @Column
     private String title;
@@ -44,5 +41,8 @@ public class ProjectLanguageVersion extends BaseEntity implements Serializable {
 
     @Column
     private String entrySpeech;
+
+    @Column(name = "code_language")
+    private String codeLanguage;
 
 }

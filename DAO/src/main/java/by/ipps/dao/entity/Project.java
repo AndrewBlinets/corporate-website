@@ -21,9 +21,9 @@ import java.util.List;
 public class Project extends BaseEntity implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY)
-//    @Filter(name = FilterName.LANGUAGE)
+    @Filter(name = FilterName.LANGUAGE)
     private List<ProjectLanguageVersion> languageVersions;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private List<Images> images;
+    private List<FileManager> images;
 }

@@ -14,13 +14,28 @@ export const constantRoutes = [
     children: [
       {
         path: '',
-        name: 'Home',
+        name: 'home',
         component: () => import('@/views/home')
       },
       {
         path: 'article',
-        name: 'Article',
+        name: 'article',
         component: () => import('@/views/article')
+      },
+      {
+        path: 'contacts',
+        name: 'contacts',
+        component: () => import('@/views/contacts')
+      },
+      {
+        path: 'news',
+        name: 'news',
+        component: () => import('@/views/news')
+      },
+      {
+        path: 'projects',
+        name: 'projects',
+        component: () => import('@/views/projects')
       }
     ]
   },

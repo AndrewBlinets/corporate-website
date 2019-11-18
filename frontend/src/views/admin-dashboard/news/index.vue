@@ -66,13 +66,8 @@
 </template>
 
 <script>
-import TextEditor from '@/components/TextEditor'
-
 export default {
   name: 'News',
-  components: {
-    TextEditor
-  },
   data() {
     return {
       tableData: [{

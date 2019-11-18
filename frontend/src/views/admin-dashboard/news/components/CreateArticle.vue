@@ -4,12 +4,12 @@
       <h1>Новая новость</h1>
     </div>
     <div class="form-container">
-      <el-form ref="form" :model="form" label-width="189px">
+      <el-form ref="form" :model="form" label-width="190px">
         <el-form-item label="Заголовок">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.title"></el-input>
         </el-form-item>
         <el-form-item label="Краткий заголовок">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.shortTitle"></el-input>
         </el-form-item>
         <el-form-item label="Изображение заголовка">
           <el-upload
@@ -52,18 +52,18 @@
           </el-dialog>
         </el-form-item>
         <el-form-item label="Вступительная речь">
-          <el-input type="textarea" v-model="form.desc"></el-input>
+          <el-input type="textarea" v-model="form.entrySpeech"></el-input>
         </el-form-item>        
         <el-form-item label="Содержание">
-          <el-input v-model="form.name"></el-input>
+          <text-editor />
         </el-form-item>
         <el-form-item label="Дата публикации">
           <el-col :span="6">
-            <el-date-picker type="date" placeholder="Выберите дату" v-model="form.date1"></el-date-picker>
+            <el-date-picker type="date" placeholder="Выберите дату" v-model="form.dpublic"></el-date-picker>
           </el-col>
           <el-col class="line" :span="1">-</el-col>
           <el-col :span="6">
-            <el-time-picker placeholder="Выберите время" v-model="form.date2"></el-time-picker>
+            <el-time-picker placeholder="Выберите время" v-model="form.timePublic"></el-time-picker>
           </el-col>
         </el-form-item>
         <el-form-item>
@@ -77,19 +77,22 @@
 </template>
 
 <script>
+import TextEditor from '@/components/TextEditor'
+
 export default {
   name: 'CreateArticle',
+  components: {
+    TextEditor
+  },
   data() {
     return {
       form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+        title: 'В Республике Армения пройдет полуфинал конкурса «Евразийские цифровые платформы»',
+        shortTitle: 'В Республике Армения пройдет полуфинал конкурса «Евразийские цифровые платформы»',
+        entrySpeech: 'Полуфинал Международного конкурса инновационных проектов «Евразийские цифровые платформы» в Республике Армения состоится 13 сентября 2019 г. в рамках универсального регионального торгово-промышленного выставочного форума «АРМЕНИЯ EXPO» (г. Ереван, ул. А. Акопяна, д. 3, выставочный комплекс «Ереван EXPO»).',
+        content: '',
+        dpublic: '',
+        timePublic: ''
       },
       dialogImageUrl: '',
       dialogVisible: false,

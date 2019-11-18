@@ -12,7 +12,7 @@ import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 
 export default {
-  name: 'MainLayout',
+  name: 'Layout',
   components: {
     AppMain,
     Navbar,

@@ -3,14 +3,13 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-import MainLayout from '@/layouts/main-layout'
-import AdminLayout from '@/layouts/admin-layout'
+import Layout from '@/layout'
 
 export const constantRoutes = [
   {
     path: '/',
     name: 'Layout',
-    component: MainLayout,
+    component: Layout,
     children: [
       {
         path: '',
@@ -36,23 +35,6 @@ export const constantRoutes = [
         path: 'projects',
         name: 'projects',
         component: () => import('@/views/projects')
-      }
-    ]
-  },
-  {
-    path: '/dashboard',
-    name: 'AdminLayout',
-    component: AdminLayout,
-    children: [
-      {
-        path: 'news',
-        name: 'News',
-        component: () => import('@/views/admin-dashboard/news')
-      },
-      {
-        path: 'create',
-        name: 'CreateArticle',
-        component: () => import('@/views/admin-dashboard/news/components/CreateArticle')
       }
     ]
   }

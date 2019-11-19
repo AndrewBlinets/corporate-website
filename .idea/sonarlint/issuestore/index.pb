@@ -518,3 +518,13 @@ o
 ?OpenPart/src/main/java/by/ipps/openpart/entity/FileManager.java,8\6\86c9f62cc4de3e543a3d283ff6e3617cd7c9d346
 }
 Mauthorization/src/main/java/by/ippps/authorization/config/SecurityConfig.java,2\9\29768f023a778bcad86a02c15512f7ecd8eba1ed
+e
+5.idea/libraries/Maven__io_jsonwebtoken_jjwt_0_9_1.xml,3\d\3d23cb6b52ed4eff15459c9d07523bc73bb57f52
+j
+:OpenPart/src/main/java/by/ipps/openpart/entity/Logger.java,f\2\f226e57b51e17aece77701520098454c3a422bc2
+k
+;OpenPart/src/main/java/by/ipps/openpart/entity/Project.java,b\e\be3bc41849951360b5391d953dc3e198675290d7
+g
+7OpenPart/src/main/java/by/ipps/openpart/entity/Teg.java,a\4\a40e90adde473f9042e5622057554a70b19f266f
+w
+GOpenPart/src/main/java/by/ipps/openpart/utils/RestRequestToDaoImpl.java,c\a\cad8f942294d33ca699955f82d2dcc4648f48261

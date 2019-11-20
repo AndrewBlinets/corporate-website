@@ -37,7 +37,7 @@
             <p>Мы предлагаем сотрудничество по разработке программного обеспечения, созданию корпоративных систем, автоматизации бухгалтерского учета непроизводственной сферы, комплексной автоматизации органов государственного управления и других структур.</p>
           </div>
           <div class="information-statistic">
-            <div class="data-statistic">
+            <!-- <div class="data-statistic">
               <h2>300+</h2>
               <h5>клиентов</h5>
             </div>
@@ -48,7 +48,8 @@
             <div class="data-statistic">
               <h2>40+</h2>
               <h5>на рынке</h5>
-            </div>
+            </div> -->
+            <h4>Наша миссия - способствовать развитию информационного общества Республики Беларусь для обевпечения взаимодействия населения, государства и бизнеса на базе информационных технологий</h4>
           </div>
         </div>
       </div>
@@ -301,3 +302,14 @@ export default {
   name: 'Home'
 };
 </script>
+
+<style lang="stylus" scoped>
+.information-statistic
+  padding: 0 40px
+  h4
+    color: #666
+    line-height: 2.2rem
+    text-align: center
+    font-style: italic
+    border-left: 4px solid #1461ff
+</style>

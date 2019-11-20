@@ -14,9 +14,25 @@ const routes = [
     children: [
       {
         path: 'login',
+        name: 'login',
         component: () => import('@/views/login')
+      },
+      {
+        path: 'reminder',
+        name: 'reminder',
+        component: () => import('@/views/reminder')
+      },
+      {
+        path: 'registration',
+        name: 'registration',
+        redirect: '/login',
+        component: () => import('@/views/registration')
       }
     ]
+  },
+  {
+    path: '*',
+    redirect: '/login'
   }
 ];
 

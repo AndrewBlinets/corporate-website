@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import AppMain from './components/AppMain'
-import Footer from './components/Footer'
-import Navbar from './components/Navbar'
+import AppMain from './components/AppMain';
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
 export default {
   name: 'Layout',
@@ -18,7 +18,7 @@ export default {
     Navbar,
     AppFooter: Footer
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

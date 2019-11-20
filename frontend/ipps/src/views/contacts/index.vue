@@ -5,7 +5,7 @@
 <script>
 export default {
   name: 'Contacts'
-}
+};
 </script>
 
 <style lang="stylus" scoped>

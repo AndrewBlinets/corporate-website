@@ -66,7 +66,7 @@ export default {
         developers: { width: 390, height: 266, x: 100 },
         company: { width: 260, height: 296, x: 200 }
       }
-    }
+    };
   },
   created() {
     setInterval(() => {
@@ -79,5 +79,5 @@ export default {
     },
 
   }
-}
+};
 </script>

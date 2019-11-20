@@ -32,7 +32,7 @@
 <script>
 export default {
   name: 'Article',
-}
+};
 </script>
 
 <style lang="stylus" scoped>

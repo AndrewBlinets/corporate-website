@@ -16,6 +16,7 @@
         <el-input
           v-model="form.email"
           name="email"
+          ref="email"
           tabindex="1"
           type="text"          
         />
@@ -105,6 +106,9 @@ export default {
       capsTooltip: false
     };
   },
+  mounted() {
+    this.$refs.email.focus();
+  },
   methods: {
     checkCapslock(event) {
       this.capsTooltip = event.getModifierState('CapsLock');
@@ -120,7 +124,6 @@ export default {
           return false;
         }
       });
-      
     }
   }
 };

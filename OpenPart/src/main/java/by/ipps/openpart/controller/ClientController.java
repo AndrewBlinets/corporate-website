@@ -3,9 +3,7 @@ package by.ipps.openpart.controller;
 import by.ipps.openpart.custom.CustomPage;
 import by.ipps.openpart.dto.NewsDtoFull;
 import by.ipps.openpart.dto.PageNewsDto;
-import by.ipps.openpart.entity.ProjectFull;
-import by.ipps.openpart.entity.ProjectShort;
-import by.ipps.openpart.entity.Vacancy;
+import by.ipps.openpart.entity.*;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -137,6 +135,33 @@ public class ClientController {
             response.setHeader("Content-Disposition", result.getHeaders().getContentDisposition().toString());
             response.getOutputStream().write(result.getBody());
             return new ResponseEntity(HttpStatus.OK);
+        } catch (org.springframework.web.client.HttpClientErrorException exception) {
+            return new ResponseEntity(HttpStatus.valueOf(exception.getStatusCode().value()));
+        }
+    }
+
+    @GetMapping(value = "/aboutCompany")
+    @ResponseBody
+    public ResponseEntity getCompanyWithActualInfo() {
+        String url = URL_DB + "company";
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
+        try {
+            return restTemplate.exchange(builder.toUriString(), HttpMethod.GET, null, Company.class);
+        } catch (org.springframework.web.client.HttpClientErrorException exception) {
+            return new ResponseEntity(HttpStatus.valueOf(exception.getStatusCode().value()));
+        }
+    }
+
+    @GetMapping(value = "/contact")
+    @ResponseBody
+    public ResponseEntity getContact() {
+        String url = URL_DB + "contact";
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
+        try {
+            final ParameterizedTypeReference<CustomPage<Contact>> responseType =
+                    new ParameterizedTypeReference<CustomPage<Contact>>() {
+                    };
+            return restTemplate.exchange(builder.toUriString(), HttpMethod.GET, null, responseType);
         } catch (org.springframework.web.client.HttpClientErrorException exception) {
             return new ResponseEntity(HttpStatus.valueOf(exception.getStatusCode().value()));
         }

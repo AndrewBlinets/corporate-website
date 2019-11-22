@@ -20,4 +20,5 @@ public class Company extends BaseEntity implements Serializable {
     private String hotLine;
     private String coordX;
     private String coordY;
+    private String hotLinePhone;
 }

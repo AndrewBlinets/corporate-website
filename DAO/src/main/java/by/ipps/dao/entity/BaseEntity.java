@@ -1,5 +1,6 @@
 package by.ipps.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,14 +26,17 @@ public class BaseEntity implements Serializable {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
+    @JsonIgnore
     @Column(nullable = false, length = 3)
     private String statusR = "A";
 
+    @JsonIgnore
     @Column(nullable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date dti = new Date();
 
+    @JsonIgnore
     @Column(nullable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

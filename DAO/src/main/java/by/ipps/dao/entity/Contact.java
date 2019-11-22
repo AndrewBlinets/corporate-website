@@ -8,28 +8,24 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Company extends BaseEntity {
+@Entity
+public class Contact extends BaseEntity {
+
     @Column
-    private String adress;
+    private String nameControl;
     @Column
-    private String name;
+    private String positionName;
     @Column
-    private String shortName;
+    private String room;
     @Column
-    private String phoneFax;
+    private String phone;
     @Column
     private String email;
     @Column
-    private String hotLine;
-    @Column
-    private String coordX;
-    @Column
-    private String coordY;
-    @Column
-    private String hotLinePhone;
+    private String note;
+
 }

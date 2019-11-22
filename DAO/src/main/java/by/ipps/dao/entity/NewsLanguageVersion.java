@@ -7,16 +7,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import java.io.Serializable;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @FilterDef(
         name = FilterName.LANGUAGE,
         defaultCondition = "code_language = :language",
@@ -24,21 +27,24 @@ import java.io.Serializable;
                 @ParamDef(name = "language", type = "string"),
         }
 )
-public class ProjectLanguageVersion extends BaseEntity implements Serializable {
+public class NewsLanguageVersion extends BaseEntity implements Serializable {
+
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "language")
+//    private Language language;
 
     @Column
     private String title;
 
-    @Column
-    private String shortTitle;
-
-    @Column
+    @Column(length = 10000)
     private String content;
+
+    @Column(length = 30)
+    private String shortTitle;
 
     @Column
     private String entrySpeech;
 
     @Column(name = "code_language")
     private String codeLanguage;
-
 }

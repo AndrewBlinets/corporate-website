@@ -1,5 +1,6 @@
 package by.ipps.dao.controller.base;
 
+import by.ipps.dao.dto.BaseDto;
 import by.ipps.dao.entity.BaseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

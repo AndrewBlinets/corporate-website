@@ -2,6 +2,8 @@ package by.ipps.dao.controller;
 
 import by.ipps.dao.entity.FileManager;
 import by.ipps.dao.service.FileManagerService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -57,14 +59,18 @@ public class FileManagerController {
     }
 
     @GetMapping(value = "/{id}")
-    public void getImage(HttpServletResponse response,
-                         @PathVariable long id) throws IOException {
+    public ResponseEntity getImage(HttpServletResponse response,
+                                   @PathVariable long id) throws IOException {
         FileManager fileManager = fileManagerService.findById(id);
-        response.setContentType(fileManager.getFileMine());
-        response.setHeader("Content-Disposition", "attachment; filename=" + fileManager.getFileName());
-        byte[] array = Files.readAllBytes(
-                Paths.get(
-                        ROOT_PATH + File.separator + fileManager.getPath() + File.separator + fileManager.getFileName()));
-        response.getOutputStream().write(array);
+        if(fileManager != null) {
+            response.setContentType(fileManager.getFileMine());
+            response.setHeader("Content-Disposition", "attachment; filename=" + fileManager.getFileName());
+            byte[] array = Files.readAllBytes(
+                    Paths.get(
+                            ROOT_PATH + File.separator + fileManager.getPath() + File.separator + fileManager.getFileName()));
+            response.getOutputStream().write(array);
+            return new ResponseEntity(HttpStatus.OK);
+        } else
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 }

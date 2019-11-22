@@ -1,7 +1,6 @@
 package by.ipps.openpart.utils;
 
 import by.ipps.openpart.entity.BaseEntity;
-import by.ipps.openpart.entity.Project;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 

@@ -12,8 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Project extends BaseEntity implements Serializable {
-
-    private List<ProjectLanguageVersion> languageVersions;
-    private List<FileManager> images;
+public class ProjectFull extends BaseEntity implements Serializable {
+    private String title;
+    private String content;
+    private long mainImage;
+    private List<Long> images;
 }

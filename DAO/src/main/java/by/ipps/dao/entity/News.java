@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Filter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,16 +18,25 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Project extends BaseEntity implements Serializable {
+public class News extends BaseEntity implements Serializable {
+
+    @Column
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date datePublic;
 
     @OneToMany(fetch = FetchType.LAZY)
     @Filter(name = FilterName.LANGUAGE)
-    private List<ProjectLanguageVersion> languageVersions;
+    private List<NewsLanguageVersion> languageVersions;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mainImage")
+    @OneToOne
+    @JoinColumn(name = "mainImge")
     private FileManager mainImage;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<FileManager> images;
+    @Column
+    private int countView;
+
+    @Column
+    private String status;
+
 }

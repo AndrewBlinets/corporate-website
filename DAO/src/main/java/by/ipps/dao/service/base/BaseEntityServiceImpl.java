@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import javax.transaction.Transactional;
 import java.util.Date;
 
-@Transactional
+//@Transactional
 public class BaseEntityServiceImpl<T extends BaseEntity, R extends BaseEntityRepository<T>> implements BaseEntityService<T> {
 
     private final R repository;

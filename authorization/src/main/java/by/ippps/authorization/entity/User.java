@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,4 +14,8 @@ import lombok.Setter;
 public class User {
     private String login;
     private String hashPassword;
+    private String name;
+    private String surName;
+    private String patronicName;
+    private List<String> role;
 }

@@ -1,4 +1,4 @@
-package by.ippps.authorization.entity;
+package by.ipps.adminpart.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,9 +11,11 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class JwtResponse implements Serializable {
 
-    private static final long serialVersionUID = -8091879091924046844L;
-    private String token;
+public class Department extends BaseEntity implements Serializable {
+
+    private String name;
+    private String code;
+    private User leader;
 
 }

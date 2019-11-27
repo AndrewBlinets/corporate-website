@@ -17,5 +17,5 @@ public class User {
     private String name;
     private String surName;
     private String patronicName;
-    private List<String> role;
+    private List<String> roles;
 }

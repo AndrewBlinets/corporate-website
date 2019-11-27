@@ -1,12 +1,41 @@
 package by.ippps.authorization.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import by.ippps.authorization.entity.User;
+import by.ippps.authorization.util.RestRequestToDao;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloWorldController {
+
+    public HelloWorldController(RestRequestToDao rest) {
+        this.rest = rest;
+    }
+
     @RequestMapping({ "/hello" })
     public String firstPage() {
         return "Hello World";
+    }
+
+    private final RestRequestToDao rest;
+
+
+    @GetMapping(value = "/getInfo")
+    @ResponseBody
+    @CrossOrigin
+    public User getBaseInfo(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = "";
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        if (!username.equals("anonymousUser")){
+            User user = rest.getUserByLogin(username);
+            return new User(null, null, user.getName(), username, "patronic", user.getRoles());
+        } else
+            return null;
     }
 }

@@ -598,8 +598,6 @@ z
 Jauthorization/src/main/java/by/ippps/authorization/entity/UserRequest.java,4\f\4fb370c20b24f02230b68f431f6eeed66837a18e
 k
 ;admin-part/src/main/java/by/ipps/adminpart/entity/User.java,f\4\f479cc00e80e1fcb64b286f5aad7f6787ccd6a35
-v
-Fadmin-part/src/main/java/by/ipps/adminpart/utils/RestRequestToDao.java,6\d\6d083b37c74eaac20b0b9fe284b7baeee3981c89
 }
 Madmin-part/src/main/java/by/ipps/adminpart/service/JwtUserDetailsService.java,9\4\946e7ff9cb7a979d8213672184d4e6b13a1260ea
 v
@@ -614,3 +612,5 @@ r
 Badmin-part/src/main/java/by/ipps/adminpart/utils/JwtTokenUtil.java,a\d\ad748d79b7d40b002f035005fddacef051a02377
 x
 Hadmin-part/src/main/java/by/ipps/adminpart/config/WebSecurityConfig.java,f\f\ffc9b7664df4413077499fa93ea2f9d358e379fb
+l
+<.idea/libraries/Maven__org_modelmapper_modelmapper_2_3_5.xml,d\c\dc8448e70b013fc27bff89220ff8425ad14b6ba4

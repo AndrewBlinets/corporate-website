@@ -1,12 +1,13 @@
 package by.ippps.authorization.util;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import by.ippps.authorization.exception.InvalidJwtAuthenticationException;
+import io.jsonwebtoken.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,9 +16,12 @@ import java.util.function.Function;
 
 @Component
 public class JwtTokenUtil implements Serializable {
+    @Autowired
+    private JwtRevokedTokensStore jwtRevokedTokensStore;
+
     private static final long serialVersionUID = -2550185165626007488L;
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
-//    @Value("${jwt.secret}")
+    //    @Value("${jwt.secret}")
     private String secret = "zxcasd";
     //retrieve username from jwt token
     public String getUsernameFromToken(String token) {
@@ -59,5 +63,30 @@ public class JwtTokenUtil implements Serializable {
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    public boolean validateToken(String token) throws InvalidJwtAuthenticationException {
+        try {
+            Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+
+            if (claims.getBody().getExpiration().before(new Date())) {
+                return false;
+            }
+
+            return true;
+        } catch (JwtException | IllegalArgumentException e) {
+            throw new InvalidJwtAuthenticationException("Expired or invalid JWT token");
+        }
+    }
+
+    public void revokeToken(String token) throws InvalidJwtAuthenticationException {
+        jwtRevokedTokensStore.revokeToken(token);
+    }
+    public String resolveToken(HttpServletRequest req) {
+        String bearerToken = req.getHeader("Authorization");
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7, bearerToken.length());
+        }
+        return null;
     }
 }

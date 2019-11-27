@@ -16,6 +16,6 @@ public class UserRequest {
     private String name;
     private String surName;
     private String patronicName;
-    private List<String> role;
-    private String jwttoken;
+    private List<String> roles;
+    private String token;
 }

@@ -1,4 +1,4 @@
-package by.ipps.adminpart.utils;
+package by.ipps.adminpart.utils.restTemplate;
 
 import by.ipps.adminpart.entity.User;
 import org.springframework.http.ResponseEntity;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class RestRequestToDao {
+public class UserRestTemplate {
 
     public User getUserByLogin(String login) {
         RestTemplate restTemplate = new RestTemplate();

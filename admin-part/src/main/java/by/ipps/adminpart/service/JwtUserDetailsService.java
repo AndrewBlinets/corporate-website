@@ -1,6 +1,6 @@
 package by.ipps.adminpart.service;
 
-import by.ipps.adminpart.utils.RestRequestToDao;
+import by.ipps.adminpart.utils.restTemplate.UserRestTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,9 +15,9 @@ import java.util.List;
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
-    private final RestRequestToDao restRequestToDao;
+    private final UserRestTemplate restRequestToDao;
 
-    public JwtUserDetailsService(RestRequestToDao restRequestToDao) {
+    public JwtUserDetailsService(UserRestTemplate restRequestToDao) {
         this.restRequestToDao = restRequestToDao;
     }
 

@@ -1,9 +1,13 @@
 package by.ipps.adminpart.controller;
 
+import by.ipps.adminpart.entity.User;
 import by.ipps.adminpart.exception.InvalidJwtAuthenticationException;
 import by.ipps.adminpart.utils.JwtTokenUtil;
+import by.ipps.adminpart.utils.restTemplate.UserRestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +20,10 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController
 public class TestController {
 
-    public TestController(JwtTokenUtil jwtTokenUtil) {
+    private final UserRestTemplate rest;
+
+    public TestController(UserRestTemplate rest, JwtTokenUtil jwtTokenUtil) {
+        this.rest = rest;
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
@@ -31,6 +38,23 @@ public class TestController {
     @ResponseBody
     public String hello1(){
         return "Hello World!";
+    }
+
+    @GetMapping(value = "/getInfo")
+    @ResponseBody
+    public User getBaseInfo(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = "";
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        if (!username.equals("anonymousUser")){
+            User user = rest.getUserByLogin(username);
+            return new User(null, null, user.getName(), username, "patronic", user.getRole());
+        } else
+            return null;
     }
 
     private final JwtTokenUtil jwtTokenUtil;

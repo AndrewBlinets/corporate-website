@@ -13,8 +13,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
@@ -41,7 +39,7 @@ public class JwtAuthenticationController {
         final String token = jwtTokenUtil.generateToken(userDetails);
         by.ippps.authorization.entity.User user = restRequestToDao.getUserByLogin(authenticationRequest.getUsername());
         return ResponseEntity.ok(new UserRequest(user.getName(), user.getSurName(), user.getPatronicName(),
-                user.getRole(), token));
+                user.getRoles(), token));
     }
     private void authenticate(String username, String password) throws Exception {
         try {

@@ -1,13 +1,13 @@
 package by.ipps.dao.service.impl;
 
-import by.ipps.dao.entity.User;
+import by.ipps.dao.entity.UserPortal;
 import by.ipps.dao.repository.UserRepository;
 import by.ipps.dao.service.UserService;
 import by.ipps.dao.service.base.BaseEntityServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl extends BaseEntityServiceImpl<User, UserRepository> implements UserService {
+public class UserServiceImpl extends BaseEntityServiceImpl<UserPortal, UserRepository> implements UserService {
 
     private UserRepository repository;
 
@@ -17,7 +17,7 @@ public class UserServiceImpl extends BaseEntityServiceImpl<User, UserRepository>
     }
 
     @Override
-    public User getUserByLogin(String login) {
+    public UserPortal getUserByLogin(String login) {
         return repository.findByLogin(login).orElse(null);
     }
 }

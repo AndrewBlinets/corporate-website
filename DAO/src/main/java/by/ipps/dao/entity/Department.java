@@ -23,6 +23,6 @@ public class Department extends BaseEntity implements Serializable {
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "leader")
-    private User leader;
+    private UserPortal leader;
 
 }

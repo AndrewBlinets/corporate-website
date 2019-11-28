@@ -2,10 +2,7 @@ package by.ipps.dao.dto;
 
 import by.ipps.dao.entity.Department;
 import by.ipps.dao.entity.Role;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +11,22 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class UserDto extends BaseDto {
     private String login;
     private String hashPassword;
     private String name;
     private String surName;
     private String patronicName;
-    private List<String> role;
+    private List<String> roles;
     private String position;
     private String email;
     private long department;
 
-    public void setRole(List<Role> role) {
-        this.role = new ArrayList<>();
-        for (Role r : role) {
-            this.role.add(r.getName());
+    public void setRole(List<Role> roles) {
+        this.roles = new ArrayList<>();
+        for (Role r : roles) {
+            this.roles.add(r.getName());
         }
     }
 

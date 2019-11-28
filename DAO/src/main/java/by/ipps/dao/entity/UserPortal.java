@@ -1,10 +1,7 @@
 package by.ipps.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +13,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends BaseEntity implements Serializable {
+@ToString
+public class UserPortal extends BaseEntity implements Serializable {
 
     @Column(nullable = false, length = 60)
     private String login;

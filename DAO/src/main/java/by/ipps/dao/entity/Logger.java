@@ -19,8 +19,8 @@ import java.io.Serializable;
 public class Logger extends BaseEntity implements Serializable {
 
     @OneToOne
-    @JoinColumn(name="user")
-    private User user;
+    @JoinColumn(name="user_portal")
+    private UserPortal user;
     @Column(nullable = false)
     private String tableName;
     @Column(nullable = false)

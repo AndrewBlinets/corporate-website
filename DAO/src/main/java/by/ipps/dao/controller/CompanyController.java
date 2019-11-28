@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/company")
-public class CompanyConstructor {
+public class CompanyController {
 
     private static CompanyService companyService;
 
-    public CompanyConstructor(CompanyService companyService) {
+    public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
 

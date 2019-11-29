@@ -4,8 +4,7 @@ import by.ipps.adminpart.controller.base.BaseEntityAbstractController;
 import by.ipps.adminpart.controller.base.BaseEntityController;
 import by.ipps.adminpart.entity.Department;
 import by.ipps.adminpart.utils.restTemplate.DepartmentTemplate;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/department")
@@ -13,7 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class DepartmentController extends BaseEntityAbstractController<Department, DepartmentTemplate>
         implements BaseEntityController<Department> {
 
-    protected DepartmentController(DepartmentTemplate departmentTemplate) {
-        super(departmentTemplate);
+    private final DepartmentTemplate departmentTemplate;
+
+    public DepartmentController(DepartmentTemplate departmentTemplate) {
+        super(departmentTemplate, "department");
+        this.departmentTemplate = departmentTemplate;
     }
+
+//    @GetMapping("/{id}")
+//    @ResponseBody
+//    public Department getDepartmentById(@PathVariable long id){
+//        return departmentTemplate.findById(id, url);
+//    }
 }

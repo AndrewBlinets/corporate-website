@@ -10,9 +10,6 @@ import org.springframework.stereotype.Service;
 public class ContactServiceImpl extends BaseEntityServiceImpl<Contact, ContactRepository> implements ContactService {
     public ContactServiceImpl(ContactRepository repository) {
         super(repository);
-        this.repository = repository;
     }
-
-    private static ContactRepository repository;
 
 }

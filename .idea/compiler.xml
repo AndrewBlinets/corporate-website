@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="frontend" />
         <module name="admin-part" />
+        <module name="frontend" />
+        <module name="site" />
+        <module name="dao" />
         <module name="authorization" />
         <module name="corporate-website" />
-        <module name="dao" />
       </profile>
       <profile name="Annotation profile for OpenPart" enabled="true">
         <sourceOutputDir name="../open-part/target/generated-sources/annotations" />
@@ -28,6 +29,7 @@
       <module name="demo" target="1.8" />
       <module name="frontend" target="1.8" />
       <module name="OpenPart" target="1.8" />
+      <module name="site" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -38,6 +40,7 @@
       <module name="authorization" options="-parameters" />
       <module name="dao" options="-parameters" />
       <module name="demo" options="-parameters" />
+      <module name="site" options="-parameters" />
     </option>
   </component>
 </project>

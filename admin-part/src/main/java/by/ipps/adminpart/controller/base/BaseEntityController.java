@@ -10,25 +10,29 @@ import javax.validation.Valid;
 
 public interface BaseEntityController<T extends BaseEntity> {
 
-//    @PostMapping
-//    ResponseEntity<Object> create(@RequestBody @Valid T entity);
+    @CrossOrigin
+    @PostMapping
+    ResponseEntity<T> create(@RequestBody @Valid T entity);
 
+    @CrossOrigin
     @GetMapping(value = "/{id}")
     ResponseEntity<T> get(@PathVariable Long id,
                           @RequestParam(value = "language", required = false, defaultValue = "ru") String language);
 
-//    @PutMapping
-//    ResponseEntity<Object> update(@RequestBody @Valid T entity);
-//
-//    @DeleteMapping(value = "/{id}")
-//    ResponseEntity<Object> remove(@PathVariable Long id);
-//
-//
+    @CrossOrigin
+    @PutMapping
+    ResponseEntity<T> update(@RequestBody @Valid T entity);
+
+    @CrossOrigin
+    @DeleteMapping(value = "/{id}")
+    ResponseEntity<Boolean> remove(@PathVariable Long id);
+
+    @CrossOrigin
     @GetMapping
     ResponseEntity<CustomPage<T>> getAll(
             @RequestParam(value = "page", required = false, defaultValue = "0") long page,
             @RequestParam(value = "size", required = false, defaultValue = "0") int size,
-            @RequestParam(value = "size", required = false, defaultValue = "") String sort,
+            @RequestParam(value = "sort", required = false, defaultValue = "") String sort,
             @RequestParam(value = "language", required = false, defaultValue = "ru") String language);
 
 }

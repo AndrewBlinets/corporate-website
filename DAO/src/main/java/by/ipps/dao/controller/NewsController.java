@@ -2,13 +2,15 @@ package by.ipps.dao.controller;
 
 import by.ipps.dao.controller.base.BaseEntityAbstractController;
 import by.ipps.dao.controller.base.BaseEntityController;
+import by.ipps.dao.custom.CustomPage;
+import by.ipps.dao.dto.news.NewsDto;
 import by.ipps.dao.dto.news.NewsDtoFull;
-import by.ipps.dao.dto.news.PageNewsDto;
 import by.ipps.dao.entity.News;
 import by.ipps.dao.service.NewsService;
 import by.ipps.dao.utils.constant.FilterName;
 import org.hibernate.Session;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -38,12 +40,14 @@ public class NewsController extends BaseEntityAbstractController<News, NewsServi
     private EntityManager entityManager;
 
     @GetMapping("/client")
-    public ResponseEntity<PageNewsDto> getAllForClient(
+    public ResponseEntity<CustomPage<NewsDto>> getAllForClient(
             @PageableDefault() Pageable pageable,
             @RequestParam(value = "language", required = false, defaultValue = "ru") String language) {
         entityManager.unwrap(Session.class).enableFilter(FilterName.LANGUAGE).setParameter("language", language);
         Page<News> news = service.findPagingRecordsForClient(pageable);
-        PageNewsDto newsDto = mapper.map(news, PageNewsDto.class);
+        java.lang.reflect.Type targetListType = new TypeToken<CustomPage<NewsDto>>() {
+        }.getType();
+        CustomPage<NewsDto> newsDto = mapper.map(news, targetListType);
         entityManager.unwrap(Session.class).disableFilter(FilterName.LANGUAGE);
         return new ResponseEntity<>(newsDto, news != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }

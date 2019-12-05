@@ -2,8 +2,6 @@ package by.ipps.dao.dto.news;
 
 import by.ipps.dao.dto.BaseDto;
 import by.ipps.dao.entity.NewsLanguageVersion;
-import by.ipps.dao.utils.view.ViewNews;
-import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

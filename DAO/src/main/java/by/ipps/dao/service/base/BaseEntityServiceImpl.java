@@ -5,8 +5,8 @@ import by.ipps.dao.repository.BaseEntityRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 //@Transactional
 public class BaseEntityServiceImpl<T extends BaseEntity, R extends BaseEntityRepository<T>> implements BaseEntityService<T> {
@@ -55,5 +55,10 @@ public class BaseEntityServiceImpl<T extends BaseEntity, R extends BaseEntityRep
         }catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public List<T> findAll() {
+        return repository.findByStatusR("A");
     }
 }

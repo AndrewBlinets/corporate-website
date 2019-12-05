@@ -1,0 +1,5 @@
+
+hsquid:UselessImportCheck"8Remove this unused import 'by.ipps.dao.entity.Partners'.(ÿºÊòüÿÿÿÿ8„¾•‡í-
+squid:UselessImportCheck"QRemove this unused import 'org.springframework.web.bind.annotation.ResponseBody'.(•¶¶êøÿÿÿÿ8¿°’‡í-
+zsquid:UselessImportCheck
+"ORemove this unused import 'org.springframework.web.bind.annotation.GetMapping'.(‡¡‰Ø8Ã×‘‡í-

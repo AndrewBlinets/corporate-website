@@ -34,11 +34,11 @@ public class BaseEntity implements Serializable {
     @Column(nullable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dti = new Date();
+    private Date dti;
 
     @JsonIgnore
     @Column(nullable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateChangeStatusR = new Date();
+    private Date dateChangeStatusR;
 }

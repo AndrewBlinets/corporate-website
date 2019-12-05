@@ -27,7 +27,7 @@ public class FileManagerController {
         this.fileManagerService = fileManagerService;
     }
 
-    @PostMapping(value = "/{typefile}/{year}/{month}/{day}")
+    @PostMapping(value = "/{typefile}/{year}/{month}/")
     @ResponseBody
     public String saveImage(@RequestParam("file") MultipartFile[] file) {
         String name = null;
@@ -67,7 +67,7 @@ public class FileManagerController {
             response.setHeader("Content-Disposition", "attachment; filename=" + fileManager.getFileName());
             byte[] array = Files.readAllBytes(
                     Paths.get(
-                            ROOT_PATH + File.separator + fileManager.getPath() + File.separator + fileManager.getFileName()));
+                            ROOT_PATH + fileManager.getPath() + File.separator + fileManager.getFileName()));
             response.getOutputStream().write(array);
             return new ResponseEntity(HttpStatus.OK);
         } else

@@ -1,4 +1,4 @@
 
+psquid:S2095,"RUse try-with-resources or close this "BufferedOutputStream" in a "finally" clause.(•êˆÝ8êÆŒÒæ-
 [
 squid:S1066"9Replace this use of System.out or System.err by a logger.(¤ù†áûÿÿÿÿ8ðÑÒìæ-
-psquid:S2095,"RUse try-with-resources or close this "BufferedOutputStream" in a "finally" clause.(•êˆÝ8êÆŒÒæ-

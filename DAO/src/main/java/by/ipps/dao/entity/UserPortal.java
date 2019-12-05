@@ -16,12 +16,15 @@ import java.util.List;
 @ToString
 public class UserPortal extends BaseEntity implements Serializable {
 
+    @JsonIgnore
     @Column(nullable = false, length = 60)
     private String login;
 
+    @JsonIgnore
     @Column(nullable = false)
     private String hashPassword;
 
+    @JsonIgnore
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateLastChangePassword;
@@ -35,16 +38,20 @@ public class UserPortal extends BaseEntity implements Serializable {
     @Column(nullable = false, length = 60)
     private String patronicName;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Role> role;
 
+    @JsonIgnore
     @Column
     private String position;
 
+    @JsonIgnore
     @Column
     private String email;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "departament", nullable = false)
     private Department department;
 //

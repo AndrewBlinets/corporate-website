@@ -2,8 +2,6 @@ package by.ipps.dao.controller;
 
 import by.ipps.dao.controller.base.BaseEntityAbstractController;
 import by.ipps.dao.controller.base.BaseEntityController;
-import by.ipps.dao.dto.news.NewsDtoFull;
-import by.ipps.dao.dto.news.PageNewsDto;
 import by.ipps.dao.dto.project.PageProjectDto;
 import by.ipps.dao.dto.project.ProjectDtoFull;
 import by.ipps.dao.entity.Project;

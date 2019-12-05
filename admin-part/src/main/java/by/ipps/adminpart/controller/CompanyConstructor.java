@@ -1,14 +1,15 @@
 package by.ipps.adminpart.controller;
 
 import by.ipps.adminpart.entity.Company;
-import by.ipps.adminpart.utils.restTemplate.CompanyRestTemplate;
+import by.ipps.adminpart.utils.resttemplate.impl.CompanyRestTemplate;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/company")
 public class CompanyConstructor {
 
-    private static CompanyRestTemplate restTemplate;
+    private CompanyRestTemplate restTemplate;
 
     public CompanyConstructor(CompanyRestTemplate companyService) {
         this.restTemplate = companyService;
@@ -16,12 +17,12 @@ public class CompanyConstructor {
 
     @GetMapping
     @ResponseBody
-    public Company getInformationAboutCompany() {
+    public ResponseEntity<Company> getInformationAboutCompany() {
         return restTemplate.getActualInfo();
     }
 
     @PostMapping
-    public Company setInformationAboutCompany(@RequestBody Company company) {
+    public ResponseEntity<Company> setInformationAboutCompany(@RequestBody Company company) {
         return restTemplate.setActualInfo(company);
     }
 }

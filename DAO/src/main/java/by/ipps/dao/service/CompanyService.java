@@ -5,6 +5,7 @@ import by.ipps.dao.service.base.BaseEntityService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface CompanyService extends BaseEntityService<Company> {
+public interface CompanyService {
     Company getActualInfo();
+    Company setActualInfo(Company company);
 }

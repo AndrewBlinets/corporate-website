@@ -3,15 +3,12 @@ package by.ipps.adminpart.controller;
 import by.ipps.adminpart.entity.User;
 import by.ipps.adminpart.exception.InvalidJwtAuthenticationException;
 import by.ipps.adminpart.utils.JwtTokenUtil;
-import by.ipps.adminpart.utils.restTemplate.UserRestTemplate;
+import by.ipps.adminpart.utils.resttemplate.UserRestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,6 +31,13 @@ public class TestController {
         return "Hello World!";
     }
 
+    @PostMapping(value = "/hello")
+    @ResponseBody
+    public String shello(@RequestBody String string){
+        System.out.println(string);
+        return string;
+    }
+
     @GetMapping(value = "/authenticate")
     @ResponseBody
     public String hello1(){
@@ -52,7 +56,7 @@ public class TestController {
         }
         if (!username.equals("anonymousUser")){
             User user = rest.getUserByLogin(username);
-            return new User(null, null, user.getName(), username, "patronic", user.getRole());
+            return new User(null, null, user.getName(), username, "patronic", user.getRoles());
         } else
             return null;
     }

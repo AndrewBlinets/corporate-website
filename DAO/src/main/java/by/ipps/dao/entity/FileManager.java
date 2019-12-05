@@ -1,5 +1,6 @@
 package by.ipps.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,11 +18,14 @@ import java.io.Serializable;
 public class FileManager extends BaseEntity implements Serializable {
 
     @Column(nullable = false)
+    @JsonIgnore
     private String fileName;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String fileMine;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String path;
 }

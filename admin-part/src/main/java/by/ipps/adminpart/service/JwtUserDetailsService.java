@@ -1,6 +1,6 @@
 package by.ipps.adminpart.service;
 
-import by.ipps.adminpart.utils.restTemplate.UserRestTemplate;
+import by.ipps.adminpart.utils.resttemplate.UserRestTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -26,7 +26,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         by.ipps.adminpart.entity.User user = restRequestToDao.getUserByLogin(username);
             return new User(user.getLogin(), user.getHashPassword(),
 //                    "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
-                    getAuthorities(user.getRole()));
+                    getAuthorities(user.getRoles()));
 //        } else {
 //            throw new UsernameNotFoundException("User not found with username: " + username);
 //        }

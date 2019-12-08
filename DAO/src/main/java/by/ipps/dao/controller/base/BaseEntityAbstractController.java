@@ -1,18 +1,16 @@
 package by.ipps.dao.controller.base;
 
 import by.ipps.dao.entity.BaseEntity;
-import by.ipps.dao.entity.Partners;
 import by.ipps.dao.service.base.BaseEntityService;
+import java.util.List;
+import javax.transaction.Transactional;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.transaction.Transactional;
-import java.util.List;
-
+@Log4j2
 public abstract class BaseEntityAbstractController<T extends BaseEntity, S extends BaseEntityService<T>>
         implements BaseEntityController<T> {
 
@@ -24,6 +22,8 @@ public abstract class BaseEntityAbstractController<T extends BaseEntity, S exten
 
     @Override
     public ResponseEntity<T> get(Long id, String language) {
+        log.info(id);
+        log.info(language);
         T entity = baseEntityServuce.findById(id);
         return new ResponseEntity<>(entity, entity != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
@@ -49,6 +49,8 @@ public abstract class BaseEntityAbstractController<T extends BaseEntity, S exten
     @Transactional
     @Override
     public ResponseEntity<Page<T>> getAll(Pageable pageable, String language) {
+        log.info(pageable.toString());
+        log.info(language);
         Page<T> ts = baseEntityServuce.findPagingRecords(pageable);
         return new ResponseEntity<>(ts, ts != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
     }

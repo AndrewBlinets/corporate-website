@@ -1,15 +1,14 @@
 package by.ipps.dao.entity;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import java.io.Serializable;
 
 @Entity
 @NoArgsConstructor
@@ -18,8 +17,8 @@ import java.io.Serializable;
 @Setter
 public class Logger extends BaseEntity implements Serializable {
 
-    @OneToOne
-    @JoinColumn(name="user_portal")
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private UserPortal user;
     @Column(nullable = false)
     private String tableName;

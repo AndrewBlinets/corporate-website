@@ -1,12 +1,24 @@
 package by.ipps.dao.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
@@ -16,46 +28,46 @@ import java.util.List;
 @ToString
 public class UserPortal extends BaseEntity implements Serializable {
 
-    @JsonIgnore
-    @Column(nullable = false, length = 60)
-    private String login;
+  @Column(nullable = false, length = 60)
+  private String login;
 
-    @JsonIgnore
-    @Column(nullable = false)
-    private String hashPassword;
+  @Column(nullable = false)
+  private String hashPassword;
 
-    @JsonIgnore
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateLastChangePassword;
+  @Column(nullable = false)
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date dateLastChangePassword;
 
-    @Column(nullable = false, length = 60)
-    private String name;
+  @Column(nullable = false, length = 60)
+  private String name;
 
-    @Column(nullable = false, length = 60)
-    private String surName;
+  @Column(nullable = false, length = 60)
+  private String surName;
 
-    @Column(nullable = false, length = 60)
-    private String patronicName;
+  @Column(nullable = false, length = 60)
+  private String patronicName;
 
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Role> role;
+  @Column
+  private String email;
 
-    @JsonIgnore
-    @Column
-    private String position;
+  @ManyToOne
+  @JoinColumn(name = "id_department")
+  private Department department;
 
-    @JsonIgnore
-    @Column
-    private String email;
+  @ManyToMany
+  @JoinTable(
+      name = "position_user",
+      joinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false),
+      inverseJoinColumns = {@JoinColumn(name = "position_id", nullable = false, updatable = false)})
+  private List<Position> positions;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "departament", nullable = false)
-    private Department department;
-//
-//    @Column
-//    private Boolean block;
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinTable(
+      name = "role_user",
+      joinColumns = @JoinColumn(name = "id_user", nullable = false, updatable = false),
+      inverseJoinColumns = {@JoinColumn(name = "role_id", nullable = false, updatable = false)})
+  private List<Role> roles;
 
+  @OneToMany(mappedBy = "user")
+  private List<Logger> logers;
 }

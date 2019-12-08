@@ -28,9 +28,9 @@ public class UserController extends BaseEntityAbstractController<UserPortal, Use
     @PostMapping("/auth")
     @ResponseBody
     public ResponseEntity auth(@RequestBody String login){
-        UserPortal user = userService.getUserByLogin(login);
+        UserPortal userPortal = userService.getUserByLogin(login);
 //        System.out.println(user.toString());
-        UserDto userDto = modelMapper.map(user, UserDto.class);
+        UserDto userDto = modelMapper.map(userPortal, UserDto.class);
 //        System.out.println(userDto.toString());
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }

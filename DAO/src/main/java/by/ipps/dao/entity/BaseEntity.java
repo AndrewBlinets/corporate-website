@@ -2,6 +2,8 @@ package by.ipps.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,12 +14,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Setter
-@Getter
+@MappedSuperclass
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@MappedSuperclass
-
+@EqualsAndHashCode
 public class BaseEntity implements Serializable {
 
     @Id

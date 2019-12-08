@@ -3,26 +3,22 @@ package by.ipps.dao.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import java.io.Serializable;
+import java.util.List;
 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Entity
-public class Achievement extends BaseEntity implements Serializable {
+public class Position extends BaseEntity implements Serializable {
     @Column
     private String name;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn
-    private FileManager image;
-
-    @Column
-    private String type;
+    @ManyToMany(mappedBy = "positions")
+    private List<UserPortal> users;
 }

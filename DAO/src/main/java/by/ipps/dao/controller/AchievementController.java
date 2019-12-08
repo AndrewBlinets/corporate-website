@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping(value = "/achievement")
 public class AchievementController extends BaseEntityAbstractController<Achievement, AchievementService>
         implements BaseEntityController<Achievement> {
     protected AchievementController(AchievementService achievementService) {

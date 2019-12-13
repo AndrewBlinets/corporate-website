@@ -16,6 +16,7 @@ import { faFacebookF, faVk, faTwitter, faYoutube } from '@fortawesome/free-brand
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import '@/styles/index.styl';
+import 'bootstrap/dist/css/bootstrap-grid.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 

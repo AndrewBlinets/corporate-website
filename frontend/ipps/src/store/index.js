@@ -1,9 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import state from './state';
-import mutations from './mutations';
 import getters from './getters';
-import actions from './actions';
 
 Vue.use(Vuex);
 
@@ -18,10 +15,7 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
 
 const store = new Vuex.Store({
   modules,
-  state,
-  mutations,
   getters,
-  actions
 });
 
 export default store;

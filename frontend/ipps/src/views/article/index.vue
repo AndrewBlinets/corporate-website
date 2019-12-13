@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="app-container">
     <div class="article-container">
       <div class="article-header">
         <h1>В Республике Армения пройдет полуфинал конкурса «Евразийские цифровые платформы»</h1>

@@ -16,8 +16,11 @@ section .grid-area
     grid-area: body
 
 
-.main-banner .banner-content
-  grid-column: 1 / 7
+.main-banner
+  .banner-content
+    grid-column: 1 / 7
+  .banner-img-content
+    grid-column: 7 / 13
 
 #about-us .section-body
   .information
@@ -47,11 +50,6 @@ section .grid-area
   .news-list
     grid-column: 5 /13
     grid-row: 1 / 3
-
-.services-container
-  display: grid
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
-  grid-gap: 20px
 
 @media (max-width: 480px)
   .grid

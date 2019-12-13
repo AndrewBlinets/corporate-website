@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const service = axios.create({
-  baseURL: '',
+  // baseURL: 'http://www.ipps.by:5454', // global server
+  baseURL: 'http://192.168.1.125:8080/client-api/', // local server
   timeout: 5000
 });
 
@@ -16,6 +17,7 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   response => {
+    // eslint-disable-next-line no-console
     const { data } = response;
     return data;
   },

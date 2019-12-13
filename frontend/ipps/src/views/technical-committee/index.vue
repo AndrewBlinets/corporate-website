@@ -3,38 +3,22 @@
     <div class="header-page">
       <div class="app-container">
         <div class="title">
-          <h1>Контакты</h1>
+          <h1>Национальный Технический Комитет</h1>
         </div>
       </div>
     </div>
     <div class="body-page">
-      <div class="app-container">
-        <category-contacts
-          v-for="contact in contacts"
-          v-bind="contact"
-          :key="contact.id"
-        />
-      </div>
+      <section-component></section-component>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import CategoryContacts from './components/CategoryContacts';
-
+import SectionComponent from '@/components/Section';
 export default {
-  name: 'Contacts',
+  name: 'TechnicalCommittee',
   components: {
-    CategoryContacts
-  },
-  computed: {
-    ...mapGetters([
-      'contacts'
-    ])
-  },
-  created() {
-    this.$store.dispatch('contacts/getContacts');
+    SectionComponent
   }
 };
 </script>
@@ -42,7 +26,7 @@ export default {
 <style lang="stylus" scoped>
 .header-page
   position: relative
-  background-image: url(../../images/contacts.jpg)
+  background-image: url(../../images/technical-committe.jpg)
   background-size: cover
   background-position: center center
   z-index: 1

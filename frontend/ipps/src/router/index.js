@@ -8,18 +8,13 @@ import Layout from '@/layout';
 export const constantRoutes = [
   {
     path: '/',
-    name: 'Layout',
+    name: 'layout',
     component: Layout,
     children: [
       {
         path: '',
         name: 'home',
         component: () => import('@/views/home')
-      },
-      {
-        path: 'article',
-        name: 'article',
-        component: () => import('@/views/article')
       },
       {
         path: 'contacts',
@@ -30,11 +25,26 @@ export const constantRoutes = [
         path: 'news',
         name: 'news',
         component: () => import('@/views/news')
+      },      
+      {
+        path: 'news/:id',
+        name: 'article',
+        component: () => import('@/views/article')
       },
       {
         path: 'projects',
         name: 'projects',
         component: () => import('@/views/projects')
+      },
+      {
+        path: 'eastern-partnership',
+        name: 'eastern-partnership',
+        component: () => import('@/views/eastern-partnership')
+      },
+      {
+        path: 'technical-committee',
+        name: 'technical committee',
+        component: () => import('@/views/technical-committee')
       }
     ]
   }

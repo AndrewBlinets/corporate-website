@@ -1,14 +1,21 @@
 <template>
   <footer>
-    <div class="container">
-      <div class="footer-container"></div>
+    <div class="app-container">
+      <div class="footer-container">
+        <social-links />
+      </div>
     </div>
   </footer>
 </template>
 
 <script>
+import SocialLinks from '@/components/SocialLinks';
+
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  components: {
+    SocialLinks
+  }
 };
 </script>
 

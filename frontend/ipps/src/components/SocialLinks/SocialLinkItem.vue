@@ -15,7 +15,7 @@ export default {
     fortAwesomeIcon: {
       type: Object,
       default: function() {
-        return {}
+        return {};
       }
     }
   }

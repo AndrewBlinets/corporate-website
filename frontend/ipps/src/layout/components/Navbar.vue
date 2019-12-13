@@ -4,27 +4,27 @@
     class="navbar navbar-default navbar-fixed menu-top"
     :class="{ 'menu-shrink': menuShrink }"
   >
-    <div class="container">
+    <div class="app-container">
       <div class="content">
         <div class="logo">
-          <a href="" class="navbar-brand">ИППС</a>
+          <img src="../../images/logoIPPS.png" alt="ИППС" srcset="">
         </div>
         <div class="main-menu">
           <ul class="nav">
             <li data-nav="company">
-              <a>Главная</a>
+              <router-link :to="{ name: 'home' }">Главная</router-link>
             </li>
             <li>
-              <a>О нас</a>
+              <router-link :to="{ name: 'contacts' }">Контакты</router-link>
             </li>
             <li>
-              <a>Контакты</a>
+              <router-link :to="{ name: 'projects' }">Проекты</router-link>
             </li>
             <li>
-              <a>Проекты</a>
+              <router-link :to="{ name: 'eastern-partnership' }">Восточное Партнерство</router-link>
             </li>
             <li>
-              <a>Сервисы</a>
+              <router-link :to="{ name: 'technical committee' }">Национальный Технический Комитет</router-link>
             </li>
           </ul>
           <!-- <div class="popover">
@@ -36,7 +36,7 @@
                   <li><i data-feather="server"></i>Клиенты</li>
                   <li><i data-feather="briefcase"></i>Проекты</li>
                   <li><i data-feather="image"></i>Новости</li>
-                  <li><i data-feather="layout"></i>Контакты</li>      
+                  <li><i data-feather="layout"></i>Контакты</li>
                 </ul>
               </section>
             </div>
@@ -75,9 +75,8 @@ export default {
   },
   methods: {
     handleSroll() {
-     this.menuShrink = window.scrollY > 100;
+      this.menuShrink = window.scrollY > 100;
     },
-
   }
 };
 </script>

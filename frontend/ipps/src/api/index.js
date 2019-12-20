@@ -18,8 +18,8 @@ export function getContact(params) {
 
 export function getImage(id) {
   return `${request.defaults.baseURL}image/${id}`;
-  // return request({
-  //   url: `/image/${id}`,
-  //   method: 'get'
-  // });
+}
+
+export function getImageSmall(id) {
+  return `${request.defaults.baseURL}image/relize/${id}`;
 }

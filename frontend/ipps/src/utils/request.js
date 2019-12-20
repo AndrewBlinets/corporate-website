@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const service = axios.create({
-  // baseURL: 'http://www.ipps.by:5454', // global server
+  // baseURL: 'http://www.ipps.by:5454/client-api/', // global server
   baseURL: 'http://192.168.1.125:8080/client-api/', // local server
   timeout: 5000
 });

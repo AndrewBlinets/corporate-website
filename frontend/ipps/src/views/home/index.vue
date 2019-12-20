@@ -6,20 +6,7 @@
           <h4>НИРУП</h4>
           <h1>Институт прикладных программных систем</h1>
           <p>Современная, динамично развиввающаяся компания в области научно-методического обеспечения процессов развития информатизации, бизнес-анализа, создания информационных систем электронного правительства и предоставления услуг в области IT.</p>
-          <div class="banner__social-link">
-            <a href="" class="social-link">
-              <font-awesome-icon :icon="['fab', 'vk']" />
-            </a>
-            <a href="" class="social-link">
-              <font-awesome-icon :icon="['fab', 'facebook-f']" />
-            </a>
-            <a href="" class="social-link">
-              <font-awesome-icon :icon="['fab', 'twitter']" />
-            </a>
-            <a href="" class="social-link">
-              <font-awesome-icon :icon="['fab', 'youtube']" />
-            </a>
-          </div>
+          <social-links />
         </div>
         <!-- <div class="banner-img-content">
           <div class="main-img">
@@ -47,6 +34,7 @@ import CounterArea from './components/CounterArea';
 import News from './components/News';
 import Clients from './components/Clients';
 import Projects from './components/Projects';
+import SocialLinks from '@/components/SocialLinks';
 
 export default {
   name: 'Home',
@@ -57,7 +45,8 @@ export default {
     CounterArea,
     News,
     Clients,
-    Projects
+    Projects,
+    SocialLinks
   }
 };
 </script>

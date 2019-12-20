@@ -5,13 +5,19 @@
         <h2>Клиенты</h2>
       </div>
       <div class="section-body">
-        <div class="partner-container">
-          <app-image 
+        <div class="partners-container mx-n3">
+          <div
             v-for="partner in partners"
-            :id="partner.image"
-            :name="partner.name"
             :key="partner.id"
-          />
+            class="px-3 mb-4"
+          >
+            <div class="partner-item">
+              <app-image
+                :id="partner.image"
+                :name="partner.name"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -58,16 +64,15 @@ export default {
     color: #fff
     h2::after
       border-bottom-color: #fff
-
-.partner-container
+.partners-container
   display: flex
   flex-wrap: wrap
   justify-content: center
-  align-items: center
-  margin-right: -20px
-  margin-left: -20px
-  
-  img
-    max-height: 80px
-    margin: 0 20px 20px
+  .partner-item
+    display: flex
+    align-items: center
+    width: 200px
+    min-height: 80px
+    img
+      transform: none
 </style>

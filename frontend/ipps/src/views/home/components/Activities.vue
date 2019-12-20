@@ -6,41 +6,16 @@
       </div>
       <div class="section-body">
         <div class="services-container">
-          <div class="service-item">
-            <h5>Программный инжиниринг</h5>
-          </div>
-          <div class="service-item">
-            <h5>Создание инфраструктуры электронного правительства</h5>
-          </div>
-          <div class="service-item">
-            <h5>Развитие государственных и комерерческих электронных услуг</h5>
-          </div>
-          <div class="service-item">
-            <h5>Деятельность по технической защите информациии</h5>
-          </div>
-          <div class="service-item">
-            <h5>Сопровождение ранее разработанных информационных систем</h5>
-          </div>
-          <div class="service-item">
-            <h5>Государстенная регистрация информационных систем и информационных ресурсов</h5>
-          </div>
-          <div class="service-item">
-            <h5>Разработка информационных систем расчёта и анализа показателей состояния информатизации в Республике Беларусь</h5>
-          </div>
-          <div class="service-item">
-            <h5>Аутсорсинг государственных информационных систем</h5>
-          </div>
-          <div class="service-item">
-            <h5>Создание программного обеспечения для систем организационно-экономическог управления</h5>
-          </div>
-          <div class="service-item">
-            <h5>Комплексная автоматизация бухгалтерского учёта бюджетной сферы</h5>
-          </div>
-          <div class="service-item">
-            <h5>Координация проектов по эл. торговле, эл. логистике в восточном портнёрстве и цифровых транспортных коридорах</h5>
-          </div>          
-          <div class="service-item">
-            <h5>Стандартизация в сфере цифровой трансформации</h5>
+          <div class="row no-gutters">
+            <div
+              v-for="servise in servises"
+              :key="servise.id"
+              class="col"
+            >
+              <div class="service-item">
+                <h5>{{ servise.title }}</h5>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -50,7 +25,49 @@
 
 <script>
 export default {
-  name: 'Activities'  
+  name: 'Activities',
+  data() {
+    return {
+      servises: [{
+          id: 1,
+          title: 'Программный инжиниринг'
+        }, {
+          id: 2,
+          title: 'Создание инфраструктуры электронного правительства'
+        }, {
+          id: 3,
+          title: 'Развитие государственных и комерерческих электронных услуг'
+        }, {
+          id: 4,
+          title: 'Деятельность по технической защите информациии'
+        }, {
+          id: 5,
+          title: 'Сопровождение ранее разработанных информационных систем'
+        }, {
+          id: 6,
+          title: 'Государстенная регистрация информационных систем и информационных ресурсов'
+        }, {
+          id: 7,
+          title: 'Разработка информационных систем расчёта и анализа показателей состояния информатизации в Республике Беларусь'
+        }, {
+          id: 8,
+          title: 'Аутсорсинг государственных информационных систем'
+        }, {
+          id: 9,
+          title: 'Создание программного обеспечения для систем организационно-экономическог управления'
+        }, {
+          id: 10,
+          title: 'Комплексная автоматизация бухгалтерского учёта бюджетной сферы'
+        }, {
+          id: 11,
+          title: 'Координация проектов по эл. торговле, эл. логистике в восточном портнёрстве и цифровых транспортных коридорах'
+        }, {
+          id: 12,
+          title: 'Стандартизация в сфере цифровой трансформации'
+        }
+      ]
+    };
+  }
 };
 </script>
 
@@ -72,22 +89,23 @@ export default {
     height: 100%
     z-index: -1;
     background: -webkit-linear-gradient(-45deg,rgba(88, 195, 255,.8) 0,rgba(0, 77, 230,.8) 40%,rgba(0, 59, 177,.8) 100%)
-  .service-item
-    display: flex
-    width: calc(100% / 4)
-    height: 200px
-    padding: 20px
-    align-items: center
+
+.service-item
+  display: flex
+  min-width: 310px
+  height: 200px
+  padding: 20px
+  align-items: center
+  transition: all 0.4s ease
+  border-right: 2px solid #ffffff9e
+  border-bottom: 2px solid #ffffff9e
+  h5
+    color: #fff
     transition: all 0.4s ease
-    border-right: 2px solid #ffffff9e
-    border-bottom: 2px solid #ffffff9e
+  &:hover
+    background-color: #1461FF
+    border-right-color: #fff
+    border-bottom-color: #fff
     h5
-      color: #fff
-      transition: all 0.4s ease
-    &:hover
-      background-color: #1461FF
-      border-right-color: #fff
-      border-bottom-color: #fff
-      h5        
-        transform: translateY(-7px);
+      transform: translateY(-7px)
 </style>

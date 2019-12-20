@@ -6,7 +6,7 @@
     <div v-if="fullName" class="name">
       <h3>{{ fullName }}</h3>
     </div>
-    <div class="info">
+    <div class="contact-info">
       <div class="about">
         <i class="fas fa-map-marker-alt icon"/>
         <span class="about-title">Кабинет</span>
@@ -87,21 +87,4 @@ export default {
   h3
     color: #1461ff
     font-weight: 300
-.info
-  .about
-    display: flex
-    align-items: center
-    .icon
-      width: 20px
-      color: #777
-      text-align: center
-      margin-right: 10px
-    .about-title
-      width: 80px
-      color: #777
-  & > *
-    margin: 0.5rem 0
-.note
-  padding-top: 0.5rem
-  border-top: 1px solid #ddd
 </style>

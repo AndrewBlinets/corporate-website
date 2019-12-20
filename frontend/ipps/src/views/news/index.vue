@@ -11,39 +11,36 @@
       <div class="app-container">
 
         <div class="row mb-3">
-          <div class="col-xl-4 col-lg-12 col-md-6 px-2">
+          <div class="col-lg-4 col-md-12 px-2 mb-lg-0 mb-3">
             <news-card-item />
           </div>
-          <div class="col-xl-8 px-2">
+          <div class="col-lg-8 px-2">
             <news-card-list />
           </div>
         </div>
 
         <div class="row mb-3">
-          <div class="col-3 px-2">
+          <div class="col-xl-9 col-sm-6 px-2 mb-sm-0 mb-3">
             <news-card-item />
           </div>
-          <div class="col-3 px-2">
-            <news-card-item />
-          </div>
-          <div class="col-3 px-2">
-            <news-card-item />
-          </div>
-          <div class="col-3 px-2">
+          <div class="col-xl-3 col-sm-6 px-2">
             <news-card-item />
           </div>
         </div>
 
         <div class="row">
-          <div class="col-6">
+          <div class="col-lg-6 mb-lg-0 mb-3 px-2">
             <news-card-list />
           </div>
-          <div class="col-6">
+          <div class="col-lg-6 px-2">
             <div class="row">
-              <div class="col-12">
+              <div class="col-lg-12 col-md-6 mb-3">
                 <news-card-item />
               </div>
-              <div class="col-12">
+              <div class="col-lg-12 col-md-6 mb-3">
+                <news-card-item />
+              </div>
+              <div class="col-lg-12">
                 <news-card-item />
               </div>
             </div>

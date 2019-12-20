@@ -2,7 +2,6 @@
   <div
     v-resize="handleResize"
     class="news-info"
-    :class="{ 'over-img': over }"
   >
     <h5>
       <router-link :to="{ path: `/news/${id}` }">{{ shortTitle }}</router-link>
@@ -43,13 +42,11 @@ export default {
     };
   },
   mounted() {
-    this.showSpeech = this.$el.clientWidth > 350;
-    this.over = this.$el.clientWidth < 350 || this.$el.clientWidth > 500;
+    this.showSpeech = this.$el.clientWidth > 310;
   },
   methods: {
     handleResize() {
-      this.showSpeech = this.$el.clientWidth > 350;
-      this.over = this.$el.clientWidth < 350 || this.$el.clientWidth > 500;
+      this.showSpeech = this.$el.clientWidth > 310;
     }
   }
 };
@@ -57,11 +54,11 @@ export default {
 
 <style lang="stylus" scoped>
 .news-info
-  margin-bottom: 1.5rem
-  &:last-child
-    margin-bottom: 0
-  h5
-    a:hover
+  padding: 20px
+  z-index: 1
+  &:not(:last-child)
+    margin-bottom: -20px
+  h5 a:hover
       text-decoration: underline
   .state
     display: flex
@@ -75,11 +72,8 @@ export default {
   p
     margin-top: 0.5rem
 
-.news-item-img
-  .news-info.over-img
-    position: absolute
-    top: 0
-    left: 0
+.news-item-img.compact
+  .news-info
     h5 a,
     p,
     .state-item

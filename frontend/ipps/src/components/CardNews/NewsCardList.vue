@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import NewsInfoItem from './components/NewsInfoItem';
+import NewsInfoItem from './NewsInfoItem';
 
 export default {
   name: 'NewsCardList',
@@ -49,7 +49,10 @@ export default {
 };
 </script>
 
+
 <style lang="stylus" scoped>
 .news-list-item
-  padding: 20px
+  display: flex
+  justify-content: space-around
+  height: 100%
 </style>

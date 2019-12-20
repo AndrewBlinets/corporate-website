@@ -8,17 +8,26 @@
       </div>
     </div>
     <div class="body-page">
-      <section-component></section-component>
+      <section-component v-bind="section" />
     </div>
   </div>
 </template>
 
 <script>
 import SectionComponent from '@/components/Section';
+
 export default {
   name: 'TechnicalCommittee',
   components: {
     SectionComponent
+  },
+  data() {
+    return {
+      section: {
+        name: 'Новости',
+        componentName: 'News'
+      }
+    };
   }
 };
 </script>

@@ -20,16 +20,20 @@ import News from './components/News';
 
 export default {
   name: 'Section',
+  props: {
+    name: {
+      type: String,
+      default: ''
+    },
+    componentName: {
+      type: String,
+      default: 'About'
+    }
+  },
   components: {
     About,
     Contact,
     News
-  },
-  data() {
-    return {
-      name: 'Test Section',
-      componentName: 'News'
-    };
   }
 };
 </script>

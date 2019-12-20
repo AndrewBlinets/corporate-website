@@ -29,18 +29,36 @@
           </div>
         </div>
       </section>
-      <news />
+      <section-component
+        v-for="section in sections"
+        v-bind="section"
+        :key="section.componentName"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import News from './components/News';
+import SectionComponent from '@/components/Section';
 
 export default {
   name: 'EasternPartnership',
   components: {
-    News
+    SectionComponent
+  },
+  data() {
+    return {
+      sections: [
+        {
+          name: 'О Партнёрстве',
+          componentName: 'About'
+        },
+        {
+          name: 'Новости',
+          componentName: 'News'
+        },
+      ]
+    };
   }
 };
 </script>

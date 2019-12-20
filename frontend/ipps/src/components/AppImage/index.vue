@@ -1,16 +1,17 @@
 <template>
   <img
+    :src="urlSmallImg"
     :data-src="url"
     :datasrcset="`${url} 2x`"
-    :style="style"
     :alt="name"
     class="app-image"
+    :class="{ 'blur-image': loading }"
   >
 </template>
 
 <script>
 import lozad from 'lozad';
-import { getImage } from '@/api/index';
+import { getImage, getImageSmall } from '@/api/index';
 
 export default {
   name: 'AppImage',
@@ -39,6 +40,7 @@ export default {
   data() {
     return {
       url: getImage(this.id),
+      urlSmallImg: getImageSmall(this.id),
       loading: true
     };
   },
@@ -63,15 +65,14 @@ export default {
     }
   },
   mounted() {
-    const setLoadingState = () => {
-      this.loading = false;
-    };
-    this.$el.addEventListener('load', setLoadingState);
-    this.$once('hook:destroyed', () => {
-      this.$el.removeEventListener('load', setLoadingState);
+    const observer = lozad(this.$el, {
+      load: (el) => {
+        el.src = el.dataset.src;
+        el.onload = () => {
+          this.loading = false;
+        };
+      }
     });
-
-    const observer = lozad(this.$el);
     observer.observe();
   }  
 };
@@ -79,10 +80,12 @@ export default {
 
 <style lang="stylus" scoped>
 .app-image
-  max-width: 100%
-  max-height: 100%
-  width: auto
+  width: 100%
   height: auto
-  vertical-align: middle
+  transform: scale(1.1)
+  transition : .5s
+
+.blur-image
+  filter: blur(20px)  
 </style>
 

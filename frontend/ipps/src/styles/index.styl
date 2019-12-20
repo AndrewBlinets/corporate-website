@@ -13,7 +13,6 @@
   -webkit-box-sizing: border-box
   box-sizing: border-box
   outline: none
-  list-style: none
   word-wrap: break-word
 
 html
@@ -52,7 +51,7 @@ body
   max-width: 1280px
   min-width: 320px
   margin: 0 auto
-  padding: 0 20px
+  padding: 0 15px
 
 .main-banner
   height: 700px
@@ -152,10 +151,6 @@ section
   border-radius: 3px
   .news-img
     position: relative
-    img
-      display: block
-      max-width: 100%
-      height: auto
     .state // rename "info-news"
       display: flex
       width: 100%
@@ -278,6 +273,38 @@ section
         border-bottom: 4px solid #1461ff
     h5
       font-weight: 400
+
+.contact-info
+  .about
+    display: flex
+    align-items: center
+    .icon
+      width: 20px
+      color: #777
+      text-align: center
+      margin-right: 10px
+    .about-title
+      width: 80px
+      color: #777
+  & > *
+    margin: 0.5rem 0
+.note
+  padding-top: 0.5rem
+  border-top: 1px solid #ddd
+  .list:not(:last-child)
+    margin-bottom: 1rem
+  .list
+    .header
+      font-weight: 700
+      color: #444
+    ul
+      li
+        display: flex
+      li:before
+        content: "-"
+        font-size: 2rem
+        margin-right: 15px
+        color: #1461ff
 
 @media (max-width: 480px)
   h1

@@ -4,7 +4,9 @@
       <h5>{{ positions[0].name }}</h5>
     </div>
     <div v-if="fullName" class="name">
-      <h3>{{ fullName }}</h3>
+      <h3>{{ name }}</h3>
+      <h3>{{ patronicName }}</h3>
+      <h3>{{ surName }}</h3>
     </div>
     <div class="contact-info">
       <div class="about">

@@ -26,7 +26,7 @@ export default {
     return {
       project: {
         id: 1,
-        imageMain: 15,
+        imageMain: 17,
         name: 'Единое информационное пространство отрасли на базе программных средств автоматизированной информационной системы (АИС) госоргана (ведомства)'
       }
     };
@@ -37,7 +37,12 @@ export default {
 <style lang="stylus" scoped>
 .project-item
   position: relative
+  width: 100%
+  height: 406px
   overflow: hidden
+  .project-img
+    width: 100%
+    height: 100%
   .item-overlay
     position: absolute
     top: 15px

@@ -1,41 +1,17 @@
 <template>
   <div
-      v-resize="handleMenu"
-      class="main-menu"
-    > 
+    v-resize="handleMenu"
+    class="main-menu"
+  > 
 
-      <ul class="nav">
-        <li data-nav="company">
-          <router-link :to="{ name: 'home' }">Главная</router-link>
-        </li>
-        <li>
-          <router-link :to="{ name: 'contacts' }">Контакты</router-link>
-        </li>
-        <li>
-          <router-link :to="{ name: 'projects' }">Проекты</router-link>
-        </li>
-        <li>
-          <router-link :to="{ name: 'eastern-partnership' }">Восточное Партнерство</router-link>
-        </li>
-        <li>
-          <router-link :to="{ name: 'technical committee' }">Национальный Технический Комитет</router-link>
-        </li>
-      </ul>
-      <!-- <div class="popover">
-        <div class="content">
-          <section class="section section-company">
-            <ul class="navlist">
-              <li><i data-feather="info"></i>О нас</li>
-              <li><i data-feather="users"></i>Направления деятельности</li>
-              <li><i data-feather="server"></i>Клиенты</li>
-              <li><i data-feather="briefcase"></i>Проекты</li>
-              <li><i data-feather="image"></i>Новости</li>
-              <li><i data-feather="layout"></i>Контакты</li>
-            </ul>
-          </section>
-        </div>
-      </div>
-      <div class="background"></div> -->
+    <ul v-if="!mobile" class="nav">
+      <li
+        v-for="link in links"
+        :key="link.path"
+      >
+        <router-link :to="{ name: link.path }">{{ link.name }}</router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -49,12 +25,37 @@ export default {
   },
   data() {
     return {
-      mobile: false
+      mobile: false,
+      links: [
+        {
+          name: 'Главная',
+          path: 'home'
+        },
+        {
+          name: 'Контакты',
+          path: 'contacts'
+        },
+        {
+          name: 'Проекты',
+          path: 'projects'
+        },
+        {
+          name: 'Восточное Партнерство',
+          path: 'eastern-partnership'
+        },
+        {
+          name: 'Национальный Технический Комитет',
+          path: 'technical-committee'
+        }
+      ]
     };
+  },
+  mounted() {
+    this.mobile = document.documentElement.clientWidth <= 768;
   },
   methods: {
     handleMenu() {
-      this.mobile = this.$el.clientHeight > 24;
+      this.mobile = document.documentElement.clientWidth <= 768;
     }
   }
 };

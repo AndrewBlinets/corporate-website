@@ -81,7 +81,9 @@ export default {
 <style lang="stylus" scoped>
 .app-image
   width: 100%
-  height: auto
+  height: 100%
+  object-fit: cover
+  object-position: center center
   transform: scale(1.1)
   transition : .5s
 

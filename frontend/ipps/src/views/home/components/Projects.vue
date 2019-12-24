@@ -18,15 +18,6 @@
             <div class="col-lg-4 col-sm-6 px-2 mb-3">
               <project-card-item />
             </div>
-            <div class="col-lg-4 col-sm-6 px-2 mb-3">
-              <project-card-item />
-            </div>
-            <div class="col-lg-4 col-sm-6 px-2 mb-3">
-              <project-card-item />
-            </div>
-            <div class="col-lg-4 col-sm-6 px-2 mb-3">
-              <project-card-item />
-            </div>
           </div>
           <div class="button-container">
             <div class="button-item">

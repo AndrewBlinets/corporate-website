@@ -25,7 +25,7 @@ export const constantRoutes = [
         path: 'news',
         name: 'news',
         component: () => import('@/views/news')
-      },      
+      },
       {
         path: 'news/:id',
         name: 'article',
@@ -37,13 +37,18 @@ export const constantRoutes = [
         component: () => import('@/views/projects')
       },
       {
+        path: 'projects/:id',
+        name: 'projects',
+        component: () => import('@/views/projects/Project.vue')
+      },
+      {
         path: 'eastern-partnership',
         name: 'eastern-partnership',
         component: () => import('@/views/eastern-partnership')
       },
       {
         path: 'technical-committee',
-        name: 'technical committee',
+        name: 'technical-committee',
         component: () => import('@/views/technical-committee')
       }
     ]

@@ -5,7 +5,7 @@
         <h2>О Нас</h2>
       </div>
       <div class="section-body">
-        <div class="row align-items-center">
+        <div class="row align-items-center mb-5">
           <div class="col">
             <div class="information">
               <p>Большинство разработанных НИРУП «ИППС» продуктов относятся к глобальным, эффективно применяемым на общегосударственном уровне.</p>
@@ -17,6 +17,14 @@
             <div class="information-statistic">
               <h4>Наша миссия - способствовать развитию информационного общества Республики Беларусь для обевпечения взаимодействия населения, государства и бизнеса на базе информационных технологий</h4>
             </div>
+          </div>
+        </div>
+        <div class="button-container">
+          <div class="button-item">
+            <router-link
+              :to="{ name: 'about-us' }"
+              class="btn btn-main"
+            >Подробнее</router-link>
           </div>
         </div>
       </div>

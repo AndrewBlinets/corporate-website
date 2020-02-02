@@ -50,6 +50,11 @@ export const constantRoutes = [
         path: 'technical-committee',
         name: 'technical-committee',
         component: () => import('@/views/technical-committee')
+      },
+      {
+        path: 'about-us',
+        name: 'about-us',
+        component: () => import('@/views/about-us')
       }
     ]
   }

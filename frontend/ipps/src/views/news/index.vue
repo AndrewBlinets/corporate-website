@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import HeaderPage from '@/components/HeaderPage';
 import NewsCardList from '@/components/CardNews/NewsCardList';
 import NewsCardItem from '@/components/CardNews/NewsCardItem';
@@ -61,11 +62,19 @@ export default {
     NewsCardList,
     NewsCardItem
   },
+  computed: {
+    ...mapState([
+      'news'
+    ])
+  },
   data() {
     return {
       namePage: 'Новости',
       imagePageId: 16
     };
+  },
+  created() {
+    this.$store.dispatch('news/getNews');
   }
 };
 </script>

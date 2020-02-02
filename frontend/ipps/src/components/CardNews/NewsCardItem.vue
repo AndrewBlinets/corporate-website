@@ -6,11 +6,11 @@
   >
     <div class="news-img">
       <app-image
-        :id="news.mainImage"
-        :name="news.shortTitle"
+        :id="mainImage"
+        :name="shortTitle"
       />
     </div>  
-    <news-info-item v-bind="news" />
+    <news-info-item v-bind="$props" />
   </div>
 </template>
 
@@ -28,21 +28,39 @@ export default {
   directives: {
     Resize
   },
+  props: {
+    id: {
+      type: Number,
+      default: 1
+    },
+    datePublic: {
+      type: String,
+      default: '2019-11-20T07:27:52.000+0000'
+    },
+    shortTitle: {
+      type: String,
+      default: 'С 4 по 30 октября 2019 года в Республике Беларусь пройдет перепись населения',
+    },
+    mainImage: {
+      type: Number,
+      default: 15
+    },
+    countView: {
+      type: Number,
+      default: 123
+    },
+    entrySpeech: {
+      type: String,
+      default: 'Целью подписания соглашения является взаимодействие и координация деятельности по интеграции автоматизированных систем и электронной торговой площадки «Грузовые перевозки».'
+    }
+  },
   data() {
     return {
-      news: {
-        id: 1,
-        datePublic: '2019-11-20T07:27:52.000+0000',
-        shortTitle: '1С 4 по 30 октября 2019 года в Республике Беларусь пройдет перепись населения',
-        mainImage: 15,
-        countView: 123,
-        entrySpeech: 'Целью подписания соглашения является взаимодействие и координация деятельности по интеграции автоматизированных систем и электронной торговой площадки «Грузовые перевозки».'
-      },
       compact: false
     };
   },
   mounted() {
-    this.compact = this.$el.clientWidth > 411 || this.$el.clientWidth < 308;
+    this.handleResize();
   },
   methods: {
     handleResize() {

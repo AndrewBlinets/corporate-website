@@ -16,9 +16,10 @@ export default {
   components: {
     NewsInfoItem
   },
-  data() {
-    return {
-      listNews: [
+  props: {
+    listNews: {
+      type: Array,
+      default: () => [
         {
           id: 1,
           datePublic: '2019-11-20T07:27:52.000+0000',
@@ -42,9 +43,9 @@ export default {
           mainImage: 0,
           countView: 123,
           entrySpeech: 'Целью подписания соглашения является взаимодействие и координация деятельности по интеграции автоматизированных систем и электронной торговой площадки «Грузовые перевозки».'
-        },
+        }
       ]
-    };
+    }
   }
 };
 </script>

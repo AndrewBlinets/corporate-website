@@ -78,5 +78,5 @@ export default {
     p,
     .state-item
       color: #fff
-      background-color: rgba(0, 0, 0, 0.35)
+      text-shadow: 1px 1px 0 rgba(0, 0, 0, .3)
 </style>

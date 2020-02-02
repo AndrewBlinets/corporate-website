@@ -32,13 +32,22 @@ export default {
           path: 'home'
         },
         {
-          name: 'Контакты',
-          path: 'contacts'
+          name: 'О нас',
+          path: 'about-us'
+        },
+        {
+          name: 'Новости',
+          path: 'news'
         },
         {
           name: 'Проекты',
           path: 'projects'
         },
+        {
+          name: 'Контакты',
+          path: 'contacts'
+        },
+        
         {
           name: 'Восточное Партнерство',
           path: 'eastern-partnership'

@@ -1,15 +1,13 @@
 <template>
   <section>
-    <section>
-      <div class="app-container">
-        <div class="section-header">
-          <h2>{{ name }}</h2>
-        </div>
-        <div class="section-body">
-          <component :is="$options.components[componentName]" />
-        </div>
+    <div class="app-container grid-area">
+      <div class="section-header">
+        <h2>{{ name }}</h2>
       </div>
-    </section>
+      <div class="section-body">
+        <component :is="$options.components[componentName]" />
+      </div>
+    </div>
   </section>
 </template>
 
@@ -17,6 +15,7 @@
 import About from './components/About';
 import Contact from './components/Contact';
 import News from './components/News';
+import Images from './components/Images';
 
 export default {
   name: 'Section',
@@ -33,7 +32,8 @@ export default {
   components: {
     About,
     Contact,
-    News
+    News,
+    Images
   }
 };
 </script>

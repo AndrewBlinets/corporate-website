@@ -9,39 +9,46 @@
         icon="el-icon-plus"
         @click="toCreateArticle"
       >Создать</el-button>
-    </div>    
-    <!-- <text-editor /> -->
+    </div>
     <div class="table-container">
       <el-table
         ref="multipleTable"
-        :data="tableData"
-        border>
+        :data="news"
+        :row-class-name="tableRowClassName"
+        border
+      >
+        <el-table-column
+          type="index"
+        />
         <el-table-column
           prop="id"
           label="Id"
-          width="50">
-        </el-table-column>
+          width="50"
+        />
         <el-table-column
-          prop="title"
+          prop="shortTitle"
           label="Название"
-          width="180">
-        </el-table-column>
+        />
         <el-table-column
-          prop="dti"
           label="Дата создания"
-          width="180">
+          width="140"
+        >
+          <template slot-scope="scope">{{ scope.row.dti | formatDate}}</template>
         </el-table-column>
         <el-table-column
-          prop="dpublic"
-          label="Дата публикации">
+          label="Дата публикации"
+          width="140"
+        >
+          <template slot-scope="scope">{{ scope.row.datePublic | formatDate}}</template>
         </el-table-column>
         <el-table-column
-          prop="rstatus"
-          label="Статус">
-        </el-table-column>
+          prop="status"
+          label="Статус"
+          width="140"
+        />
         <el-table-column
           fixed="right"
-          label="Operations"
+          label="Операции"
           width="230"
         >
           <template slot-scope="scope">
@@ -53,11 +60,12 @@
             </el-tooltip>
             <el-tooltip effect="dark" content="Удалить" placement="top">
               <el-button
-                @click.native.prevent="deleteRow(scope.$index, tableData)"
+                @click.native.prevent="deleteRow(scope, tableData)"
                 size="medium"
                 icon="el-icon-delete"
-                type="danger" />
-              </el-tooltip>
+                type="danger"
+              />
+            </el-tooltip>
           </template>
         </el-table-column>
       </el-table>
@@ -66,58 +74,31 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'News',
-  data() {
-    return {
-      tableData: [{
-        id: 1,
-        dti: '2016-05-03',
-        dpublic: '2016-05-03',
-        title: 'Tom',
-        rstatus: 'T'
-      }, {
-        id: 2,
-        dti: '2016-05-03',
-        dpublic: '2016-05-03',
-        title: 'Tom',
-        rstatus: 'T'
-      }, {
-        id: 3,
-        dti: '2016-05-03',
-        dpublic: '2016-05-03',
-        title: 'Tom',
-        rstatus: 'T'
-      }, {
-        id: 4,
-        dti: '2016-05-03',
-        dpublic: '2016-05-03',
-        title: 'Tom',
-        rstatus: 'T'
-      }, {
-        id: 5,
-        dti: '2016-05-03',
-        dpublic: '2016-05-03',
-        title: 'Tom',
-        rstatus: 'T'
-      }, {
-        id: 6,
-        dti: '2016-05-03',
-        dpublic: '2016-05-03',
-        title: 'Tom',
-        rstatus: 'T'
-      }, {
-        id: 7,
-        dti: '2016-05-03',
-        dpublic: '2016-05-03',
-        title: 'Tom',
-        rstatus: 'T'
-      }],
-    };
+  computed: {
+    ...mapGetters([
+      'news'
+    ])
+  },
+  created() {
+    this.$store.dispatch('news/getNews');
   },
   methods: {
     toCreateArticle() {
       this.$router.push({ path: 'create'});
+    },
+    tableRowClassName({ row }) {
+      if (row.status === 'Опубликовано') {
+        return 'success-row';
+      } else if (row.status === 'черновик') {
+        return 'warning-row';
+      } else if (row.status === 'Удалён') {
+        return 'error-row';
+      }
+      return '';
     },
     deleteRow(index, rows) {
       this.$confirm('Вы точно хотите удалить?', {
@@ -134,8 +115,8 @@ export default {
           this.$message({
             type: 'info',
             message: 'Удаление отменино'
-          });          
-        });      
+          });
+        });
     }
   },
 };
@@ -145,14 +126,15 @@ export default {
 .news-container
   display: flex
   flex-direction: column
-  height: 100%
   padding: 20px
   background-color: #fff
   .name
   .button-container
     margin-bottom: 30px
-  .table-container
-  .el-table
-    height: 100%
-    width: 100%
+ 
+.el-table__row
+  .warning-row
+    background: oldlace
+  .success-row
+    background: #f0f9eb
 </style>

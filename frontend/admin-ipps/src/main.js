@@ -15,8 +15,11 @@ import router from './router';
 import store from './store';
 import * as filters from '@/filters';
 
+import Vuelidate from 'vuelidate';
+
 Vue.use(ElementUI, { locale });
 Vue.use(CKEditor);
+Vue.use(Vuelidate);
 
 Vue.config.productionTip = false;
 

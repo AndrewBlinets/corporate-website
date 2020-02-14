@@ -17,10 +17,15 @@ export const constantRoutes = [
       {
         path: 'dashboard',
         name: 'dashboard',
-        component: () => import('@/views/dashboard'),        
-      },
+        component: () => import('@/views/dashboard')
+      }
     ]
   },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login')
+  }
 ];
 
 export const asyncRoutes = [
@@ -51,6 +56,56 @@ export const asyncRoutes = [
         path: '',
         name: 'projects',
         component: () => import('@/views/news')
+      }
+    ]
+  },
+  {
+    path: '/department',
+    component: Layout,
+    meta: {
+      title: 'Отделы',
+      roles: ['super-admin', 'super-editor']
+    },
+    children: [
+      {
+        path: '',
+        name: 'department',
+        component: () => import('@/views/department')
+      },
+      {
+        path: ':id',
+        name: 'department-id',
+        component: () => import('@/views/department')
+      },
+      {
+        path: 'create',
+        name: 'department-create',
+        component: () => import('@/views/department')
+      }
+    ]
+  },
+  {
+    path: '/contact',
+    component: Layout,
+    meta: {
+      title: 'Контакты',
+      roles: ['super-admin', 'super-editor']
+    },
+    children: [
+      {
+        path: '',
+        name: 'contact',
+        component: () => import('@/views/contact')
+      },
+      {
+        path: ':id',
+        name: 'contact-id',
+        component: () => import('@/views/contact')
+      },
+      {
+        path: 'create',
+        name: 'contact-create',
+        component: () => import('@/views/contact')
       }
     ]
   }

@@ -6,6 +6,8 @@ import 'nprogress/nprogress.css';
 
 NProgress.configure({ showSpinner: false });
 
+const whiteList = ['/login', '/auth-redirect'];
+
 router.beforeEach(async(to, from, next) => {
   NProgress.start();
   
@@ -16,7 +18,7 @@ router.beforeEach(async(to, from, next) => {
       NProgress.done();
     } else {
 
-      const hasRoles = store.getters.roles && store.getters.roles.length > 0;      
+      const hasRoles = store.getters.roles && store.getters.roles.length > 0;
       if (hasRoles) {
         next();
       } else {
@@ -25,7 +27,7 @@ router.beforeEach(async(to, from, next) => {
           const accessRoutes = await store.dispatch('permission/generateRoutes', roles);
 
           router.addRoutes(accessRoutes);
-          next({ ...to, replace: true});
+          next({ ...to, replace: true });
         } catch (error) {
           await store.dispatch('user/resetToken');
           NProgress.done();
@@ -36,12 +38,12 @@ router.beforeEach(async(to, from, next) => {
     }
   } else {
     // has no token
-    try {
-      await store.dispatch('user/login');
-      next({ path: '/' });
-    } catch (error) {
+    if (whiteList.indexOf(to.path) !== -1) {
+      next();
+    } else {
+      next(`/login?redirect=${to.path}`);
       NProgress.done();
-    }    
+    }
   }
 });
 

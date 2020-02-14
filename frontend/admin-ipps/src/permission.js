@@ -1,6 +1,6 @@
 import router from './router';
 import store from './store';
-// import { getToken } from '@/utils/auth';
+import { getToken } from '@/utils/auth';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
@@ -10,14 +10,12 @@ const whiteList = ['/login', '/auth-redirect'];
 
 router.beforeEach(async(to, from, next) => {
   NProgress.start();
-  
-  const hasToken = store.getters.token;
+  const hasToken = getToken();
   if (hasToken) {
     if (to.path === '/login') {
       next({ path: '/' });
       NProgress.done();
     } else {
-
       const hasRoles = store.getters.roles && store.getters.roles.length > 0;
       if (hasRoles) {
         next();

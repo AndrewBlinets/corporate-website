@@ -1,5 +1,8 @@
 <template>
-  <el-menu-item :index="i" :route="{ path: basePath }">
+  <el-menu-item
+    :index="index"
+    :route="{ path: basePath }"
+  >
     <i class="el-icon-news"></i>
     <span>{{ item.meta.title }}</span>
   </el-menu-item>
@@ -9,9 +12,9 @@
 export default {
   name: 'SidebarItem',
   props: {
-    i: {
-      type: Number,
-      default: 1
+    index: {
+      type: String,
+      default: ''
     },
     item: {
       type: Object,

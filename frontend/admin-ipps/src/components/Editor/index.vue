@@ -2,12 +2,13 @@
   <div>
     <ckeditor
       :editor="editor"
-      v-model="editorData"
+      :value="content"
+      @input="$emit('input', $event)"
       :config="editorConfig"
       :disabled="editorDisabled"
     />
     <div>
-      <code>{{ editorData }}</code>
+      <code>{{ content }}</code>
     </div>
   </div>
 </template>
@@ -18,11 +19,16 @@ import { EditorConfig } from './editorConfig.js';
 
 export default {
   name: 'Editor',
+  props: {
+    content: {
+      type: String,
+      default: ''
+    }    
+  },
   data: () => ({
     editor: ClassicEditor,
-    editorData: `<p>Content</p>`,
     editorConfig: EditorConfig,
     editorDisabled: false
-  })
+  }),
 };
 </script>

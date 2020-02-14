@@ -6,9 +6,9 @@
     router
   >
     <sidebar-item
-      v-for="(route, i) in permissionRoutes"
+      v-for="(route, index) in permissionRoutes"
       :key="route.path"
-      :i="i"
+      :index="`${index}`"
       :item="route"
       :base-path="route.path"
     />
@@ -37,6 +37,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.el-menu
+  height: 100%
+
 .icon
   margin-right: 5px
   width: 24px

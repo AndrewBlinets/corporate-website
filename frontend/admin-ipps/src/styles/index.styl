@@ -12,4 +12,39 @@ body
 
 #app
   height: 100vh
-  width: 100vw
+
+.layout
+  display: flex
+  flex-direction: row
+  height: 100%
+  width: 100%
+  .sidebar
+    min-width: 210px
+    height: 100%
+  main
+    width: 100%
+    height: 100%
+    .header
+      min-height: 50px
+    .app-main
+      height: calc(100% - 50px)
+      width: 100%
+      padding: 20px
+      overflow-y: auto
+  
+
+// .layout {
+//   display: grid;
+//   grid-template-columns: 210px auto;
+//   grid-template-rows: 50px auto;
+//   grid-template-areas: "sidebar navbar" "sidebar main";
+// }
+
+// .sidebar {
+//   grid-area: sidebar;
+// }
+
+// main {
+//   grid-area: main;
+//   padding: 20px
+// }

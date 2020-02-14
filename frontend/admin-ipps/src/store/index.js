@@ -1,27 +1,22 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import permission from './modules/permission';
-import user from './modules/user';
+import getters from './getters';
+
+const requireModules = require.context('./modules', true, /\.js$/);
+
+const modules = requireModules.keys().reduce((modules, modulePath) => {
+  const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1');
+  const value = requireModules(modulePath);
+  modules[moduleName] = value.default;
+  return modules;
+}, {});
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  getters: {
-    permissionRoutes: state => state.permission.routes,
-    roles: state => state.user.roles,
-    token: state => state.user.token
-  },
-  actions: {
-  },
-  modules: {
-    permission,
-    user
-  }
+  modules,
+  getters
 });
 
 export default store;

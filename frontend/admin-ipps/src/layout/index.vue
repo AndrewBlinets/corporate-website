@@ -2,9 +2,11 @@
   <div class="layout">
     <div class="sidebar">
       <sidebar />
-    </div>    
-    <navbar />
-    <app-main />
+    </div>
+    <main>
+      <navbar />
+      <app-main />
+    </main>
   </div>
 </template>
 
@@ -22,22 +24,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.layout {
-  display: grid;
-  grid-template-columns: 210px calc(100vw - 210px);
-  grid-template-rows: 50px calc(100vh - 50px);
-  grid-template-areas:
-    "sidebar navbar"
-    "sidebar main";
-}
-
-.sidebar {
-  grid-area: sidebar;
-}
-
-main {
-  grid-area: main;
-}
-</style>

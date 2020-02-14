@@ -17,7 +17,7 @@ export function logout() {
 
 export function getInfo() {
   return request({
-    url: '/authorization/getInfo',
+    url: '/admin-api/getInfo',
     method: 'get'
   });
 }

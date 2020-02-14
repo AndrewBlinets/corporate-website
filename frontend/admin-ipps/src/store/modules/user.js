@@ -21,11 +21,11 @@ const mutations = {
 
 const actions = {
   login({ commit }, userInfo = { username: 'javainuse', password: 'password' }) {
-    const { username, password } = userInfo;    
+    const { username, password } = userInfo;
     return new Promise((resolve, reject) => {
       login({ username, password }).then(data => {
         commit('SET_TOKEN', data.token);
-        setToken(data.token);        
+        setToken(data.token);
         resolve();
       }).catch(error => {
         reject(error);

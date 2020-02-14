@@ -3,7 +3,7 @@ import store from '@/store';
 import { Message } from 'element-ui';
 
 const service = axios.create({
-  baseURL: 'http://www.ipps.by:5454',
+  baseURL: 'http://www.ipps.by:5454/admin-api',
   timeout: 5000
 });
 

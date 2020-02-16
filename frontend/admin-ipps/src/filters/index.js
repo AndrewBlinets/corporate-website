@@ -3,6 +3,8 @@
  * @param {String} value 
  */
 export function formatDate(strDate) {
+  if (!strDate) return '';
+
   const date = new Date(strDate);
   let dd = date.getDate(),
       mm = date.getMonth() + 1,

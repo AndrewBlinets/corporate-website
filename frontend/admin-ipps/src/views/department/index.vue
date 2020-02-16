@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="name">
+  <div class="page-container">
+    <div class="title">
       <h1>Отделы</h1>
     </div>
 
@@ -8,13 +8,16 @@
       v-if="createDepartment"
       @close="createDepartment = false"
     />
-
-    <el-button
+    <div
       v-if="!createDepartment"
-      type="success"
-      icon="el-icon-plus"
-      @click="createDepartment = true"
-    >Создать</el-button>
+      class="button-container"
+    >
+      <el-button
+        type="success"
+        icon="el-icon-plus"
+        @click="createDepartment = true"
+      >Создать</el-button>
+    </div>
 
     <div class="table-container">
       <el-table
@@ -57,13 +60,7 @@
             <span v-else>{{ scope.row.code }}</span>
           </template>
         </el-table-column>
-        <el-table-column align="right" width="300">
-          <template slot="header">
-            <el-input
-              v-model="search"
-              size="mini"
-            />
-          </template>
+        <el-table-column align="right" width="150">
           <template slot-scope="scope">
             <el-button
               v-if="isEditing(scope.row.id)"
@@ -101,6 +98,7 @@
 </template>
 
 <script>
+import store from '@/store';
 import { mapGetters, mapActions } from 'vuex';
 import CreateDepartment from './CreateDepartment';
 
@@ -123,21 +121,34 @@ export default {
       searchDepartments: 'department/searchDepartmens'
     }),
   },
-  created() {
-    this.getDepartments();
+  beforeRouteEnter(to, from, next) {
+    store.dispatch('department/getDepartmentsList').then(() => {
+      next();
+    });
   },
   methods: {
     ...mapActions({
-      getDepartments:  'department/getDepartmentsList',
       updateDepartment: 'department/updateDepartment',
       deleteDepartment: 'department/deleteDepartment'
     }),
     toCreateArticle() {
       this.$router.push({ path: 'create'});
     },
+    addEditRow(id) {
+      this.edit.push(id);
+    },
+    cancelEditRow(id) {
+      const index = this.edit.findIndex(item => item === id);
+      this.edit.splice(index, 1);
+    },
     updateRow(department) {
       const { id } = department;
-      // this.updateDepartment(department);
+      this.updateDepartment(department).then(() => {
+        this.$message({
+          type: 'success',
+          message: 'Запись обновлена'
+        });
+      });
       this.cancelEditRow(id);
     },
     deleteRow(id) {
@@ -158,13 +169,6 @@ export default {
             message: 'Удаление отменино'
           });
         });
-    },
-    addEditRow(id) {
-      this.edit.push(id);
-    },
-    cancelEditRow(id) {
-      const index = this.edit.findIndex(item => item === id);
-      this.edit.splice(index, 1);
     },
     isEditing(id) {
       return this.edit.includes(id);

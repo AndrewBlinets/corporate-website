@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import getters from './getters';
+
 Vue.use(Vuex);
 
 const modulesFiles = require.context('./modules', true, /\.js$/);
@@ -14,11 +16,7 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
 
 const store = new Vuex.Store({
   modules,
-  getters: {
-    permissionRoutes: state => state.permission.routes,
-    roles: state => state.user.roles,
-    token: state => state.user.token
-  },
+  getters
 });
 
 export default store;

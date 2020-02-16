@@ -1,9 +1,9 @@
 <template>
   <el-row>
-    <el-col :span="24">
+    <el-col :span="24" class="mb-1">
       <el-input v-model="name" placeholder="Название" />
     </el-col>
-    <el-col :span="24">
+    <el-col :span="24" class="mb-1">
       <el-input v-model="code" placeholder="Код" />
     </el-col>
     <el-col :span="12">
@@ -11,7 +11,7 @@
         <el-button
           type="success"
           icon="el-icon-plus"
-          @click="createDepartment({ name, code })"
+          @click="create"
         >Создать</el-button>
         <el-button
           type="default"
@@ -39,6 +39,17 @@ export default {
     ...mapActions({
       createDepartment: 'department/createDepartment'
     }),
+    create() {
+      const name = this.name;
+      const code = this.code;
+      this.createDepartment({ name, code }).then(() => {
+        this.$message({
+          type: 'success',
+          message: 'Отдел добавлен'
+        });
+        this.clean();
+      });
+    },
     clean() {
       this.name = '';
       this.code = '';

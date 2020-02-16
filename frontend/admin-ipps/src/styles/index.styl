@@ -22,7 +22,7 @@ body
     min-width: 210px
     height: 100%
   main
-    width: 100%
+    width: calc(100% - 210px)
     height: 100%
     .header
       min-height: 50px
@@ -32,7 +32,26 @@ body
       padding: 20px
       overflow-y: auto
   
+.page-container
+  display: flex
+  flex-direction: column
+  padding: 20px
+  background-color: #fff
+  .title
+  .button-container
+    margin-bottom: 32px
 
+.el-table
+  .warning-row
+    background-color: oldlace
+  .error-row
+    background-color: #fde2e2
+
+.mb-1
+  margin-bottom: 16px
+
+.mb-2
+  margin-bottom: 32px
 // .layout {
 //   display: grid;
 //   grid-template-columns: 210px auto;

@@ -43,9 +43,14 @@ export const asyncRoutes = [
         component: () => import('@/views/news'),
       },
       {
-        path: '/create',
+        path: 'create',
         name: 'create-news',
-        component: () => import('@/views/news/Article.vue')
+        component: () => import('@/views/news/Article')
+      },
+      {
+        path: ':id',
+        name: 'news-id',
+        component: () => import('@/views/news/Article')
       }
     ]
   },

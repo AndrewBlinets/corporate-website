@@ -2,8 +2,8 @@ import request from '@/utils/request';
 
 export function getDepartmentsList() {
   return request({
-    url: '/department',
-    method: 'GET'
+    url: '/department/all',
+    method: 'GET',
   });
 }
 
@@ -25,7 +25,7 @@ export function createDepartment(data) {
 export function updateDepartment(data) {
   return request({
     url: '/department',
-    method: 'UPDATE',
+    method: 'PUT',
     data
   });
 }

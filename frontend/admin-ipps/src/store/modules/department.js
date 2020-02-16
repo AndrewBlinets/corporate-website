@@ -38,7 +38,7 @@ const actions = {
   getDepartmentsList({ commit }) {
     return new Promise((resolve) => {
       getDepartmentsList().then(data => {
-        commit('SET_DEPARTMENTS_LIST', data.content);
+        commit('SET_DEPARTMENTS_LIST', data);
         resolve();
       });
     });

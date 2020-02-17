@@ -1,15 +1,12 @@
 <template>
   <div>
     <ckeditor
-      :editor="editor"
       :value="content"
       @input="$emit('input', $event)"
+      :editor="editor"
       :config="editorConfig"
       :disabled="editorDisabled"
     />
-    <div>
-      <code>{{ content }}</code>
-    </div>
   </div>
 </template>
 
@@ -23,7 +20,7 @@ export default {
     content: {
       type: String,
       default: ''
-    }    
+    }
   },
   data: () => ({
     editor: ClassicEditor,

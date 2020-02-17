@@ -14,14 +14,14 @@
     </el-form-item>
     <el-form-item label="Вступительная речь">
       <el-input
-        type="textarea"
         :value="entrySpeech"
         @input="inputArticle('entrySpeech', $event)"
+        type="textarea"
       />
     </el-form-item>
     <el-form-item label="Содержание">
       <editor
-        :value="content"
+        :content="content"
         @input="inputArticle('content', $event)"
       />
     </el-form-item>

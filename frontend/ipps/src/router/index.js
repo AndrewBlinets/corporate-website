@@ -39,7 +39,7 @@ export const constantRoutes = [
       {
         path: 'projects/:id',
         name: 'projects',
-        component: () => import('@/views/projects/Project.vue')
+        component: () => import('@/views/project')
       },
       {
         path: 'eastern-partnership',

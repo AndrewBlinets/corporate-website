@@ -1,39 +1,42 @@
 <template>
-  <div class="app-container">
-    <div class="article-container">
-      <div class="article-header">
-        <h1>В Республике Армения пройдет полуфинал конкурса «Евразийские цифровые платформы»</h1>
-      </div>
-      <div class="article-details">
-        <div class="comments-counter">
-          <font-awesome-icon :icon="['fas', 'comment-alt']" />
-          <span>10</span>
+  <div>
+    <header-page :image="article.mainImage">
+      <h1 class="article-title">{{ article.title }}</h1>
+      <news-details
+        :views="article.countView"
+        :date="article.datePublic"
+      />
+    </header-page>
+    <div class="app-container py-5">
+      <div class="row">
+        <div class="col-lg-8 col-12 mb-lg-0 mb-5">
+          <div class="article_entry-speech">
+            <p>{{ article.entrySpeech }}</p>
+          </div>
+          <div class="article-body" v-html="article.content" />
         </div>
-        <div class="publish-date">
-          <span>10 августа 2019 в 14.02</span>
+        <div class="col-lg-4 col-12">
+          <last-news-list />
         </div>
-      </div>
-      <div class="article_entry-speech">
-        <p>Полуфинал Международного конкурса инновационных проектов «Евразийские цифровые платформы» в Республике Армения состоится 13 сентября 2019 г. в рамках универсального регионального торгово-промышленного выставочного форума «АРМЕНИЯ EXPO» (г. Ереван, ул. А. Акопяна, д. 3, выставочный комплекс «Ереван EXPO»).</p>
-      </div>
-      <div class="article-body">
-        <p>Международный конкурс инновационных проектов «Евразийские цифровые платформы» – межгосударственный проект, который Евразийская экономическая комиссия успешно реализует с 2018 г.</p>
-        <img src="../../images/news1.jpg" alt="">
-        <p>Цель конкурса – выявить компании и проекты в государствах – членах Евразийского экономического союза, способные внести значимый вклад в реализацию цифровой повестки Союза.</p>
-        <p>Конкурс призван быть постоянно действующей международной площадкой для экспертизы и обмена практическим опытом в сфере цифровой трансформации экономики государств – членов Союза.</p>
-        <p>Полуфиналы конкурса проходят во всех пяти государствах – членах Союза. По три победителя в каждом полуфинале (всего – 15 инновационных проектов) отправятся на Финал конкурса, который состоится в конце сентября 2019 г. на форуме «Евразийская неделя – 2019» (г. Бишкек, Кыргызская Республика). Жюри конкурса под председательством члена Коллегии (Министра) по внутренним рынкам, информатизации, информационно-коммуникационным технологиям Евразийской экономической комиссии Карине Минасян выберет трех победителей конкурса, а еще двум проектам будет присуждена победа в категории «Симпатии ЕЭК».</p>
-        <p>Универсальный региональный торгово-промышленный выставочный форум «АРМЕНИЯ EXPO» проходит при поддержке правительства Армении. Его ключевая задача – установление деловых контактов между промышленниками и предпринимателями из Армении и других стран. Форум проводится уже в девятнадцатый раз.</p>
-        <p>Источник: contest.eaeunion.org</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import store from '@/store';
+import { mapState } from 'vuex';
+import HeaderPage from '@/components/HeaderPage';
+import NewsDetails from '@/components/CardNews/NewsDetails';
+import LastNewsList from './components/LastNewsList';
 
 export default {
   name: 'Article',
+  components: {
+    HeaderPage,
+    NewsDetails,
+    LastNewsList
+  },
   props: {
     id: {
       type: Number,
@@ -41,49 +44,74 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'article'
-    ])
+    ...mapState({
+      article: state => state.news.article
+    })
   },
-  created() {
-    this.$store.dispatch('news/getArticle', this.id);
+  beforeRouteEnter (to, from, next) {
+    const id = to.params.id;
+    store.dispatch('news/getArticle', id).then(() => {
+      next();
+    });
+  },
+  beforeRouteUpdate (to, from, next) {
+    const id = to.params.id;
+    store.dispatch('news/getArticle', id).then(() => {
+      next();
+    });
+  },
+  destroyed() {
+    store.dispatch('news/resetArticle');
   }
 };
 </script>
 
 <style lang="stylus" scoped>
+.body-page
+  margin-top: 50px
+  margin-bottom: 50px
+
 .article-container
   padding: 40px 0
   color: #222
   max-width: 720px
   min-width: 290px
   margin: 0 auto
-  .article-header    
-    padding-bottom: 20px
-    h1
-      font-size: 36px
-      line-height: 42px
-  .article-details
-    display: flex
-    align-items: center
-    margin-bottom: 40px
-    .comments-counter
-      margin-right: 10px
-      span
-        margin-left: 5px
-  .article_entry-speech
-    font-size: 18px
-    font-weight: 700
-    line-height: 1.612
-    color: #666
-    margin-bottom: 20px
-  .article-body
-    p
-      font-size: 16px
-      line-height: 1.572
-      margin-bottom: 20px
-    img
-      width: 100%
-      height: auto
-      margin-bottom: 20px
+
+.article-title
+  margin-bottom: 1.5rem
+  line-height: 1.15
+
+@media (max-width: 480px)
+  .article-title
+    font-size: 1.5rem
+
+@media (min-width: 480px)
+  .article-title
+    font-size: 2.125rem
+
+@media (min-width: 840px)
+  .article-title
+    font-size: 2.5rem
+
+.article-details
+  display: flex
+  align-items: center
+  .comments-counter
+    margin-right: 10px
+    span
+      margin-left: 5px
+.article_entry-speech
+  max-width: 700px
+  margin: 0 auto
+  font-size: 18px
+  font-weight: 700
+  line-height: 1.612
+  color: #777
+  margin-bottom: 20px
+
+.article-body
+  max-width: 700px
+  margin: 0 auto
+  color: #333
 </style>

@@ -15,7 +15,7 @@
         <span>{{ datePublic | formatDate }}</span>
       </div>
     </div>
-    <p v-if="showSpeech">{{ entrySpeech }}</p>
+    <p v-if="!compact">{{ entrySpeech }}</p>
   </div>
 </template>
 
@@ -33,7 +33,11 @@ export default {
     shortTitle: String,
     mainImage: Number,
     countView: Number,
-    entrySpeech: String
+    entrySpeech: String,
+    compact: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -42,11 +46,11 @@ export default {
     };
   },
   mounted() {
-    this.showSpeech = this.$el.clientWidth > 310;
+    // this.compact = this.$el.clientWidth < 310;
   },
   methods: {
     handleResize() {
-      this.showSpeech = this.$el.clientWidth > 310;
+      // this.compact = this.$el.clientWidth < 310;
     }
   }
 };

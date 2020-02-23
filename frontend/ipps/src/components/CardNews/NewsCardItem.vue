@@ -2,7 +2,7 @@
   <div
     v-resize="handleResize"
     class="card news-item-img"
-    :class="{ 'compact': compact }"
+    :class="{ 'compact': false }"
   >
     <div class="news-img">
       <app-image
@@ -52,19 +52,18 @@ export default {
     entrySpeech: {
       type: String,
       default: 'Целью подписания соглашения является взаимодействие и координация деятельности по интеграции автоматизированных систем и электронной торговой площадки «Грузовые перевозки».'
+    },
+    compact: {
+      type: Boolean,
+      default: false
     }
-  },
-  data() {
-    return {
-      compact: false
-    };
   },
   mounted() {
     this.handleResize();
   },
   methods: {
     handleResize() {
-      this.compact = this.$el.clientWidth > 411 || this.$el.clientWidth < 308;
+      // this.compact = this.$el.clientWidth > 411 || this.$el.clientWidth < 308;
     }
   }
 };

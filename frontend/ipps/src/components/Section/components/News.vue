@@ -1,5 +1,22 @@
 <template>
-  <div class="row">
+  <div class="row mx-md-n4">
+    <div
+      v-for="item in news"
+      class="col-lg-4 col-sm-6 px-md-4 mb-5"
+      :key="item.id"
+    >
+      <news-card
+        :id="item.id"
+        :heightTitle="250"
+        :image="item.mainImage"
+        :title="item.shortTitle"
+        :views="item.countView"
+        :datePublish="item.datePublic"
+        :text="item.entrySpeech"
+      />
+    </div>
+  </div>
+  <!-- <div class="row">
     <div
       v-for="(item, index) in news"
       class="col-lg-4  px-2"
@@ -8,17 +25,19 @@
     >
       <news-card-item v-bind="item"/>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import NewsCardItem from '@/components/CardNews/NewsCardItem';
+import NewsCard from '@/components/CardNews/NewsCard';
+// import NewsCardItem from '@/components/CardNews/NewsCardItem';
 
 export default {
   name: 'News',
   components: {
-    NewsCardItem
+    NewsCard
+    // NewsCardItem
   },
   computed: {
     ...mapGetters(['news']),

@@ -1,12 +1,11 @@
 <template>
   <div class="header-page">
     <div class="img-container">
-      <app-image
-        :id="imageId"
-      />
+      <app-image :id="image" />
     </div>
     <div class="app-container">
       <div class="title">
+        <slot />
         <h1>{{ name }}</h1>
       </div>
     </div>
@@ -23,7 +22,7 @@ export default {
       type: String,
       default: ''
     },
-    imageId: {
+    image: {
       type: Number,
       default: 16
     }
@@ -55,9 +54,8 @@ export default {
       background: -webkit-linear-gradient(-45deg,rgba(88, 195, 255,.7) 0,rgba(0, 77, 230,.7) 40%,rgba(0, 59, 177,.7) 100%)
   .title
     display: flex
-    padding-top: 150px
-    align-items: flex-end
-    h1
-      color: #fff
-      margin-bottom: 4rem
+    flex-direction: column
+    padding-top: 200px
+    padding-bottom: 2rem
+    color: #fff
 </style>

@@ -7,7 +7,7 @@
     <div class="app-container">
       <div class="content">
         <div class="logo">
-          <img src="../../../images/logoIPPS.png" alt="ИППС" srcset="">
+          <img src="@/images/logoIPPS.png" alt="ИППС" srcset="">
         </div>
         <app-menu />
       </div>
@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     handleSroll() {
-      this.menuShrink = window.scrollY > 100;
+      this.menuShrink = window.scrollY > 50;
     }
   }
 };

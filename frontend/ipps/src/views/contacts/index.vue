@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import store from '@/store';
 import { mapGetters } from 'vuex';
 import HeaderPage from '@/components/HeaderPage';
 import CategoryContacts from './components/CategoryContacts';
@@ -40,8 +41,10 @@ export default {
       },
     };
   },
-  created() {
-    this.$store.dispatch('contacts/getContacts');
+  beforeRouteEnter (to, from, next) {
+    store.dispatch('contacts/getContacts').then(() => {
+      next();
+    });
   }
 };
 </script>

@@ -12,12 +12,10 @@ const mutations = {
 
 const actions = {
   getContacts({ commit }) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       getContacts().then(data => {
         commit('SET_CONTACTS_LIST', data);
         resolve();
-      }).catch(error => {
-        reject(error);
       });
     });
   }

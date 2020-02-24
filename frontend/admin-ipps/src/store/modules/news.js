@@ -8,19 +8,22 @@ import {
 
 const state = {
   newsList: {},
-  totalPages: null,
   params: {
-    size: 10
+    size: 10,
+    page: 0
   },
   news: {}
 };
 
 const mutations = {
-  SET_NEWS_LIST: (state, newsList) => {
-    state.newsList = newsList;
+  SET_NEWS_LIST: (state, list) => {
+    state.newsList = list;
   },
   ADD_PARAMS: (state, params) => {
     Object.assign(state.params, params);
+  },
+  REMOVE_PARAMS: (state, name) => {
+    delete state.params[name];
   },
   SET_PARAMS_LIST: (state, params) => {
     const { size, page} = params;
@@ -40,7 +43,7 @@ const getters = {
 const actions = {
   getNewsList({ state, commit }, params = {}) {
     commit('ADD_PARAMS', params);
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       getNewsList(state.params).then(data => {
         commit('SET_NEWS_LIST', data);
         resolve();
@@ -48,40 +51,41 @@ const actions = {
     });
   },
   getNews({ commit }, id) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       getNews(id).then(data => {
         commit('SET_NEWS', data);
         resolve();
       });
     });
   },
-  createNews({ commit }, department) {
+  createNews({ commit }, news) {
+    return new Promise(resolve => {
+      createNews(news).then(data => {
+        commit('SET_NEWS', data);
+        resolve(data.id);
+      });
+    });
+  },
+  updateNews({ commit }, news) {
     return new Promise((resolve) => {
-      createNews(department).then((data) => {
-        commit('', data);
+      updateNews(news).then(data => {
+        commit('SET_NEWS', data);
         resolve();
       });
     });
   },
-  updateNews({ commit, getters }, department) {
-    return new Promise((resolve) => {
-      updateNews(department).then((data) => {
-        const { id } = data;
-        const index = getters.getIndex(id);
-        commit('', { index, department });
-        resolve();
-      });
-    });
-  },
-  deleteNews({ commit }, id) {
-    return new Promise((resolve) => {
+  deleteNews({ dispatch }, id) {
+    return new Promise(resolve => {
       deleteNews(id).then(() => {
-        commit('', id);
+        dispatch('getNewsList');
         resolve();
       });
     });
   },
-
+  resetNews({ commit }) {
+    commit('SET_NEWS', {});
+    return Promise.resolve();
+  }
 };
 
 export default {

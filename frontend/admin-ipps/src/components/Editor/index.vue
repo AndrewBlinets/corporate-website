@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="editor-container">
     <ckeditor
       :value="content"
       @input="$emit('input', $event)"
@@ -29,3 +29,12 @@ export default {
   }),
 };
 </script>
+
+<style lang="stylus" scoped>
+.editor-container
+  h2, h3, h4
+    margin-bottom: 2rem
+  p
+    line-height: 1.5rem
+    margin-bottom: 1rem
+</style>

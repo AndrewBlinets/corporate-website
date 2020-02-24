@@ -1,36 +1,39 @@
 import request from '@/utils/request';
 
-export function getProjectsList() {
+export function getProjectsList(params) {
   return request({
-    url: 'admin-api/project',
-    method: 'GET'
+    url: '/project',
+    method: 'GET',
+    params
   });
 }
 
 export function getProject(id) {
   return request({
-    url: `admin-api/project/${id}`,
+    url: `/project/${id}`,
     method: 'GET'
   });
 }
 
-export function createProject() {
+export function createProject(data) {
   return request({
-    url: 'admin-api/project',
-    method: 'POST'
+    url: '/project',
+    method: 'POST',
+    data
   });
 }
 
-export function updateProject() {
+export function updateProject(data) {
   return request({
-    url: 'admin-api/project',
-    method: 'UPDATE'
+    url: '/project',
+    method: 'PUT',
+    data
   });
 }
 
 export function deleteProject(id) {
   return request({
-    url: `admin-api/project/${id}`,
+    url: `/project/${id}`,
     method: 'DELETE'
   });
 }

@@ -26,7 +26,7 @@ export function createNews(data) {
 export function updateNews(data) {
   return request({
     url: '/news',
-    method: 'UPDATE',
+    method: 'PUT',
     data
   });
 }

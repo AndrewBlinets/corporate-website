@@ -1,3 +1,6 @@
+import { uploadFileEditor } from '@/api/file';
+import store from '@/store';
+
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
@@ -75,7 +78,10 @@ export const EditorConfig = {
     ]
   },
   simpleUpload: {
-    uploadUrl: 'http://ws-675:8081/api/admin/file',
+    uploadUrl: uploadFileEditor(),
+    headers: {
+      Authorization: `Bearer ${store.getters.token}`
+    }
   },
   table: {
     contentToolbar: [
@@ -85,16 +91,17 @@ export const EditorConfig = {
     ]
   },
   toolbar: {
+    viewportTopOffset : 50,
     items: [
+      'undo',
+      'redo',
+      '|',
       'heading',
       '|',
       'bold',
       'italic',
       'underline',
       'strikethrough',
-      'subscript',
-      'superscript',
-      'code',
       'link',
       '|',
       'numberedlist',
@@ -109,8 +116,9 @@ export const EditorConfig = {
       'imageUpload',
       'mediaEmbed',
       '|',
-      'undo',
-      'redo'
+      'subscript',
+      'superscript',
+      'code',
     ]
   }
 };

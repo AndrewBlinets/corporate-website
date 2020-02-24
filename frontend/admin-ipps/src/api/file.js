@@ -3,9 +3,20 @@ import request from '@/utils/request';
 const { baseURL } = request.defaults;
 
 export function getFile(id) {
-  return `${baseURL}/admin-api/file/${id}`;
+  return `${baseURL}/file/${id}`;
 }
 
-export function uploadFile() {
-  return `${baseURL}/admin-api/file`;
+export function uploadFileEditor() {
+  return `${baseURL}/file/`;
+}
+
+export function uploadFile(data) {
+  return request({
+    url: '/file/file',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    data
+  });
 }

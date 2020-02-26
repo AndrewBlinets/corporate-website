@@ -6,7 +6,14 @@
     <div class="app-container my-3">
       <div class="row">
         <div class="col-12">
-          <div class="project-body" v-html="project.content" />
+          <div class="project-body">
+            <content-page
+              v-if="contentWidth"
+              v-resize="handleContent"
+              :html="project.content"
+              :width="contentWidth"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -16,12 +23,18 @@
 <script>
 import store from '@/store';
 import { mapState } from 'vuex';
+import { Resize } from '@/directive/resize';
 import HeaderPage from '@/components/HeaderPage';
+import ContentPage from '@/components/ContentPage';
 
 export default {
   name: 'Project',
   components: {
-    HeaderPage
+    HeaderPage,
+    ContentPage
+  },
+  directives: {
+    Resize
   },
   props: {
     id: {
@@ -29,6 +42,9 @@ export default {
       default: 1
     }
   },
+  data: () => ({
+    contentWidth: null,
+  }),
   computed: {
     ...mapState({
       project: state => state.project.project
@@ -42,12 +58,20 @@ export default {
   },
   beforeRouteUpdate (to, from, next) {
     const id = to.params.id;
-    store.dispatch('news/getProject', id).then(() => {
+    store.dispatch('project/getProject', id).then(() => {
       next();
     });
   },
+  mounted() {
+    this.handleContent();
+  },
   destroyed() {
-    store.dispatch('news/resetProject');
+    store.dispatch('project/resetProject');
+  },
+  methods: {
+    handleContent() {
+      this.contentWidth = this.$el.querySelector('.project-body').clientWidth;
+    }
   }
 };
 </script>
@@ -60,7 +84,6 @@ export default {
 .project-body
   max-width: 900px
   margin: 0 auto
-  color: #333
 
 @media (max-width: 480px)
   .project-title

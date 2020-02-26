@@ -8,15 +8,17 @@
       </div>
       <div class="section-body">
         <div class="app-container">
-          <div class="row mx-n2 mb-5">
-            <div class="col-lg-4 col-sm-6 px-2 mb-3">
-              <project-card-item />
-            </div>
-            <div class="col-lg-4 col-sm-6 px-2 mb-3">
-              <project-card-item />
-            </div>
-            <div class="col-lg-4 col-sm-6 px-2 mb-3">
-              <project-card-item />
+          <div class="row mx-md-n4">
+            <div
+              v-for="item in projects"
+              :key="item.id"
+              class="col-lg-4 col-sm-6 px-md-4 mb-5"
+            >
+              <project-card
+                :id="item.id"
+                :title="item.shortTitle"
+                :image="item.mainImage"
+              />
             </div>
           </div>
           <div class="button-container">
@@ -34,12 +36,23 @@
 </template>
 
 <script>
-import ProjectCardItem from '@/components/ProjectCard/ProjectCardItem';
+import { mapState } from 'vuex';
+import ProjectCard from '@/components/ProjectCard';
+// import ProjectCardItem from '@/components/ProjectCard/ProjectCardItem';
 
 export default {
   name: 'Projects',
   components: {
-    ProjectCardItem
+    ProjectCard,
+    // ProjectCardItem
+  },
+  computed: {
+    ...mapState({
+      projects: state => state.project.projectsList
+    })
+  },
+  created() {
+    this.$store.dispatch('project/getProjects', { size: 3, page: 0 });
   }
 };
 </script>

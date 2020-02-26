@@ -63,7 +63,7 @@ const actions = {
     commit('SET_PARAMS', { size: 9, page: 0 });
     return Promise.resolve();
   },
-  resetArticle({ commit }) {
+  resetProject({ commit }) {
     commit('SET_PROJECT', {});
     return Promise.resolve();
   }

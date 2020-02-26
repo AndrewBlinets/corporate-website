@@ -4,6 +4,8 @@ import ElementUI from 'element-ui';
 import locale from 'element-ui/lib/locale/lang/ru-RU';
 import 'element-ui/lib/theme-chalk/index.css';
 
+import VueYouTubeEmbed from 'vue-youtube-embed';
+
 import App from './App.vue';
 
 import router from '@/router';
@@ -27,6 +29,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
 
 Vue.use(ElementUI, { locale });
+Vue.use(VueYouTubeEmbed);
 
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key]);

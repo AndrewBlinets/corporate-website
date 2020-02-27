@@ -13,7 +13,14 @@
           <div class="article_entry-speech">
             <p>{{ article.entrySpeech }}</p>
           </div>
-          <div class="article-body" v-html="article.content" />
+          <div class="article-body">
+            <content-page
+              v-if="contentWidth"
+              v-resize="handleContent"
+              :html="article.content"
+              :width="contentWidth"
+            />
+          </div>
         </div>
         <div class="col-lg-4 col-12">
           <last-news-list />
@@ -26,8 +33,10 @@
 <script>
 import store from '@/store';
 import { mapState } from 'vuex';
+import { Resize } from '@/directive/resize';
 import HeaderPage from '@/components/HeaderPage';
 import NewsDetails from '@/components/CardNews/NewsDetails';
+import ContentPage from '@/components/ContentPage';
 import LastNewsList from './components/LastNewsList';
 
 export default {
@@ -35,7 +44,11 @@ export default {
   components: {
     HeaderPage,
     NewsDetails,
+    ContentPage,
     LastNewsList
+  },
+  directives: {
+    Resize
   },
   props: {
     id: {
@@ -43,6 +56,9 @@ export default {
       default: 1
     }
   },
+  data: () => ({
+    contentWidth: null
+  }),
   computed: {
     ...mapState({
       article: state => state.news.article
@@ -60,8 +76,16 @@ export default {
       next();
     });
   },
+  mounted() {
+    this.handleContent();
+  },
   destroyed() {
     store.dispatch('news/resetArticle');
+  },
+  methods: {
+    handleContent() {
+      this.contentWidth = this.$el.querySelector('.article-body').clientWidth;
+    }
   }
 };
 </script>

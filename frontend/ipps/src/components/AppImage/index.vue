@@ -84,10 +84,10 @@ export default {
   height: 100%
   object-fit: cover
   object-position: center center
-  transform: scale(1.1)
-  transition : .5s
+  transition : .3s
 
 .blur-image
-  filter: blur(20px)  
+  filter: blur(20px)
+  transform: scale(1.1)
 </style>
 

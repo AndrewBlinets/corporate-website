@@ -67,7 +67,8 @@ export default {
     contact: Object
   },
   computed: {
-    fullName({ name, patronicName, surName } = this.$props) {
+    fullName() {
+      const { name, patronicName, surName } = this.$props;
       const length = name.length && patronicName.length && surName.length;
       return length ? `${name} ${patronicName} ${surName}` : false;
     }
@@ -83,7 +84,7 @@ export default {
     display: block
     width: 60px
     margin-top: 6px
-    border-bottom: 3px solid #222
+    border-bottom: 2px solid #222
 .name
   margin-bottom: 2rem
   h3

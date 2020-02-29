@@ -6,7 +6,7 @@
       </div>
       <div class="section-body">
         <div class="row">
-          <div class="col">
+          <div class="col-lg-6 col-12 mb-lg-0 mb-5">
             <div class="contact-info">
               <div class="about">
                 <i class="fas fa-map-marker-alt icon"/>
@@ -50,19 +50,19 @@
               </div>
             </div>
           </div>
-          <div class="col">
-            <!-- <yandex-map
+          <div class="col-lg-6 col-12 d-flex align-items-center">
+            <yandex-map
               :settings="settings"
-              :coords="[53.924124, 27.588861]"
+              :coords="[53.924555, 27.588861]"
               :controls="['zoomControl']"
-              zoom="14"
+              zoom="17"
             >
               <ymap-marker
                 marker-id="123"
                 :marker-type="'Placemark'"
-                :coords="[53.924124, 27.588861]"
+                :coords="[53.924555, 27.588859]"
               />
-            </yandex-map> -->
+            </yandex-map>
           </div>
         </div>
       </div>
@@ -71,14 +71,14 @@
 </template>
 
 <script>
-// import { yandexMap, ymapMarker } from 'vue-yandex-maps';
+import { yandexMap, ymapMarker } from 'vue-yandex-maps';
 
 export default {
   name: 'Contacts',
-  // components: {
-  //   yandexMap,
-  //   ymapMarker
-  // },
+  components: {
+    yandexMap,
+    ymapMarker
+  },
   data() {
     return {
       settings: {
@@ -93,5 +93,6 @@ export default {
 
 <style lang="stylus" scoped>
 .ymap-container
-  height: 100%
+  width: 100%
+  height: 400px
 </style>

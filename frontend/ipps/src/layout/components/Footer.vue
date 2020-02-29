@@ -1,30 +1,14 @@
 <template>
   <footer>
-    <div class="app-container">
-      <div class="row my-5">
-        <div class="col-4">
-          <div class="links-item">
-            <social-links />
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="links-item">
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="links-item">
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="footer-container">
-      <div class="app-container">
-        <div class="content">
+      <div class="app-container d-flex flex-md-row flex-column justify-content-between align-items-center">
+        <div class="content mb-md-0 mb-3">
           <div class="logo">
             <img src="../../images/logoIPPS.png" alt="ИППС">
           </div>
           <p>© НИРУП «Институт прикладных программных систем»</p>
         </div>
+        <social-links />
       </div>
     </div>
   </footer>

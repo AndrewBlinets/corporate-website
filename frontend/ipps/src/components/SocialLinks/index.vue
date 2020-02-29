@@ -22,22 +22,22 @@ export default {
       socialLinks: [
         {
           id: 1,
-          url: '',
+          url: 'https://vk.com/nirup_ipps',
           fortAwesomeIcon: faFacebookF
         },
         {
           id: 2,
-          url: '',
+          url: 'https://twitter.com/NIRYP_IPPS',
           fortAwesomeIcon: faVk
         },
         { 
           id: 3,
-          url: '',
+          url: 'https://www.facebook.com/%D0%9D%D0%98%D0%A0%D0%A3%D0%9F-%D0%98%D0%9F%D0%9F%D0%A1-1770692979877907',
           fortAwesomeIcon: faTwitter
         },
         {
           id: 4,
-          url: '',
+          url: 'https://www.youtube.com/channel/UCvJ2djjv-vd-m44XAXDDxXA',
           fortAwesomeIcon: faYoutube
         }
       ]

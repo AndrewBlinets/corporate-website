@@ -1,11 +1,10 @@
 <template>
   <div>
-    <header-page
-      :name="page.name"
-      :imageId="page.imageId"
-    />
+    <header-page :image="page.imageId">
+      <h1>{{ page.name }}</h1>
+    </header-page>
     <div class="body-page">
-      <section-component v-bind="section" />
+      <section-component :section="section" />
     </div>
   </div>
 </template>
@@ -28,7 +27,7 @@ export default {
       },
       section: {
         name: 'Новости',
-        componentName: 'News'
+        type: 2
       }
     };
   }

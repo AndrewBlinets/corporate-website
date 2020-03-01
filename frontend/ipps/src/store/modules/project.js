@@ -43,7 +43,7 @@ const actions = {
       getProjectsList(state.params).then(data => {
         const { content, number, totalPages } = data;
         
-        if ((number + 1) === totalPages) commit('SET_HAS_PROJECTS_FULL', true);
+        commit('SET_HAS_PROJECTS_FULL', (number + 1) === totalPages);
         commit('SET_PROJECTS_LIST', content);
         resolve();
       });

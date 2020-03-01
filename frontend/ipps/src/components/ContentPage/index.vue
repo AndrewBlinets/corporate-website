@@ -1,6 +1,6 @@
 <script>
 import VueWithCompiler from 'vue/dist/vue.esm';
-import AppImage from '@/components/AppImage';
+const AppImage = () => import('@/components/AppImage');
 import { getIdFromURL } from 'vue-youtube-embed';
 
 export default {
@@ -87,7 +87,6 @@ export default {
 .content-page
   color: #333
   h2
-    margin-top: 3rem
     font-weight: 800
     font-size: 1.75rem
   p, li
@@ -127,7 +126,6 @@ export default {
 @media (max-width: 480px)
   .article-body
     h2
-      margin-top: 1.5rem
       font-size: 1.5rem
     p, li
       font-size: 14px

@@ -39,6 +39,12 @@ export default {
     NewsCard
     // NewsCardItem
   },
+  props: {
+    pageId: {
+      type: Number,
+      default: null
+    }
+  },
   computed: {
     ...mapGetters(['news']),
     lastIndex() {
@@ -46,7 +52,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('news/getNews', { size: 3 });
+    this.$store.dispatch('news/getNews', { pageId: this.pageId, size: 3 });
   }
 };
 </script>

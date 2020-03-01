@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '@/router';
 
 const service = axios.create({
   baseURL: 'http://www.ipps.by:5454/client-api/', // global server
@@ -10,7 +11,7 @@ service.interceptors.request.use(
   config => config,
   error => {
     // eslint-disable-next-line no-console
-    console.log(error);
+    console.log(1, { error });
     return Promise.reject(error);
   }
 );
@@ -23,7 +24,12 @@ service.interceptors.response.use(
   },
   error => {
     // eslint-disable-next-line no-console
-    console.log('err' + error);
+    console.log(2, { error });
+    if (error.response.status === 404) {
+      router.push({ name: '404' });
+    } else if (typeof error.response === 'undefined') {
+      router.push({ name: 'network-issue' });
+    }
     return Promise.reject(error);
   }
 );

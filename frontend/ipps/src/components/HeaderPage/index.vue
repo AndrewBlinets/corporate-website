@@ -6,7 +6,6 @@
     <div class="app-container">
       <div class="title">
         <slot />
-        <h1>{{ name }}</h1>
       </div>
     </div>
   </div>
@@ -18,10 +17,6 @@ import AppImage from '@/components/AppImage';
 export default {
   name: 'HeaderPage',
   props: {
-    name: {
-      type: String,
-      default: ''
-    },
     image: {
       type: Number,
       default: 16

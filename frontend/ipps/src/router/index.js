@@ -55,8 +55,17 @@ export const constantRoutes = [
         path: 'about-us',
         name: 'about-us',
         component: () => import('@/views/about-us')
+      },
+      {
+        path: '404',
+        name: '404',
+        component: () => import('@/views/error-page/NotFound')
       }
     ]
+  },
+  {
+    path: '*',
+    redirect: { name: 404 }
   }
 ];
 

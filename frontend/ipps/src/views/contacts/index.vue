@@ -1,9 +1,8 @@
 <template>
   <div>
-    <header-page
-      :name="page.name"
-      :imageId="page.imageId"
-    />
+    <header-page :image="page.imageId">
+      <h1>{{ page.name }}</h1>
+    </header-page>
     <div class="body-page">
       <div class="app-container">
         <category-contacts

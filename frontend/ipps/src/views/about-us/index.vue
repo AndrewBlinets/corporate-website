@@ -1,9 +1,8 @@
 <template>
   <div>
-    <header-page 
-      :name="namePage"
-      :imageId="imagePageId"
-    />
+    <header-page :image="imagePageId">
+      <h1>{{ namePage }}</h1>
+    </header-page>
     <certificates />
     <diplomas />
   </div>

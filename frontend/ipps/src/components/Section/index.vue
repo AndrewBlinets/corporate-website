@@ -2,38 +2,52 @@
   <section>
     <div class="app-container grid-area">
       <div class="section-header">
-        <h2>{{ name }}</h2>
+        <h2>{{ section.name }}</h2>
       </div>
       <div class="section-body">
-        <component :is="$options.components[componentName]" />
+        <component
+          :is="componentToShow"
+          v-bind="componentProps"
+        />
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import About from './components/About';
-import Contact from './components/Contact';
-import News from './components/News';
-import Images from './components/Images';
-
 export default {
   name: 'Section',
   props: {
-    name: {
-      type: String,
-      default: ''
+    section: {
+      type: Object,
+      default: () => ({})
     },
-    componentName: {
-      type: String,
-      default: 'About'
+    page: {
+      type: Number,
+      default: null
     }
   },
-  components: {
-    About,
-    Contact,
-    News,
-    Images
+  computed: {
+    componentToShow() {
+      const { type } = this.section;
+      if (type === 2) {
+        return () => import('./components/News');
+      } else if (type === 3) {
+        return () => import('./components/Images');
+      }
+
+      return () => import('./components/ContentBlock');
+    },
+    componentProps() {
+      const { type, blocks, files } = this.section;
+      if (type === 2) {
+        return { pageId: this.page };
+      } else if (type === 3) {
+        return { files };
+      }
+
+      return { blocks };
+    }
   }
 };
 </script>

@@ -13,7 +13,7 @@ export default {
   data: () => ({
     section: {
       name: 'Сертификаты',
-      componentName: 'Images'
+      type: 3
     }
   })
 };

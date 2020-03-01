@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "vue-cli-service build && serve -l 8081 -s dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.23",
@@ -15,7 +16,6 @@
     "axios": "^0.19.0",
     "bootstrap": "^4.4.1",
     "core-js": "^2.6.5",
-    "element-ui": "^2.12.0",
     "lodash": "^4.17.15",
     "lozad": "^1.14.0",
     "tiptap": "^1.25.0",

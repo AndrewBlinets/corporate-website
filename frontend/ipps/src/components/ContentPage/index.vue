@@ -89,6 +89,12 @@ export default {
   h2
     font-weight: 800
     font-size: 1.75rem
+  h3
+    font-weight: 800
+    font-size: 1.5rem
+  h4
+    font-weight: 800
+    font-size: 1.25rem
   p, li
     line-height: 1.572
     text-align: left
@@ -120,7 +126,7 @@ export default {
   .image, .media
     margin-top: 3rem
     margin-bottom: 3rem
-  h2, p, ul, ol
+  h2, h3, h4, p, ul, ol
     margin-bottom: 1.5rem
 
 @media (max-width: 480px)

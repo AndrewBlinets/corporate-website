@@ -18,8 +18,6 @@
     "core-js": "^2.6.5",
     "lodash": "^4.17.15",
     "lozad": "^1.14.0",
-    "tiptap": "^1.25.0",
-    "tiptap-extensions": "^1.28.4",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vue-yandex-maps": "^0.10.2",

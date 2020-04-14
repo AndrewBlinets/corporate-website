@@ -27,16 +27,17 @@
       </v-menu>
     </v-app-bar>
 
-    <v-content>
-      <v-container>
-        <router-view></router-view>
-      </v-container>
-    </v-content>
+    <app-main></app-main>
   </div>
 </template>
 
 <script>
+import AppMain from './components/AppMain';
+
 export default {
   name: 'Layout',
+  components: {
+    AppMain,
+  },
 };
 </script>

@@ -41,6 +41,7 @@ const mutations = {
 
 const getters = {
   fullName: state => `${state.name} ${state.surName} ${state.patronicName}`,
+  shortNameAvatar: state => (state.name[0] + state.surName[0]).toUpperCase(),
 };
 
 const actions = {

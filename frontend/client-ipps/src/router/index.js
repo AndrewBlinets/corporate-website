@@ -16,6 +16,11 @@ export const constantRoutes = [
         component: () => import('@/views/dashboard'),
         name: 'dashboard',
       },
+      {
+        path: 'settings',
+        component: () => import('@/views/settings'),
+        name: 'settings',
+      },
     ],
   },
   {

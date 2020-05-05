@@ -27,16 +27,16 @@ export default {
       socialLinks: [
         {
           url: 'https://vk.com/nirup_ipps',
-          icon: faFacebookF,
+          icon: faVk,
         },
         {
           url: 'https://twitter.com/NIRYP_IPPS',
-          icon: faVk,
+          icon: faTwitter,
         },
         {
           url:
             'https://www.facebook.com/%D0%9D%D0%98%D0%A0%D0%A3%D0%9F-%D0%98%D0%9F%D0%9F%D0%A1-1770692979877907',
-          icon: faTwitter,
+          icon: faFacebookF,
         },
         {
           url: 'https://www.youtube.com/channel/UCvJ2djjv-vd-m44XAXDDxXA',

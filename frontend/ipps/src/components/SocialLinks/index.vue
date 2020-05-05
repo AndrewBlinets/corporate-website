@@ -1,52 +1,55 @@
 <template>
   <div class="social-links__container">
-    <social-link-item 
-      v-for="socialLink in socialLinks"
+    <social-link-item
+      v-for="(socialLink, index) in socialLinks"
+      :key="index"
       v-bind="socialLink"
-      :key="socialLink.id"
     />
   </div>
 </template>
 
 <script>
-import { faFacebookF, faVk, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import {
+  faFacebookF,
+  faVk,
+  faTwitter,
+  faYoutube,
+} from '@fortawesome/free-brands-svg-icons';
 import SocialLinkItem from './SocialLinkItem';
 
 export default {
   name: 'SocialLinks',
   components: {
-    SocialLinkItem
+    SocialLinkItem,
   },
   data() {
     return {
       socialLinks: [
         {
-          id: 1,
           url: 'https://vk.com/nirup_ipps',
-          fortAwesomeIcon: faFacebookF
+          icon: faFacebookF,
         },
         {
-          id: 2,
           url: 'https://twitter.com/NIRYP_IPPS',
-          fortAwesomeIcon: faVk
-        },
-        { 
-          id: 3,
-          url: 'https://www.facebook.com/%D0%9D%D0%98%D0%A0%D0%A3%D0%9F-%D0%98%D0%9F%D0%9F%D0%A1-1770692979877907',
-          fortAwesomeIcon: faTwitter
+          icon: faVk,
         },
         {
-          id: 4,
+          url:
+            'https://www.facebook.com/%D0%9D%D0%98%D0%A0%D0%A3%D0%9F-%D0%98%D0%9F%D0%9F%D0%A1-1770692979877907',
+          icon: faTwitter,
+        },
+        {
           url: 'https://www.youtube.com/channel/UCvJ2djjv-vd-m44XAXDDxXA',
-          fortAwesomeIcon: faYoutube
-        }
-      ]
+          icon: faYoutube,
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
-.social-links__container
-  display: flex  
+.social-links__container {
+  display: flex;
+}
 </style>

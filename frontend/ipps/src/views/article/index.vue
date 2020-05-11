@@ -2,18 +2,15 @@
   <div>
     <header-page :image="article.mainImage">
       <h1 class="article-title">{{ article.title }}</h1>
-      <news-details
-        :views="article.countView"
-        :date="article.datePublic"
-      />
+      <news-details :views="article.countView" :date="article.datePublic" />
     </header-page>
     <div class="app-container py-5">
       <div class="row">
         <div class="col-lg-8 col-12 mb-lg-0 mb-5">
-          <div class="article_entry-speech">
+          <div class="article__entry-speech">
             <p>{{ article.entrySpeech }}</p>
           </div>
-          <div class="article-body">
+          <div ref="content" class="article-body">
             <content-page
               v-if="contentWidth"
               v-resize="handleContent"
@@ -31,8 +28,7 @@
 </template>
 
 <script>
-import store from '@/store';
-import { mapState } from 'vuex';
+import { getNewsById } from '@/api/news';
 import { Resize } from '@/directive/resize';
 import HeaderPage from '@/components/HeaderPage';
 import NewsDetails from '@/components/CardNews/NewsDetails';
@@ -45,97 +41,76 @@ export default {
     HeaderPage,
     NewsDetails,
     ContentPage,
-    LastNewsList
+    LastNewsList,
   },
   directives: {
-    Resize
-  },
-  props: {
-    id: {
-      type: Number,
-      default: 1
-    }
+    Resize,
   },
   data: () => ({
-    contentWidth: null
+    article: {},
+    contentWidth: null,
   }),
-  computed: {
-    ...mapState({
-      article: state => state.news.article
-    })
-  },
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     const id = to.params.id;
-    store.dispatch('news/getArticle', id).then(() => {
-      next();
+    getNewsById(id).then(data => {
+      next(vm => (vm.$data.article = { ...data }));
     });
   },
-  beforeRouteUpdate (to, from, next) {
+  beforeRouteUpdate(to, from, next) {
     const id = to.params.id;
-    store.dispatch('news/getArticle', id).then(() => {
+    getNewsById(id).then(data => {
+      this.article = { ...data };
       next();
     });
   },
   mounted() {
-    this.handleContent();
-  },
-  destroyed() {
-    store.dispatch('news/resetArticle');
+    this.computeWidthContent();
   },
   methods: {
-    handleContent() {
-      this.contentWidth = this.$el.querySelector('.article-body').clientWidth;
-    }
-  }
+    computeWidthContent() {
+      this.contentWidth = this.$refs.content.clientWidth;
+    },
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
-.body-page
-  margin-top: 50px
-  margin-bottom: 50px
+.article-title {
+  margin-bottom: 1.5rem;
+  line-height: 1.15;
+}
 
-.article-container
-  padding: 40px 0
-  color: #222
-  max-width: 720px
-  min-width: 290px
-  margin: 0 auto
+@media (max-width: 480px) {
+  .article-title {
+    font-size: 1.5rem;
+  }
+}
 
-.article-title
-  margin-bottom: 1.5rem
-  line-height: 1.15
+@media (min-width: 480px) {
+  .article-title {
+    font-size: 2.125rem;
+  }
+}
 
-@media (max-width: 480px)
-  .article-title
-    font-size: 1.5rem
+@media (min-width: 840px) {
+  .article-title {
+    font-size: 2.5rem;
+  }
+}
 
-@media (min-width: 480px)
-  .article-title
-    font-size: 2.125rem
+.article__entry-speech {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.612;
+  color: #777;
+  margin-bottom: 20px;
+}
 
-@media (min-width: 840px)
-  .article-title
-    font-size: 2.5rem
-
-.article-details
-  display: flex
-  align-items: center
-  .comments-counter
-    margin-right: 10px
-    span
-      margin-left: 5px
-.article_entry-speech
-  max-width: 700px
-  margin: 0 auto
-  font-size: 18px
-  font-weight: 700
-  line-height: 1.612
-  color: #777
-  margin-bottom: 20px
-
-.article-body
-  max-width: 700px
-  margin: 0 auto
-  color: #333
+.article-body {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #333;
+}
 </style>

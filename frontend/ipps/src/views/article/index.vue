@@ -13,7 +13,7 @@
           <div ref="content" class="article-body">
             <content-page
               v-if="contentWidth"
-              v-resize="handleContent"
+              v-resize="computeWidthContent"
               :html="article.content"
               :width="contentWidth"
             />

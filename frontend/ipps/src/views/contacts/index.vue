@@ -6,9 +6,9 @@
     <div class="body-page">
       <div class="app-container">
         <category-contacts
-          v-for="contact in contacts"
-          v-bind="contact"
+          v-for="contact in contactsList"
           :key="contact.id"
+          v-bind="contact"
         />
       </div>
     </div>
@@ -16,40 +16,40 @@
 </template>
 
 <script>
-import store from '@/store';
-import { mapGetters } from 'vuex';
+import { getContacts } from '@/api/contacts';
 import HeaderPage from '@/components/HeaderPage';
-import CategoryContacts from './components/CategoryContacts';
+import CategoryContacts from './CategoryContacts';
 
 export default {
   name: 'Contacts',
   components: {
     HeaderPage,
-    CategoryContacts
+    CategoryContacts,
   },
-  computed: {
-    ...mapGetters([
-      'contacts'
-    ])
-  },
-  data() {
-    return {
-      page: {
-        name: 'Контакты',
-        imageId: 22
-      },
-    };
-  },
-  beforeRouteEnter (to, from, next) {
-    store.dispatch('contacts/getContacts').then(() => {
+  data: () => ({
+    page: {
+      name: 'Контакты',
+      imageId: 22,
+    },
+    contactsList: [],
+  }),
+  beforeRouteEnter(to, from, next) {
+    getContacts().then(contactsList => {
+      next(vm => vm.setData(contactsList));
       next();
     });
-  }
+  },
+  methods: {
+    setData(contactsList) {
+      this.contactsList = [...contactsList];
+    },
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
-.body-page
-  margin-top: 100px
-  margin-bottom: 100px
+.body-page {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
 </style>

@@ -74,12 +74,14 @@
 
 <script>
 import { yandexMap, ymapMarker } from 'vue-yandex-maps';
+import Contact from '@/components/Contact/index.vue';
 import ContactInfoList from '@/components/Contact/ContactInfoList.vue';
 import ContactNote from '@/components/Contact/ContactNote.vue';
 
 export default {
   name: 'Contacts',
   components: {
+    Contact,
     ContactInfoList,
     ContactNote,
     yandexMap,

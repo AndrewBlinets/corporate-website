@@ -62,7 +62,7 @@ export default {
 
 <style lang="stylus" scoped>
 .category-contacts {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 
   .category-name {
     margin-bottom: 2rem;

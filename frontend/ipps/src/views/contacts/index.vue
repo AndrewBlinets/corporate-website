@@ -49,7 +49,7 @@ export default {
 
 <style lang="stylus" scoped>
 .body-page {
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 </style>

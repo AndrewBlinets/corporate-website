@@ -1,30 +1,40 @@
 <template>
   <div>
-    <header-page :image="imagePageId">
-      <h1>{{ namePage }}</h1>
+    <header-page :image="17">
+      <h1>{{ page.name }}</h1>
     </header-page>
-    <certificates />
-    <diplomas />
+    <div class="body-page">
+      <section-component
+        v-for="section in page.sections"
+        :key="section.id"
+        :page="page.id"
+        :section="section"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import store from '@/store';
+import { mapState } from 'vuex';
 import HeaderPage from '@/components/HeaderPage';
-import Certificates from './components/Сertificates';
-import Diplomas from './components/Diplomas';
+import SectionComponent from '@/components/Section';
 
 export default {
   name: 'AboutUs',
   components: {
     HeaderPage,
-    Certificates,
-    Diplomas
+    SectionComponent,
   },
-  data() {
-    return {
-      namePage: 'О нас',
-      imagePageId: 17
-    };
-  }
+  computed: {
+    ...mapState({
+      page: state => state.page.page,
+    }),
+  },
+  beforeRouteEnter(to, from, next) {
+    store.dispatch('page/getPage', 4).then(() => {
+      next();
+    });
+  },
 };
 </script>

@@ -47,13 +47,19 @@ export default {
     Resize,
   },
   data: () => ({
-    article: {},
+    article: {
+      title: '',
+      countView: null,
+      datePublic: '',
+      entrySpeech: '',
+      content: '',
+    },
     contentWidth: null,
   }),
   beforeRouteEnter(to, from, next) {
     const id = to.params.id;
-    getNewsById(id).then(data => {
-      next(vm => (vm.$data.article = { ...data }));
+    getNewsById(id).then(article => {
+      next(vm => vm.setData(article));
     });
   },
   beforeRouteUpdate(to, from, next) {
@@ -69,6 +75,9 @@ export default {
   methods: {
     computeWidthContent() {
       this.contentWidth = this.$refs.content.clientWidth;
+    },
+    setData(article) {
+      this.article = { ...article };
     },
   },
 };

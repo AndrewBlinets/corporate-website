@@ -6,9 +6,9 @@
     <div class="body-page">
       <section-component
         v-for="section in page.sections"
+        :key="section.id"
         :page="page.id"
         :section="section"
-        :key="section.id"
       />
     </div>
   </div>
@@ -24,17 +24,17 @@ export default {
   name: 'EasternPartnership',
   components: {
     HeaderPage,
-    SectionComponent
+    SectionComponent,
   },
   computed: {
     ...mapState({
-      page: state => state.page.page
-    })
+      page: state => state.page.page,
+    }),
   },
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     store.dispatch('page/getPage', 2).then(() => {
       next();
     });
-  }
+  },
 };
 </script>

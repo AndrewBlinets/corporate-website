@@ -14,67 +14,68 @@ export const constantRoutes = [
       {
         path: '',
         name: 'home',
-        component: () => import('@/views/home')
+        component: () => import('@/views/home'),
       },
       {
         path: 'contacts',
         name: 'contacts',
-        component: () => import('@/views/contacts')
+        component: () => import('@/views/contacts'),
       },
       {
         path: 'news',
         name: 'news',
-        component: () => import('@/views/news')
+        component: () => import('@/views/news'),
       },
       {
         path: 'news/:id',
         name: 'article',
-        component: () => import('@/views/article')
+        component: () => import('@/views/article'),
       },
       {
         path: 'projects',
         name: 'projects',
-        component: () => import('@/views/projects')
+        component: () => import('@/views/projects'),
       },
       {
         path: 'projects/:id',
         name: 'projects',
-        component: () => import('@/views/project')
+        component: () => import('@/views/project'),
       },
       {
         path: 'eastern-partnership',
         name: 'eastern-partnership',
-        component: () => import('@/views/eastern-partnership')
+        component: () => import('@/views/eastern-partnership'),
       },
       {
         path: 'technical-committee',
         name: 'technical-committee',
-        component: () => import('@/views/technical-committee')
+        component: () => import('@/views/technical-committee'),
       },
       {
         path: 'about-us',
         name: 'about-us',
-        component: () => import('@/views/about-us')
+        component: () => import('@/views/about-us'),
       },
       {
         path: '404',
         name: '404',
-        component: () => import('@/views/error-page/NotFound')
-      }
-    ]
+        component: () => import('@/views/error-page/NotFound'),
+      },
+    ],
   },
   {
     path: '*',
-    redirect: { name: 404 }
-  }
+    redirect: { name: 404 },
+  },
 ];
 
-const createRouter = () => new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-});
+const createRouter = () =>
+  new Router({
+    mode: 'history',
+    base: process.env.BASE_URL,
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes,
+  });
 
 const router = createRouter();
 

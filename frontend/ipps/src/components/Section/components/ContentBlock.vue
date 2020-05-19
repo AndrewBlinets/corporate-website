@@ -22,16 +22,16 @@ import ContentPage from '@/components/ContentPage';
 export default {
   name: 'ContentBlock',
   components: {
-    ContentPage
+    ContentPage,
   },
   directives: {
-    Resize
+    Resize,
   },
   props: {
     blocks: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data: () => ({
     contentWidth: null,
@@ -39,17 +39,15 @@ export default {
   computed: {
     colNumber() {
       return 12 / this.blocks.length;
-    }
+    },
   },
   mounted() {
     this.handleContent();
   },
   methods: {
     handleContent() {
-      // eslint-disable-next-line no-console
-      console.log(this.$el.querySelector('.resize').clientWidth - 30);
       this.contentWidth = this.$el.querySelector('.resize').clientWidth - 30;
-    }
-  }
+    },
+  },
 };
 </script>

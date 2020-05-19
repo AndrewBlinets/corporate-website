@@ -2,7 +2,9 @@
   <div>
     <h3 class="title mb-3">Последнии новости</h3>
     <div class="last-news_container ">
-      <div class="row mx-lg-n3 mx-n1 d-flex flex-lg-wrap flex-nowrap overflow-auto">
+      <div
+        class="row mx-lg-n3 mx-n1 d-flex flex-lg-wrap flex-nowrap overflow-auto"
+      >
         <div
           v-for="item of news"
           :key="item.id"
@@ -23,30 +25,33 @@
 
 <script>
 import { mapState } from 'vuex';
-import NewsCard from '@/components/CardNews/NewsCard';
+import NewsCard from '@/components/NewsCard';
 
 export default {
   name: 'LastNewsList',
   components: {
-    NewsCard
+    NewsCard,
   },
   computed: {
-    ...mapState({ 
-      news: state => state.news.newsList
+    ...mapState({
+      news: state => state.news.newsList,
     }),
   },
   created() {
     this.$store.dispatch('news/getNews', { size: 5, page: 0 });
-  }
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
-.title
-  font-size: 20px
-  font-weight: 800
-  color: #777
-  text-transform: uppercase
-.overflow-auto
-  overflow: auto
+.title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #777;
+  text-transform: uppercase;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
 </style>

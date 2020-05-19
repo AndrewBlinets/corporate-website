@@ -5,10 +5,7 @@
         <h2>{{ section.name }}</h2>
       </div>
       <div class="section-body">
-        <component
-          :is="componentToShow"
-          v-bind="componentProps"
-        />
+        <component :is="componentToShow" v-bind="componentProps" />
       </div>
     </div>
   </section>
@@ -20,12 +17,12 @@ export default {
   props: {
     section: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     page: {
       type: Number,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     componentToShow() {
@@ -47,7 +44,7 @@ export default {
       }
 
       return { blocks };
-    }
-  }
+    },
+  },
 };
 </script>

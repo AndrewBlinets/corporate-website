@@ -12,7 +12,7 @@ import HeaderPage from '@/components/HeaderPage';
 export default {
   name: 'NotFound',
   components: {
-    HeaderPage
-  }
+    HeaderPage,
+  },
 };
 </script>

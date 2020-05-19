@@ -5,9 +5,9 @@ const state = {
   hasNewsFull: false,
   params: {
     size: 9,
-    page: 0
+    page: 0,
   },
-  article: {}
+  article: {},
 };
 
 const mutations = {
@@ -24,7 +24,7 @@ const mutations = {
   SET_PARAMS: (state, params) => {
     state.params = params;
   },
-  RESET_PARAMS: (state) => {
+  RESET_PARAMS: state => {
     state.params = { size: 9, page: 0 };
   },
   ADD_PARAMS: (state, params) => {
@@ -32,11 +32,11 @@ const mutations = {
   },
   SET_ARTICLE: (state, article) => {
     state.article = article;
-  }
+  },
 };
 
 const getters = {
-  page: state => state.params.page
+  page: state => state.params.page,
 };
 
 const actions = {
@@ -46,8 +46,8 @@ const actions = {
     return new Promise(resolve => {
       getNewsList(state.params).then(data => {
         const { content, number, totalPages } = data;
-        
-        commit('SET_HAS_NEWS_FULL', (number + 1) === totalPages);
+
+        commit('SET_HAS_NEWS_FULL', number + 1 === totalPages);
         commit('SET_NEWS_LIST', content);
         resolve();
       });
@@ -69,7 +69,7 @@ const actions = {
   resetArticle({ commit }) {
     commit('SET_ARTICLE', {});
     return Promise.resolve();
-  }
+  },
 };
 
 export default {
@@ -77,5 +77,5 @@ export default {
   state,
   mutations,
   getters,
-  actions
+  actions,
 };

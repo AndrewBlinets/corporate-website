@@ -21,10 +21,9 @@
 
         <div class="button-container">
           <div v-if="!hasProjectsFull" class="button-item">
-            <div
-              class="btn btn-main"
-              @click="loadMore"
-            >Загрузить ещё</div>
+            <div class="btn btn-main" @click="loadMore">
+              Загрузить ещё
+            </div>
           </div>
         </div>
       </div>
@@ -42,22 +41,22 @@ export default {
   name: 'Projects',
   components: {
     HeaderPage,
-    ProjectCard
+    ProjectCard,
   },
   data: () => ({
     titlePage: 'Проекты',
-    imagePageId: 17
+    imagePageId: 17,
   }),
   computed: {
     ...mapState({
       projects: state => state.project.projectsList,
-      hasProjectsFull: state => state.project.hasProjectsFull
+      hasProjectsFull: state => state.project.hasProjectsFull,
     }),
     ...mapGetters({
-      page: 'project/page'
-    })
+      page: 'project/page',
+    }),
   },
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     store.dispatch('project/getProjects', { size: 9, page: 0 }).then(() => {
       next();
     });
@@ -68,13 +67,14 @@ export default {
   methods: {
     loadMore() {
       store.dispatch('project/getProjects', { page: this.page + 1 });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
-.body-page
-  margin-top: 50px
-  margin-bottom: 50px
+.body-page {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 </style>

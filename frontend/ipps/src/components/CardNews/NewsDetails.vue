@@ -16,29 +16,34 @@ export default {
   props: {
     views: {
       type: Number,
-      default: 0
+      default: 0,
     },
     date: {
       type: String,
-      default: ''
-    }
-  }
+      default: '',
+    },
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
-.details-container
-  display: flex
-  flex-direction: row
-  align-items: center
-  line-height: 1
-  .views-block
-    display: flex
-    background-color: #fff
-    color: #1461ff
-    padding: 6px 8px
-    border-radius: 5px
-    margin-right: 15px
-    >:first-child
-      margin-right: 5px
+.details-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 1;
+
+  .views-block {
+    display: flex;
+    background-color: #fff;
+    color: #1461ff;
+    padding: 6px 8px;
+    border-radius: 5px;
+    margin-right: 15px;
+
+    >:first-child {
+      margin-right: 5px;
+    }
+  }
+}
 </style>

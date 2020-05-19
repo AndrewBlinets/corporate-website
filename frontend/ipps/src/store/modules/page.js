@@ -1,13 +1,13 @@
 import { getPage } from '@/api/page';
 
 const state = {
-  page: {}
+  page: {},
 };
 
 const mutations = {
   SET_PAGE: (state, page) => {
     state.page = page;
-  }
+  },
 };
 
 const actions = {
@@ -18,12 +18,12 @@ const actions = {
         resolve();
       });
     });
-  }
+  },
 };
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
 };

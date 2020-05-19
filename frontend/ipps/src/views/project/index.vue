@@ -31,24 +31,24 @@ export default {
   name: 'Project',
   components: {
     HeaderPage,
-    ContentPage
+    ContentPage,
   },
   directives: {
-    Resize
+    Resize,
   },
   props: {
     id: {
       type: Number,
-      default: 1
-    }
+      default: 1,
+    },
   },
   data: () => ({
     contentWidth: null,
   }),
   computed: {
     ...mapState({
-      project: state => state.project.project
-    })
+      project: state => state.project.project,
+    }),
   },
   beforeRouteEnter(to, from, next) {
     const { id } = to.params;
@@ -56,7 +56,7 @@ export default {
       next();
     });
   },
-  beforeRouteUpdate (to, from, next) {
+  beforeRouteUpdate(to, from, next) {
     const id = to.params.id;
     store.dispatch('project/getProject', id).then(() => {
       next();
@@ -71,29 +71,37 @@ export default {
   methods: {
     handleContent() {
       this.contentWidth = this.$el.querySelector('.project-body').clientWidth;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
-.project-title
-  margin-bottom: 1.5rem
-  line-height: 1.15
+.project-title {
+  margin-bottom: 1.5rem;
+  line-height: 1.15;
+}
 
-.project-body
-  max-width: 900px
-  margin: 0 auto
+.project-body {
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-@media (max-width: 480px)
-  .project-title
-    font-size: 1.5rem
+@media (max-width: 480px) {
+  .project-title {
+    font-size: 1.5rem;
+  }
+}
 
-@media (min-width: 480px)
-  .project-title
-    font-size: 2.125rem
+@media (min-width: 480px) {
+  .project-title {
+    font-size: 2.125rem;
+  }
+}
 
-@media (min-width: 840px)
-  .project-title
-    font-size: 2.5rem
+@media (min-width: 840px) {
+  .project-title {
+    font-size: 2.5rem;
+  }
+}
 </style>

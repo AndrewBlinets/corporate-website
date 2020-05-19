@@ -23,10 +23,9 @@
           </div>
           <div class="button-container">
             <div class="button-item">
-              <router-link
-                :to="{ name: 'projects' }"
-                class="btn btn-main"
-              >Все Проекты</router-link>
+              <router-link :to="{ name: 'projects' }" class="btn btn-main">
+                Все Проекты
+              </router-link>
             </div>
           </div>
         </div>
@@ -38,26 +37,25 @@
 <script>
 import { mapState } from 'vuex';
 import ProjectCard from '@/components/ProjectCard';
-// import ProjectCardItem from '@/components/ProjectCard/ProjectCardItem';
 
 export default {
   name: 'Projects',
   components: {
     ProjectCard,
-    // ProjectCardItem
   },
   computed: {
     ...mapState({
-      projects: state => state.project.projectsList
-    })
+      projects: state => state.project.projectsList,
+    }),
   },
   created() {
     this.$store.dispatch('project/getProjects', { size: 3, page: 0 });
-  }
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
-.projects-container
-  margin-bottom: 3rem
+.projects-container {
+  margin-bottom: 3rem;
+}
 </style>

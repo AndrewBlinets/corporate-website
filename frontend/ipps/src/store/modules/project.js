@@ -5,9 +5,9 @@ const state = {
   hasProjectsFull: false,
   params: {
     size: 9,
-    page: 0
+    page: 0,
   },
-  project: {}
+  project: {},
 };
 
 const mutations = {
@@ -29,11 +29,11 @@ const mutations = {
   },
   SET_PROJECT: (state, project) => {
     state.project = project;
-  }
+  },
 };
 
 const getters = {
-  page: state => state.params.page
+  page: state => state.params.page,
 };
 
 const actions = {
@@ -42,8 +42,8 @@ const actions = {
     return new Promise(resolve => {
       getProjectsList(state.params).then(data => {
         const { content, number, totalPages } = data;
-        
-        commit('SET_HAS_PROJECTS_FULL', (number + 1) === totalPages);
+
+        commit('SET_HAS_PROJECTS_FULL', number + 1 === totalPages);
         commit('SET_PROJECTS_LIST', content);
         resolve();
       });
@@ -66,7 +66,7 @@ const actions = {
   resetProject({ commit }) {
     commit('SET_PROJECT', {});
     return Promise.resolve();
-  }
+  },
 };
 
 export default {
@@ -74,5 +74,5 @@ export default {
   state,
   mutations,
   getters,
-  actions
+  actions,
 };

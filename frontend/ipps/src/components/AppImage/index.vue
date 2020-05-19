@@ -1,50 +1,44 @@
 <template>
   <img
-    :src="urlSmallImg"
+    :src="urlLowQuality"
     :data-src="url"
-    :datasrcset="`${url} 2x`"
+    :data-srcset="`${url} 2x`"
     :alt="name"
-    class="app-image"
+    :style="style"
     :class="{ 'blur-image': loading }"
-  >
+    class="app-image"
+  />
 </template>
 
 <script>
-import lozad from 'lozad';
 import { getImage, getImageSmall } from '@/api/index';
+import lozad from 'lozad';
 
 export default {
   name: 'AppImage',
   props: {
-    id: {
-      type: Number,
-      default: null
-    },
+    id: Number,
     name: {
       type: String,
-      default: ''
+      default: '',
     },
     backgroundColor: {
       type: String,
-      default: '#ffffff00'
+      default: '#7b8ca3',
     },
-    height: {
-      type: Number,
-      default: null
-    },
-    width: {
-      typr: Number,
-      default: null
-    }
+    height: Number,
+    width: Number,
   },
-  data() {
-    return {
-      url: getImage(this.id),
-      urlSmallImg: getImageSmall(this.id),
-      loading: true
-    };
-  },
+  data: () => ({
+    loading: false,
+  }),
   computed: {
+    url() {
+      return getImage(this.id);
+    },
+    urlLowQuality() {
+      return getImageSmall(this.id);
+    },
     aspectRatio() {
       if (this.width || !this.height) return null;
 
@@ -62,32 +56,45 @@ export default {
       }
 
       return style;
-    }
+    },
   },
   mounted() {
+    this.setLoadingState(true);
     const observer = lozad(this.$el, {
-      load: (el) => {
+      load: el => {
         el.src = el.dataset.src;
         el.onload = () => {
           this.loading = false;
         };
-      }
+      },
     });
     observer.observe();
-  }  
+  },
+  updated() {
+    // this.$el.src = this.$el.dataset.src;
+  },
+  destroyed() {
+    this.$el.removeEventListener('load', this.setLoadingState(false));
+  },
+  methods: {
+    setLoadingState(state) {
+      this.loading = state;
+    },
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
-.app-image
-  width: 100%
-  height: 100%
-  object-fit: cover
-  object-position: center center
-  transition : .3s
+.app-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: 0.3s;
+}
 
-.blur-image
-  filter: blur(20px)
-  transform: scale(1.1)
+.blur-image {
+  filter: blur(20px);
+  transform: scale(1.1);
+}
 </style>
-

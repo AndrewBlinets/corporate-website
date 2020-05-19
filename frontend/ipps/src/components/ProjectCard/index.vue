@@ -1,13 +1,14 @@
 <template>
   <router-link
     :to="{ path: `/projects/${id}` }"
-    :style="{ height: height + 'px' }"
+    :style="{ height: height }"
     class="project-card"
     tag="div"
   >
     <div class="image">
       <app-image :id="image" :name="title" />
     </div>
+
     <div class="project-title">
       <h5 class="title">{{ title }}</h5>
     </div>
@@ -20,61 +21,64 @@ import AppImage from '@/components/AppImage';
 export default {
   name: 'ProjectCard',
   components: {
-    AppImage
+    AppImage,
   },
   props: {
-    id: {
-      type: Number,
-      default: 1
-    },
+    id: Number,
+    title: String,
     height: {
-      type: Number,
-      default: 250
+      type: String,
+      default: '250px',
     },
     image: {
       type: Number,
-      default: 15
+      default: 15,
     },
-    title: {
-      type: String,
-      default: ''
-    }
-  }
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
-.project-card
-  position: relative
-  overflow: hidden
-  z-index: 3
-  &:hover
-    cursor: pointer
-    .image
-      z-index: 2000
+.project-card {
+  position: relative;
+  overflow: hidden;
+  z-index: 3;
+
+  &:hover {
+    cursor: pointer;
+
+    .image {
+      z-index: 2000;
       background: #000;
-    .project-title
-      opacity: 1
-  .image
-    width: 100%
-    height: 100%
-  .project-title
+    }
+
+    .project-title {
+      background: #00000050;
+    }
+  }
+
+  .image {
     width: 100%;
     height: 100%;
+  }
+
+  .project-title {
+    display: flex;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: #00000050;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px
-    text-align: center
-    opacity: 0
-    -webkit-transition: opacity .2s
-    transition: opacity .2s
-    .title
-      color: #fff
+    padding: 20px;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+
+    .title {
+      color: #fff;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+      margin: auto;
+      text-align: center;
+    }
+  }
+}
 </style>

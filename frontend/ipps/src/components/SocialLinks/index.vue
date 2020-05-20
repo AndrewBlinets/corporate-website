@@ -28,18 +28,18 @@ export default {
         {
           id: 1,
           url: 'https://vk.com/nirup_ipps',
-          fortAwesomeIcon: faFacebookF,
+          fortAwesomeIcon: faVk,
         },
         {
           id: 2,
           url: 'https://twitter.com/NIRYP_IPPS',
-          fortAwesomeIcon: faVk,
+          fortAwesomeIcon: faTwitter,
         },
         {
           id: 3,
           url:
             'https://www.facebook.com/%D0%9D%D0%98%D0%A0%D0%A3%D0%9F-%D0%98%D0%9F%D0%9F%D0%A1-1770692979877907',
-          fortAwesomeIcon: faTwitter,
+          fortAwesomeIcon: faFacebookF,
         },
         {
           id: 4,

@@ -50,6 +50,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.col {
+  min-width: auto;
+}
+
 .services-container {
   display: flex;
   flex-wrap: wrap;
@@ -105,7 +109,7 @@ export default {
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 649px) {
   .service-item {
     height: 100px;
   }

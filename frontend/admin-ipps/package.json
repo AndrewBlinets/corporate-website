@@ -43,9 +43,12 @@
     "@vue/cli-plugin-babel": "^4.3.1",
     "@vue/cli-plugin-eslint": "^4.3.1",
     "@vue/cli-service": "^4.3.1",
+    "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^5.16.0",
+    "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-vue": "^5.0.0",
+    "prettier": "^2.0.5",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.6.11"
@@ -57,16 +60,23 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "eslint:recommended"
+      "eslint:recommended",
+      "@vue/prettier"
     ],
-    "rules": {
-      "semi": [
-        "error",
-        "always"
-      ]
-    },
     "parserOptions": {
       "parser": "babel-eslint"
+    },
+    "rules": {
+      "vue/attributes-order": "warn",
+      "prettier/prettier": [
+        "warn",
+        {
+          "tabWidth": 2,
+          "singleQuote": true,
+          "trailingComma": "all",
+          "parse": "vue"
+        }
+      ]
     }
   },
   "postcss": {

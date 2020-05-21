@@ -7,7 +7,7 @@ export function getFile(id) {
 }
 
 export function uploadFileEditor() {
-  return `${baseURL}/file/`;
+  return `${baseURL}/file`;
 }
 
 export function uploadFile(data) {
@@ -15,8 +15,8 @@ export function uploadFile(data) {
     url: '/file/file',
     method: 'POST',
     headers: {
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'multipart/form-data',
     },
-    data
+    data,
   });
 }

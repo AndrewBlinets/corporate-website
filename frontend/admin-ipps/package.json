@@ -74,7 +74,8 @@
           "tabWidth": 2,
           "singleQuote": true,
           "trailingComma": "all",
-          "parse": "vue"
+          "parse": "vue",
+          "endOfLine": "crlf"
         }
       ]
     }

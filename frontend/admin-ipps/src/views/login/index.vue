@@ -98,8 +98,21 @@ export default {
           { validator: validatePassword,  trigger: 'blur' }
         ]
       },
-      capsTooltip: false
+      capsTooltip: false,
+      redirect: undefined
     };
+  },
+  watch: {
+    $route: {
+      handler: function(route) {
+        const query = route.query;
+        if (query) {
+          this.redirect = query.redirect;
+          this.otherQuery = this.getOtherQuery(query);
+        }
+      },
+      immediate: true
+    }
   },
   mounted() {
     if (this.form.username === '') {
@@ -125,6 +138,14 @@ export default {
           return false;
         }
       });
+    },
+    getOtherQuery(query) {
+      return Object.keys(query).reduce((acc, cur) => {
+        if (cur !== 'redirect') {
+          acc[cur] = query[cur];
+        }
+        return acc;
+      }, {});
     }
   }
 };

@@ -30,27 +30,77 @@ export const constantRoutes = [
 
 export const asyncRoutes = [
   {
+    path: '/pages',
+    component: Layout,
+    meta: {
+      title: 'Страницы',
+      roles: ['super-admin', 'editor-department']
+    },
+    children: [
+      {
+        path: '',
+        name: 'pages',
+        component: () => import('@/views/pages'),
+        meta: {
+          title: 'Страницы'
+        }
+      },
+    ]
+  },
+  {
+    path: '/pages/:id',
+    component: Layout,
+    meta: {
+      title: 'Страницa',
+      roles: ['editor-department']
+    },
+    children: [
+      {
+        path: '',
+        name: 'page-id',
+        component: () => import('@/views/pages/Page'),
+      },
+      {
+        path: 'create-section',
+        name: 'create-section',
+        component: () => import('@/views/pages/Section')
+      },
+      {
+        path: ':sectionId',
+        name: 'section-id',
+        component: () => import('@/views/pages/Section')
+      }
+    ]
+  },
+  {
     path: '/news',
     component: Layout,
     meta: {
       title: 'Новости',
-      roles: ['super-admin']
+      roles: ['super-admin', 'editor-department']
     },
     children: [
       {
         path: '',
         name: 'news',
         component: () => import('@/views/news'),
+        meta: {
+          title: 'Новости'
+        }
       },
       {
         path: 'create',
         name: 'create-news',
-        component: () => import('@/views/news/Article')
+        component: () => import('@/views/news/Article'),
+        meta: {
+          title: 'Создать новость'
+        }
       },
       {
         path: ':id',
         name: 'news-id',
-        component: () => import('@/views/news/Article')
+        component: () => import('@/views/news/Article'),
+        props: true
       }
     ]
   },
@@ -65,7 +115,18 @@ export const asyncRoutes = [
       {
         path: '',
         name: 'projects',
-        component: () => import('@/views/news')
+        component: () => import('@/views/projects')
+      },
+      {
+        path: 'create',
+        name: 'create-project',
+        component: () => import('@/views/projects/Project')
+      },
+      {
+        path: ':id',
+        name: 'project-id',
+        component: () => import('@/views/projects/Project'),
+        props: true
       }
     ]
   },
@@ -99,7 +160,7 @@ export const asyncRoutes = [
     component: Layout,
     meta: {
       title: 'Контакты',
-      roles: ['super-admin', 'super-editor']
+      roles: ['super-admin', 'super-editor', 'editor']
     },
     children: [
       {

@@ -2,16 +2,17 @@
   <div>
     <el-upload
       action="#"
-      list-type="picture-card"
+      :http-request="uploadFileServer"
       :file-list="fileList"
-      :auto-upload="false"
+      list-type="picture-card"
+      :auto-upload="true"
       :limit="1"
     >
       <i slot="default" class="el-icon-plus" />
       <div class="file" slot="file" slot-scope="{file}">
         <img
           class="el-upload-list__item-thumbnail"
-          :src="file.url"
+          :src="urlFile"
           alt=""
         >
         <span class="el-upload-list__item-actions">
@@ -21,17 +22,17 @@
           >
             <i class="el-icon-zoom-in" />
           </span>
-          <span
+          <!-- <span
             v-if="!disabled"
             class="el-upload-list__item-delete"
             @click="handleDownload(file)"
           >
             <i class="el-icon-download" />
-          </span>
+          </span> -->
           <span
             v-if="!disabled"
             class="el-upload-list__item-delete"
-            @click="handleRemove(file)"
+            @click="handleRemove()"
           >
             <i class="el-icon-delete" />
           </span>
@@ -45,28 +46,63 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'UploadFile',
+  props: {
+    value: {
+      type: Number
+    }
+  },
   data() {
     return {
-      fileList: [],
       dialogImageUrl: '',
       dialogVisible: false,
       disabled: false,
     };
   },
+  computed: {
+    ...mapState({
+      urlId: state => state.file.fileId
+    }),
+    ...mapGetters({
+      urlFile: 'file/urlFile',
+      fileObject: 'file/fileObject'
+    }),
+    fileList: {
+      get: function() {
+        return this.fileObject;
+      },
+      set: function(value) {
+        this.$store.commit('file/SET_FILE_ID', value);
+        this.$emit('input', value);
+      }
+    }
+  },
+  created() {
+    this.$store.commit('file/SET_FILE_ID', this.value);
+  },
+  destroyed() {
+    this.resetFile();
+  },
   methods: {
-    handleRemove(file) {
-      // eslint-disable-next-line no-console
-      console.log(file);
+    ...mapActions({
+      uploadFile: 'file/uploadFileServer',
+      resetFile: 'file/resetFile'
+    }),
+    uploadFileServer(value) {
+      const { file } = value;
+      this.uploadFile(file).then(id => {
+        this.$emit('input', id);
+      });
+    },
+    handleRemove() {
+      this.fileList = null;
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
-    },
-    handleDownload(file) {
-      // eslint-disable-next-line no-console
-      console.log(file);
     }
   }
 };

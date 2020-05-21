@@ -1,10 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap&subset=cyrillic,cyrillic-ext,latin-ext');
+@import './editor-styles.styl';
+
 *
   margin: 0
-  padding: 0
   -webkit-box-sizing: border-box
   box-sizing: border-box
   outline: none
-  list-style: none
   word-wrap: break-word
 
 body
@@ -42,6 +43,8 @@ body
     margin-bottom: 32px
 
 .el-table
+  .brand-row
+    background-color: #e9f3ff
   .warning-row
     background-color: oldlace
   .error-row
@@ -52,6 +55,10 @@ body
 
 .mb-2
   margin-bottom: 32px
+
+.date .cell
+  word-break: normal
+
 // .layout {
 //   display: grid;
 //   grid-template-columns: 210px auto;

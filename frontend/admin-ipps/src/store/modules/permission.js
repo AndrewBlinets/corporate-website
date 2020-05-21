@@ -16,8 +16,12 @@ export function filterAsyncRoutes(routes, roles) {
     if (hasPermission(roles, tmp)) {
       tmp.children = filterAsyncRoutes(tmp.children, roles);
     }
+    
     res.push(tmp);
   });
+
+  
+  return res;
 }
 
 const state = {
@@ -39,8 +43,12 @@ const actions = {
       if (roles.includes('super-admin')) {
         accessedRoutes = asyncRoutes || [];
       } else {
+        // eslint-disable-next-line no-console
+        console.log({ asyncRoutes, roles });
         accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
       }
+      // eslint-disable-next-line no-console
+      console.log(1, accessedRoutes);
       commit('SET_ROUTES', accessedRoutes);
       resolve(accessedRoutes);
     });

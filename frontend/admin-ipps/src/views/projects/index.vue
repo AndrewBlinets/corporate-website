@@ -1,19 +1,19 @@
 <template>
   <div class="page-container">
     <div class="title">
-      <h1>Новости</h1>
+      <h1>Проекты</h1>
     </div>
     <div class="button-container">
       <el-button
         type="success"
         icon="el-icon-plus"
-        @click="$router.push({ name: 'create-news' })"
+        @click="$router.push({ name: 'create-project' })"
       >Создать</el-button>
     </div>
     <div class="table-container mb-1">
       <el-table
         ref="multipleTable"
-        :data="newsList"
+        :data="projectsList"
         :row-class-name="tableRowClassName"
         border
         @sort-change="tableSortProp"
@@ -64,7 +64,7 @@
           <template slot-scope="scope">
             <!-- <el-button size="medium" icon="el-icon-view" /> -->
             <el-button
-              @click="$router.push({ name: 'news-id', params: { id: scope.row.id } })"
+              @click="$router.push({ name: 'project-id', params: { id: scope.row.id } })"
               size="medium"
               icon="el-icon-edit"
             />
@@ -97,41 +97,41 @@ import store from '@/store';
 import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default {
-  name: 'News',
-  computed: {
+  name: 'Projects',
+    computed: {
     ...mapState({
-      size: state => state.news.params.size
+      size: state => state.project.params.size
     }),
     ...mapGetters({
-      newsList: 'news/newsListData',
-      total: 'news/newsListTotal'
+      projectsList: 'project/projectsListData',
+      total: 'project/projectsListTotal'
     }),
     page: {
       get: function() {
-        return store.state.news.params.page + 1;
+        return store.state.project.params.page + 1;
       },
       set: function(value) {
-        store.commit('news/ADD_PARAMS', { page: value - 1});
+        store.commit('project/ADD_PARAMS', { page: value - 1});
       }
     }
   },
   beforeRouteEnter(to, from, next) {
-    store.dispatch('news/getNewsList').then(() => {
+    store.dispatch('project/getProjectsList').then(() => {
       next();
     });
   },
   methods: {
     ...mapActions({
-      deleteNews: 'news/deleteNews'
+      deleteProject: 'project/deleteProject'
     }),
     indexMethod(index) {
-      return (index + 1) + (store.state.news.params.page * this.size);
+      return (index + 1) + (store.state.project.params.page * this.size);
     },
     tableSizeChange(value) {
-      store.dispatch('news/getNewsList', { size: value });
+      store.dispatch('project/getProjectsList', { size: value });
     },
     tableCurrentChange(value) {
-      store.dispatch('news/getNewsList', { page: value - 1 });
+      store.dispatch('project/getProjectsList', { page: value - 1 });
     },
     tableRowClassName({ row }) {
       if (row.status === 2) {
@@ -146,11 +146,11 @@ export default {
     tableSortProp(value) {
       if (value.order) {
         const order = value.order.replace('ending', '');
-        store.commit('news/ADD_PARAMS', { sort: `${value.prop},${order}`, page: 0 });
-        store.dispatch('news/getNewsList');
+        store.commit('project/ADD_PARAMS', { sort: `${value.prop},${order}`, page: 0 });
+        store.dispatch('project/getProjectsList');
       } else {
-        store.commit('news/REMOVE_PARAMS', 'sort');
-        store.dispatch('news/getNewsList', { page: 0 });
+        store.commit('project/REMOVE_PARAMS', 'sort');
+        store.dispatch('project/getProjectsList', { page: 0 });
       }
     },
     deleteRow(id) {
@@ -159,7 +159,7 @@ export default {
           cancelButtonText: 'Отменить',
           type: 'warning'
         }).then(() => {
-          this.deleteNews(id).then(() => {
+          this.deleteProject(id).then(() => {
             this.$message({
               type: 'success',
               message: 'Запись удалина'
@@ -175,7 +175,3 @@ export default {
   }
 };
 </script>
-
-<style lang="stylus" scoped>
-
-</style>

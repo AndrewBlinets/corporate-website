@@ -166,7 +166,7 @@ export default {
         }).catch(() => {
           this.$message({
             type: 'info',
-            message: 'Удаление отменино'
+            message: 'Удаление отменено'
           });
         });
     },

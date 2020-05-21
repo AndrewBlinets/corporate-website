@@ -5,22 +5,14 @@
       :label="mapLanguage.get(version.codeLanguage)"
       :key="version.codeLanguage"
     >
-      <content-article
-        v-bind="version"
-        @input="inputContentLangueage"
-      />
+      <slot name="language-version" :version="version"/>
     </el-tab-pane>
   </el-tabs>
 </template>
 
 <script>
-import ContentArticle from './ContentArticle';
-
 export default {
   name: 'LanguageTabs',
-  components: {
-    ContentArticle
-  },
   props: {
     languageVersions: {
       type: Array,
@@ -29,15 +21,13 @@ export default {
       }
     }
   },
-  data() {
-    return {      
-      mapLanguage: new Map([
-        ['ru', 'Русский'],
-        ['by', 'Беларускі'],
-        ['en', 'English']
-      ])
-    };
-  },
+  data: () => ({
+    mapLanguage: new Map([
+      ['ru', 'Русский'],
+      ['by', 'Беларускі'],
+      ['en', 'English']
+    ])
+  }),
   methods: {
     inputContentLangueage(value) {
       const keys = Object.keys(value);

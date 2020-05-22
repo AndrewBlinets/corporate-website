@@ -17,7 +17,7 @@
     <div class="table-container mb-1">
       <el-table
         ref="multipleTable"
-        :data="projectsList"
+        :data="projects"
         :row-class-name="tableRowClassName"
         border
         @sort-change="tableSortProp"
@@ -87,7 +87,7 @@
       :current-page.sync="page"
       :page-sizes="[10, 20, 50, 100]"
       :page-size="size"
-      :total="total"
+      :total="totalElements"
       @size-change="tableSizeChange"
       @current-change="tableCurrentChange"
     ></el-pagination>
@@ -95,46 +95,52 @@
 </template>
 
 <script>
-import store from '@/store';
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { getProjectsList, deleteProject } from '@/api/project';
 
 export default {
   name: 'Projects',
-  computed: {
-    ...mapState({
-      size: state => state.project.params.size,
-    }),
-    ...mapGetters({
-      projectsList: 'project/projectsListData',
-      total: 'project/projectsListTotal',
-    }),
-    page: {
-      get: function () {
-        return store.state.project.params.page + 1;
-      },
-      set: function (value) {
-        store.commit('project/ADD_PARAMS', { page: value - 1 });
-      },
-    },
-  },
+
+  data: () => ({
+    projects: [],
+    page: null,
+    size: null,
+    totalElements: null,
+    params: {},
+  }),
+
   beforeRouteEnter(to, from, next) {
-    store.dispatch('project/getProjectsList').then(() => {
-      next();
+    getProjectsList().then(data => {
+      next(vm => vm.setData(data));
     });
   },
+
   methods: {
-    ...mapActions({
-      deleteProject: 'project/deleteProject',
-    }),
+    getData(params) {
+      this.params = { ...this.params, ...params };
+      getProjectsList(this.params).then(data => this.setData(data));
+    },
+
+    setData(data) {
+      const { content, number, size, totalElements } = data;
+
+      this.projects = [...content];
+      this.page = number + 1;
+      this.size = size;
+      this.totalElements = totalElements;
+    },
+
     indexMethod(index) {
-      return index + 1 + store.state.project.params.page * this.size;
+      return index + 1 + (this.page - 1) * this.size;
     },
-    tableSizeChange(value) {
-      store.dispatch('project/getProjectsList', { size: value });
+
+    tableSizeChange(size) {
+      this.getData({ size });
     },
+
     tableCurrentChange(value) {
-      store.dispatch('project/getProjectsList', { page: value - 1 });
+      this.getData({ page: value - 1 });
     },
+
     tableRowClassName({ row }) {
       if (row.status === 2) {
         return 'brand-row';
@@ -145,19 +151,18 @@ export default {
       }
       return '';
     },
+
     tableSortProp(value) {
       if (value.order) {
         const order = value.order.replace('ending', '');
-        store.commit('project/ADD_PARAMS', {
-          sort: `${value.prop},${order}`,
-          page: 0,
-        });
-        store.dispatch('project/getProjectsList');
+        const sort = `${value.prop},${order}`;
+        this.getData({ sort });
       } else {
-        store.commit('project/REMOVE_PARAMS', 'sort');
-        store.dispatch('project/getProjectsList', { page: 0 });
+        delete this.params.sort;
+        this.getData();
       }
     },
+
     deleteRow(id) {
       this.$confirm('Вы точно хотите удалить?', {
         confirmButtonText: 'Подтвердить',
@@ -165,11 +170,12 @@ export default {
         type: 'warning',
       })
         .then(() => {
-          this.deleteProject(id).then(() => {
+          deleteProject(id).then(() => {
             this.$message({
               type: 'success',
               message: 'Запись удалина',
             });
+            this.getData();
           });
         })
         .catch(() => {

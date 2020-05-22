@@ -3,5 +3,6 @@
   "singleQuote": true,
   "trailingComma": "all",
   "parse": "vue",
-  "endOfLine": "crlf"
+  "endOfLine": "crlf",
+  "arrowParens": "avoid"
 }

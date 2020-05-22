@@ -1,6 +1,6 @@
 import { asyncRoutes, constantRoutes } from '@/router';
 
-function hasPermission(roles, route) {
+export function hasPermission(roles, route) {
   if (route.meta && route.meta.roles) {
     return roles.some(role => route.meta.roles.includes(role));
   } else {
@@ -14,50 +14,46 @@ export function filterAsyncRoutes(routes, roles) {
   routes.forEach(route => {
     const tmp = { ...route };
     if (hasPermission(roles, tmp)) {
-      tmp.children = filterAsyncRoutes(tmp.children, roles);
+      if (tmp.children) {
+        tmp.children = filterAsyncRoutes(tmp.children, roles);
+      }
+      res.push(tmp);
     }
-    
-    res.push(tmp);
   });
 
-  
   return res;
 }
 
 const state = {
   routes: [],
-  addRoutes: []
+  addRoutes: [],
 };
 
 const mutations = {
   SET_ROUTES: (state, routes) => {
     state.addRoutes = routes;
     state.routes = constantRoutes.concat(routes);
-  }
+  },
 };
 
 const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
-      let  accessedRoutes;
+      let accessedRoutes = [];
       if (roles.includes('super-admin')) {
         accessedRoutes = asyncRoutes || [];
       } else {
-        // eslint-disable-next-line no-console
-        console.log({ asyncRoutes, roles });
         accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
       }
-      // eslint-disable-next-line no-console
-      console.log(1, accessedRoutes);
       commit('SET_ROUTES', accessedRoutes);
       resolve(accessedRoutes);
     });
-  }
+  },
 };
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
 };

@@ -1,8 +1,5 @@
 <template>
-  <el-menu-item
-    :index="index"
-    :route="{ path: basePath }"
-  >
+  <el-menu-item v-if="!item.hidden" :index="index" :route="{ path: basePath }">
     <i class="el-icon-news"></i>
     <span>{{ item.meta.title }}</span>
   </el-menu-item>
@@ -14,16 +11,16 @@ export default {
   props: {
     index: {
       type: String,
-      default: ''
+      default: '',
     },
     item: {
       type: Object,
-      required: true
+      required: true,
     },
     basePath: {
       type: String,
-      default: ''
-    }
-  }
+      default: '',
+    },
+  },
 };
 </script>

@@ -4,43 +4,29 @@
       <div class="title">
         <h1>Вход</h1>
       </div>
-      <el-form
-        label-position="top"
-        :model="form"
-        ref="form"
-        :rules="rules"
-      >
-        <el-form-item
-          label="Логин"
-          prop="username"
-        >
+      <el-form ref="form" :model="form" :rules="rules" label-position="top">
+        <el-form-item label="Логин" prop="username">
           <el-input
+            ref="username"
             v-model="form.username"
             name="username"
-            ref="username"
             tabindex="1"
             type="text"
           />
         </el-form-item>
 
-        <el-tooltip
-          v-model="capsTooltip"
-          content="Caps Lock включён"
-          manual
-        >
-          <el-form-item
-            label="Пароль"
-            prop="password"
-          >
+        <el-tooltip v-model="capsTooltip" content="Caps Lock включён" manual>
+          <el-form-item label="Пароль" prop="password">
             <el-input
+              ref="password"
               v-model="form.password"
               name="password"
               type="password"
               tabindex="2"
+              show-password
               @keyup.native="checkCapslock"
               @blur="capsTooltip = false"
               @keyup.enter.native="handleLogin"
-              show-password
             >
             </el-input>
           </el-form-item>
@@ -51,14 +37,15 @@
             class="full-width margin-top"
             type="primary"
             @click="handleLogin"
-          >Войти</el-button>
+          >
+            Войти
+          </el-button>
         </el-form-item>
 
         <el-form-item>
-          <router-link
-            :to="{ name: 'reminder'}"
-            tag="el-link"
-          >Забыли пароль?</router-link>
+          <router-link :to="{ name: 'reminder' }" tag="el-link">
+            Забыли пароль?
+          </router-link>
         </el-form-item>
       </el-form>
     </div>
@@ -70,7 +57,8 @@ import { mapActions } from 'vuex';
 
 export default {
   name: 'Login',
-  data() {
+
+  data: () => {
     const validateUsername = (rule, value, callback) => {
       if (!value.length) {
         callback(new Error('Введите логин.'));
@@ -78,6 +66,7 @@ export default {
         callback();
       }
     };
+
     const validatePassword = (rule, value, callback) => {
       if (!value.length) {
         callback(new Error('Введите пароль.'));
@@ -85,55 +74,58 @@ export default {
         callback();
       }
     };
+
     return {
       form: {
         username: 'javainuse',
-        password: 'password'
+        password: 'password',
       },
       rules: {
-        username: [
-          { validator: validateUsername, trigger: 'blur' },
-        ],
-        password: [
-          { validator: validatePassword,  trigger: 'blur' }
-        ]
+        username: [{ validator: validateUsername, trigger: 'blur' }],
+        password: [{ validator: validatePassword, trigger: 'blur' }],
       },
       capsTooltip: false,
-      redirect: undefined
+      redirect: undefined,
     };
   },
+
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
         const query = route.query;
         if (query) {
           this.redirect = query.redirect;
           this.otherQuery = this.getOtherQuery(query);
         }
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
+
   mounted() {
     if (this.form.username === '') {
       this.$refs.username.focus();
-    } else if (this.loginForm.password === '') {
+    } else if (this.form.password === '') {
       this.$refs.password.focus();
     }
   },
+
   methods: {
     ...mapActions({
-      login: 'user/login'
+      login: 'user/login',
     }),
     checkCapslock(event) {
       this.capsTooltip = event.getModifierState('CapsLock');
     },
     handleLogin() {
-      this.$refs.form.validate((valid) => {
+      this.$refs.form.validate(valid => {
         if (valid) {
           this.login(this.form).then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery });
+            this.$router.push({
+              path: this.redirect || '/',
+              query: this.otherQuery,
             });
+          });
         } else {
           return false;
         }
@@ -146,26 +138,33 @@ export default {
         }
         return acc;
       }, {});
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
-.login-container
-  display: flex
-  align-items: center
-  justify-content: center
-  width: 100%
-  min-height: 100%
-  background-color: #ebeef5
-  .shadow-container
-    width: 500px
-    padding: 40px
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
-    background-color: #fff
-    .title
-      margin-bottom: 40px
-      h1
-        font-size: 22px
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  background-color: #ebeef5;
+
+  .shadow-container {
+    width: 500px;
+    padding: 40px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+
+    .title {
+      margin-bottom: 40px;
+
+      h1 {
+        font-size: 22px;
+      }
+    }
+  }
+}
 </style>

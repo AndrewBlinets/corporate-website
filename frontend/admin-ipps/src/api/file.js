@@ -7,7 +7,7 @@ export function getFile(id) {
 }
 
 export function uploadFileEditor() {
-  return `${baseURL}/file`;
+  return `${baseURL}/file/`;
 }
 
 export function uploadFile(data) {

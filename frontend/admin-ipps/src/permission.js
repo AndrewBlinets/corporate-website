@@ -8,7 +8,9 @@ NProgress.configure({ showSpinner: false });
 
 const whiteList = ['/login', '/auth-redirect'];
 
-router.beforeEach(async(to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+  // eslint-disable-next-line no-debugger
+  // debugger;
   NProgress.start();
   const hasToken = getToken();
   if (hasToken) {
@@ -22,7 +24,10 @@ router.beforeEach(async(to, from, next) => {
       } else {
         try {
           const { roles } = await store.dispatch('user/getInfo');
-          const accessRoutes = await store.dispatch('permission/generateRoutes', roles);
+          const accessRoutes = await store.dispatch(
+            'permission/generateRoutes',
+            roles,
+          );
 
           router.addRoutes(accessRoutes);
           next({ ...to, replace: true });
@@ -32,7 +37,6 @@ router.beforeEach(async(to, from, next) => {
           NProgress.done();
         }
       }
-      
       NProgress.done();
     }
   } else {

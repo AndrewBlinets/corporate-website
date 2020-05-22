@@ -3,13 +3,17 @@
     <div class="title">
       <h1>Проекты</h1>
     </div>
+
     <div class="button-container">
       <el-button
         type="success"
         icon="el-icon-plus"
         @click="$router.push({ name: 'create-project' })"
-      >Создать</el-button>
+      >
+        Создать
+      </el-button>
     </div>
+
     <div class="table-container mb-1">
       <el-table
         ref="multipleTable"
@@ -18,29 +22,24 @@
         border
         @sort-change="tableSortProp"
       >
+        <el-table-column type="index" :index="indexMethod" />
+
+        <el-table-column label="ID" prop="id" width="80" sortable="custom" />
+
+        <el-table-column label="Название" prop="shortTitle" />
+
         <el-table-column
-          type="index"
-          :index="indexMethod"
-        />
-        <el-table-column
-          prop="id"
-          label="ID"
-          width="80"
-          sortable="custom"
-        />
-        <el-table-column
-          prop="shortTitle"
-          label="Название"
-        />
-        <el-table-column
-          prop="dti"
           label="Дата создания"
+          prop="dti"
           width="115"
           label-class-name="date"
           sortable="custom"
         >
-          <template slot-scope="scope">{{ scope.row.dti | formatDate }}</template>
+          <template slot-scope="scope">
+            {{ scope.row.dti | formatDate }}
+          </template>
         </el-table-column>
+
         <el-table-column
           prop="datePublic"
           label="Дата публикации"
@@ -48,31 +47,35 @@
           label-class-name="date"
           sortable="custom"
         >
-          <template slot-scope="scope">{{ scope.row.datePublic | formatDate }}</template>
-        </el-table-column>
-        <el-table-column
-          label="Статус"
-          width="155"
-        >
-          <template slot-scope="scope">{{ scope.row.status | pluralizationStatus }}</template>
-        </el-table-column>
-        <el-table-column
-          fixed="right"
-          label="Операции"
-          width="150"
-        >
           <template slot-scope="scope">
-            <!-- <el-button size="medium" icon="el-icon-view" /> -->
+            {{ scope.row.datePublic | formatDate }}
+          </template>
+        </el-table-column>
+
+        <el-table-column label="Статус" width="155">
+          <template slot-scope="scope">
+            {{ scope.row.status | pluralizationStatus }}
+          </template>
+        </el-table-column>
+
+        <el-table-column label="Операции" fixed="right" width="150">
+          <template slot-scope="scope">
             <el-button
-              @click="$router.push({ name: 'project-id', params: { id: scope.row.id } })"
-              size="medium"
               icon="el-icon-edit"
-            />
-            <el-button
-              @click="deleteRow(scope.row.id)"
               size="medium"
+              @click="
+                $router.push({
+                  name: 'project-id',
+                  params: { id: scope.row.id },
+                })
+              "
+            />
+
+            <el-button
               icon="el-icon-delete"
+              size="medium"
               type="danger"
+              @click="deleteRow(scope.row.id)"
             />
           </template>
         </el-table-column>
@@ -80,15 +83,14 @@
     </div>
 
     <el-pagination
-      @size-change="tableSizeChange"
-      @current-change="tableCurrentChange"
+      layout="total, sizes, prev, pager, next, jumper"
       :current-page.sync="page"
       :page-sizes="[10, 20, 50, 100]"
       :page-size="size"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="total">
-    </el-pagination>
-
+      :total="total"
+      @size-change="tableSizeChange"
+      @current-change="tableCurrentChange"
+    ></el-pagination>
   </div>
 </template>
 
@@ -98,22 +100,22 @@ import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Projects',
-    computed: {
+  computed: {
     ...mapState({
-      size: state => state.project.params.size
+      size: state => state.project.params.size,
     }),
     ...mapGetters({
       projectsList: 'project/projectsListData',
-      total: 'project/projectsListTotal'
+      total: 'project/projectsListTotal',
     }),
     page: {
-      get: function() {
+      get: function () {
         return store.state.project.params.page + 1;
       },
-      set: function(value) {
-        store.commit('project/ADD_PARAMS', { page: value - 1});
-      }
-    }
+      set: function (value) {
+        store.commit('project/ADD_PARAMS', { page: value - 1 });
+      },
+    },
   },
   beforeRouteEnter(to, from, next) {
     store.dispatch('project/getProjectsList').then(() => {
@@ -122,10 +124,10 @@ export default {
   },
   methods: {
     ...mapActions({
-      deleteProject: 'project/deleteProject'
+      deleteProject: 'project/deleteProject',
     }),
     indexMethod(index) {
-      return (index + 1) + (store.state.project.params.page * this.size);
+      return index + 1 + store.state.project.params.page * this.size;
     },
     tableSizeChange(value) {
       store.dispatch('project/getProjectsList', { size: value });
@@ -146,7 +148,10 @@ export default {
     tableSortProp(value) {
       if (value.order) {
         const order = value.order.replace('ending', '');
-        store.commit('project/ADD_PARAMS', { sort: `${value.prop},${order}`, page: 0 });
+        store.commit('project/ADD_PARAMS', {
+          sort: `${value.prop},${order}`,
+          page: 0,
+        });
         store.dispatch('project/getProjectsList');
       } else {
         store.commit('project/REMOVE_PARAMS', 'sort');
@@ -155,23 +160,25 @@ export default {
     },
     deleteRow(id) {
       this.$confirm('Вы точно хотите удалить?', {
-          confirmButtonText: 'Подтвердить',
-          cancelButtonText: 'Отменить',
-          type: 'warning'
-        }).then(() => {
+        confirmButtonText: 'Подтвердить',
+        cancelButtonText: 'Отменить',
+        type: 'warning',
+      })
+        .then(() => {
           this.deleteProject(id).then(() => {
             this.$message({
               type: 'success',
-              message: 'Запись удалина'
+              message: 'Запись удалина',
             });
           });
-        }).catch(() => {
+        })
+        .catch(() => {
           this.$message({
             type: 'info',
-            message: 'Удаление отменено'
+            message: 'Удаление отменено',
           });
         });
-    }
-  }
+    },
+  },
 };
 </script>

@@ -104,7 +104,7 @@ export default {
 
   computed: {
     ...mapState({
-      project: (state) => state.project.project,
+      project: state => state.project.project,
     }),
   },
 
@@ -162,7 +162,7 @@ export default {
       const { codeLanguage, field } = value;
 
       this.form.languageVersions.find(
-        (item) => item.codeLanguage === codeLanguage,
+        item => item.codeLanguage === codeLanguage,
       )[field.name] = field.value;
     },
 
@@ -177,7 +177,7 @@ export default {
           Object.assign(this.form, this.project);
         });
       } else {
-        this.createProject(this.form).then((id) => {
+        this.createProject(this.form).then(id => {
           this.$message({
             type: 'success',
             message: 'Проект сохранен',

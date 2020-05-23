@@ -9,12 +9,8 @@
       :limit="1"
     >
       <i slot="default" class="el-icon-plus" />
-      <div class="file" slot="file" slot-scope="{file}">
-        <img
-          class="el-upload-list__item-thumbnail"
-          :src="urlFile"
-          alt=""
-        >
+      <div slot="file" :slot-scope="{ file }" class="file">
+        <img class="el-upload-list__item-thumbnail" :src="urlFile" alt="" />
         <span class="el-upload-list__item-actions">
           <span
             class="el-upload-list__item-preview"
@@ -40,7 +36,7 @@
       </div>
     </el-upload>
     <el-dialog :visible.sync="dialogVisible">
-      <img width="100%" :src="dialogImageUrl" alt="">
+      <img width="100%" :src="dialogImageUrl" alt="" />
     </el-dialog>
   </div>
 </template>
@@ -52,8 +48,8 @@ export default {
   name: 'UploadFile',
   props: {
     value: {
-      type: Number
-    }
+      type: Number,
+    },
   },
   data() {
     return {
@@ -64,21 +60,21 @@ export default {
   },
   computed: {
     ...mapState({
-      urlId: state => state.file.fileId
+      urlId: state => state.file.fileId,
     }),
     ...mapGetters({
       urlFile: 'file/urlFile',
-      fileObject: 'file/fileObject'
+      fileObject: 'file/fileObject',
     }),
     fileList: {
-      get: function() {
+      get: function () {
         return this.fileObject;
       },
-      set: function(value) {
+      set: function (value) {
         this.$store.commit('file/SET_FILE_ID', value);
         this.$emit('input', value);
-      }
-    }
+      },
+    },
   },
   created() {
     this.$store.commit('file/SET_FILE_ID', this.value);
@@ -89,7 +85,7 @@ export default {
   methods: {
     ...mapActions({
       uploadFile: 'file/uploadFileServer',
-      resetFile: 'file/resetFile'
+      resetFile: 'file/resetFile',
     }),
     uploadFileServer(value) {
       const { file } = value;
@@ -103,16 +99,19 @@ export default {
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="stylus" scoped>
-.file
-  width: 100%
-  height: 100%
-  .el-upload-list__item-thumbnail
-    object-fit: cover
-    object-position: center center
+.file {
+  width: 100%;
+  height: 100%;
+
+  .el-upload-list__item-thumbnail {
+    object-fit: cover;
+    object-position: center center;
+  }
+}
 </style>

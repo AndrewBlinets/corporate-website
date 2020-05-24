@@ -9,8 +9,8 @@
       :limit="1"
     >
       <i slot="default" class="el-icon-plus" />
-      <div slot="file" :slot-scope="{ file }" class="file">
-        <img class="el-upload-list__item-thumbnail" :src="urlFile" alt="" />
+      <div slot="file" slot-scope="{ file }" class="file">
+        <img class="el-upload-list__item-thumbnail" :src="url" alt="" />
         <span class="el-upload-list__item-actions">
           <span
             class="el-upload-list__item-preview"
@@ -18,13 +18,15 @@
           >
             <i class="el-icon-zoom-in" />
           </span>
-          <!-- <span
+
+          <span
             v-if="!disabled"
             class="el-upload-list__item-delete"
             @click="handleDownload(file)"
           >
             <i class="el-icon-download" />
-          </span> -->
+          </span>
+
           <span
             v-if="!disabled"
             class="el-upload-list__item-delete"
@@ -42,63 +44,60 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { getFile, uploadFile } from '@/api/file';
 
 export default {
   name: 'UploadFile',
+
   props: {
     value: {
       type: Number,
     },
   },
-  data() {
-    return {
-      dialogImageUrl: '',
-      dialogVisible: false,
-      disabled: false,
-    };
-  },
+
+  data: () => ({
+    dialogImageUrl: '',
+    dialogVisible: false,
+    disabled: false,
+  }),
+
   computed: {
-    ...mapState({
-      urlId: state => state.file.fileId,
-    }),
-    ...mapGetters({
-      urlFile: 'file/urlFile',
-      fileObject: 'file/fileObject',
-    }),
+    url() {
+      return this.value ? getFile(this.value) : '';
+    },
     fileList: {
       get: function () {
-        return this.fileObject;
+        const list = [];
+        this.value && list.push({ name: this.value, url: getFile(this.value) });
+        return list;
       },
       set: function (value) {
-        this.$store.commit('file/SET_FILE_ID', value);
         this.$emit('input', value);
       },
     },
   },
-  created() {
-    this.$store.commit('file/SET_FILE_ID', this.value);
-  },
-  destroyed() {
-    this.resetFile();
-  },
+
   methods: {
-    ...mapActions({
-      uploadFile: 'file/uploadFileServer',
-      resetFile: 'file/resetFile',
-    }),
     uploadFileServer(value) {
       const { file } = value;
-      this.uploadFile(file).then(id => {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      uploadFile(formData).then(id => {
         this.$emit('input', id);
       });
     },
     handleRemove() {
-      this.fileList = null;
+      this.$emit('input', null);
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
+    },
+    handleDownload(file) {
+      const link = document.createElement('a');
+      link.href = file.url;
+      link.click();
     },
   },
 };

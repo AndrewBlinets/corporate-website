@@ -1,8 +1,9 @@
-import { login, logout, getInfo } from '@/api/user';
+import { login, logout, getInfo, saveChangesProfile } from '@/api/user';
 import { getToken, setToken, removeToken } from '@/utils/auth';
 
 const state = {
   token: getToken(),
+  id: null,
   name: '',
   surName: '',
   patronicName: '',
@@ -15,6 +16,9 @@ const state = {
 const mutations = {
   SET_TOKEN: (state, token) => {
     state.token = token;
+  },
+  SET_ID: (state, id) => {
+    state.id = id;
   },
   SET_NAME: (state, name) => {
     state.name = name;
@@ -40,8 +44,9 @@ const mutations = {
 };
 
 const getters = {
-  fullName: state => `${state.name} ${state.surName} ${state.patronicName}`,
-  shortNameAvatar: state => (state.name[0] + state.surName[0]).toUpperCase(),
+  shortName: state => `${state.name} ${state.surName}`,
+  fullName: state => `${state.name} ${state.patronicName} ${state.surName}`,
+  nameAvatar: state => (state.name[0] + state.surName[0] || 'a').toUpperCase(),
 };
 
 const actions = {
@@ -63,14 +68,23 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo()
         .then(data => {
-          const { name, roles, surName, patronicName, email, org } = data;
-
+          const {
+            id,
+            name,
+            roles,
+            surName,
+            patronicName,
+            email,
+            org,
+            projects,
+          } = data;
+          commit('SET_ID', id);
           commit('SET_NAME', name);
           commit('SET_SUR_NAME', surName);
           commit('SET_PATRONIC_NAME', patronicName);
           commit('SET_EMAIL', email);
           commit('SET_ORGANIZATION', org);
-          // commit('SET_PROJECTS', projects);
+          commit('SET_PROJECTS', projects);
           commit('SET_ROLES', roles);
           resolve(data);
         })
@@ -80,12 +94,25 @@ const actions = {
     });
   },
 
+  saveProfile({ dispatch }, userProfile) {
+    console.log('handle save profile');
+    return new Promise((resolve, reject) => {
+      saveChangesProfile(userProfile)
+        .then(() => {
+          dispatch('getInfo');
+          resolve();
+        })
+        .catch(error => reject(error));
+    });
+  },
+
   logout({ dispatch }) {
     return new Promise((resolve, reject) => {
       logout()
         .then(() => {
-          dispatch('resetToken');
-          resolve();
+          dispatch('resetToken').then(() => {
+            resolve();
+          });
         })
         .catch(error => {
           reject(error);
@@ -96,6 +123,7 @@ const actions = {
   resetToken({ commit }) {
     return new Promise(resolve => {
       commit('SET_TOKEN', '');
+      commit('SET_ID', null);
       commit('SET_NAME', '');
       commit('SET_SUR_NAME', '');
       commit('SET_PATRONIC_NAME', '');

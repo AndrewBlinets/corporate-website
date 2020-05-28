@@ -3,19 +3,29 @@
     <v-list color="#E3F2FD" width="250px">
       <v-subheader>НАСТРОЙКИ ПОЛЬЗОВАТЕЛЯ</v-subheader>
       <v-list-item-group color="primary">
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title>Моя учётная запись</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <settings-menu-item
+          v-for="(item, index) in menu"
+          :key="index"
+          v-bind="item"
+        />
       </v-list-item-group>
     </v-list>
   </v-sheet>
 </template>
 
 <script>
+import SettingsMenuItem from './SettingsMenuItem';
+
 export default {
   name: 'SettingsMenu',
+  components: { SettingsMenuItem },
+  data: () => ({
+    menu: [
+      {
+        title: 'Моя учётная запись',
+      },
+    ],
+  }),
 };
 </script>
 

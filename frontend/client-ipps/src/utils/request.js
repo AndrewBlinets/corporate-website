@@ -4,7 +4,6 @@ import { getToken } from './auth';
 
 const service = axios.create({
   baseURL: 'http://www.ipps.by:5454/customer',
-  timeout: 5000,
 });
 
 service.interceptors.request.use(

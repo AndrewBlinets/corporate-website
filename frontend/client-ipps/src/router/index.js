@@ -21,6 +21,17 @@ export const constantRoutes = [
         component: () => import('@/views/settings'),
         name: 'settings',
       },
+      {
+        path: 'projects',
+        component: () => import('@/views/projects'),
+        name: 'projects',
+      },
+      {
+        path: 'projects/:id',
+        component: () => import('@/views/project'),
+        name: 'project-id',
+        props: true,
+      },
     ],
   },
   {

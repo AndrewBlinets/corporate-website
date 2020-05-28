@@ -1,14 +1,14 @@
 <template>
-  <v-app-bar color="#fff" elevation="1" app clipped-left>
-    <v-toolbar-title>IPPS</v-toolbar-title>
+  <v-app-bar color="#fff" elevation="1" app clipped-left clipped-right>
+    <v-toolbar-title>ИППС</v-toolbar-title>
 
     <v-spacer></v-spacer>
 
     <v-avatar color="#1461ff" class="mr-2">
-      <span class="white--text">{{ shortNameAvatar }}</span>
+      <span class="white--text">{{ nameAvatar }}</span>
     </v-avatar>
 
-    <span>{{ fullName }}</span>
+    <span>{{ shortName }}</span>
   </v-app-bar>
 </template>
 
@@ -18,7 +18,7 @@ import { mapGetters } from 'vuex';
 export default {
   name: 'Navbar',
   computed: {
-    ...mapGetters('user', ['fullName', 'shortNameAvatar']),
+    ...mapGetters('user', ['shortName', 'nameAvatar']),
   },
 };
 </script>

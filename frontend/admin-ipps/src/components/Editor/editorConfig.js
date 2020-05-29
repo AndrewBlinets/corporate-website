@@ -63,35 +63,31 @@ export const EditorConfig = {
     MediaEmbed,
     List,
     TodoList,
-    SimpleUploadAdapter
+    SimpleUploadAdapter,
   ],
   indentBlock: {
     offset: 1,
-    unit: 'em'
+    unit: 'em',
   },
   image: {
     toolbar: [
       'imageStyle:full',
       'imageStyle:side',
       '|',
-      'imageTextAlternative'
-    ]
+      'imageTextAlternative',
+    ],
   },
   simpleUpload: {
     uploadUrl: uploadFileEditor(),
     headers: {
-      Authorization: `Bearer ${store.getters.token}`
-    }
+      Authorization: `Bearer ${store.getters.token}`,
+    },
   },
   table: {
-    contentToolbar: [
-      'tableColumn',
-      'tableRow',
-      'mergeTableCells'
-    ]
+    contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
   },
   toolbar: {
-    viewportTopOffset : 50,
+    viewportTopOffset: 50,
     items: [
       'undo',
       'redo',
@@ -119,6 +115,6 @@ export const EditorConfig = {
       'subscript',
       'superscript',
       'code',
-    ]
-  }
+    ],
+  },
 };

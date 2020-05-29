@@ -3,16 +3,16 @@ import {
   getProject,
   createProject,
   updateProject,
-  deleteProject
+  deleteProject,
 } from '@/api/project';
 
 const state = {
   projectsList: {},
   params: {
     size: 10,
-    page: 0
+    page: 0,
   },
-  project: {}
+  project: {},
 };
 
 const mutations = {
@@ -26,18 +26,18 @@ const mutations = {
     delete state.params[name];
   },
   SET_PARAMS_LIST: (state, params) => {
-    const { size, page} = params;
+    const { size, page } = params;
     state.size = size;
     state.page = page;
   },
   SET_PROJECT: (state, project) => {
     state.project = project;
-  }
+  },
 };
 
 const getters = {
   projectsListData: state => state.projectsList.content,
-  projectsListTotal: state => state.projectsList.totalElements
+  projectsListTotal: state => state.projectsList.totalElements,
 };
 
 const actions = {
@@ -67,7 +67,7 @@ const actions = {
     });
   },
   updateProject({ commit }, project) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       updateProject(project).then(data => {
         commit('SET_PROJECT', data);
         resolve();
@@ -85,7 +85,7 @@ const actions = {
   resetProject({ commit }) {
     commit('SET_PROJECT', {});
     return Promise.resolve();
-  }
+  },
 };
 
 export default {

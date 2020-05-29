@@ -4,14 +4,14 @@ export function getProjectsList(params) {
   return request({
     url: '/project',
     method: 'GET',
-    params
+    params,
   });
 }
 
 export function getProject(id) {
   return request({
     url: `/project/${id}`,
-    method: 'GET'
+    method: 'GET',
   });
 }
 
@@ -19,7 +19,7 @@ export function createProject(data) {
   return request({
     url: '/project',
     method: 'POST',
-    data
+    data,
   });
 }
 
@@ -27,13 +27,13 @@ export function updateProject(data) {
   return request({
     url: '/project',
     method: 'PUT',
-    data
+    data,
   });
 }
 
 export function deleteProject(id) {
   return request({
     url: `/project/${id}`,
-    method: 'DELETE'
+    method: 'DELETE',
   });
 }

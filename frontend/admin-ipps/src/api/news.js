@@ -4,14 +4,14 @@ export function getNewsList(params) {
   return request({
     url: '/news',
     method: 'GET',
-    params
+    params,
   });
 }
 
 export function getNews(id) {
   return request({
     url: `/news/${id}`,
-    method: 'GET'
+    method: 'GET',
   });
 }
 
@@ -19,7 +19,7 @@ export function createNews(data) {
   return request({
     url: '/news',
     method: 'POST',
-    data
+    data,
   });
 }
 
@@ -27,13 +27,13 @@ export function updateNews(data) {
   return request({
     url: '/news',
     method: 'PUT',
-    data
+    data,
   });
 }
 
 export function deleteNews(id) {
   return request({
     url: `/news/${id}`,
-    method: 'DELETE'
+    method: 'DELETE',
   });
 }

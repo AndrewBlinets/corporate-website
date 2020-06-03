@@ -37,3 +37,19 @@ export function deleteProject(id) {
     method: 'DELETE',
   });
 }
+
+export function setCustomers(id, data) {
+  return request({
+    url: `/project/setCustomers/${id}`,
+    method: 'POST',
+    data,
+  });
+}
+
+export function publicForClient(id, data) {
+  return request({
+    url: `/project/publicForClient/${id}`,
+    method: 'POST',
+    data,
+  });
+}

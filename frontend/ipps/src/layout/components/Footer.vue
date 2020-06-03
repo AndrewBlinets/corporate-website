@@ -10,10 +10,10 @@
             <img src="../../assets/baner.png" alt="" />
           </a>
           <a href="http://mpt.gov.by/ru/" target="_blank">
-            <img src="http://www.ipps.by:5454/client-api/image/3" alt="" />
+            <img :src="getImage(3)" alt="" />
           </a>
           <a href="http://portal.gov.by/" target="_blank">
-            <img src="http://www.ipps.by:5454/client-api/image/1" alt="" />
+            <img :src="getImage(1)" alt="" />
           </a>
           <a href="https://www.reestr-zalogov.by/" target="_blank">
             <img src="../../assets/reestr_imush.png" alt="" />
@@ -35,12 +35,18 @@
 </template>
 
 <script>
+import { getImage } from '@/api/index';
 import SocialLinks from '@/components/SocialLinks';
 
 export default {
   name: 'Footer',
   components: {
     SocialLinks,
+  },
+  methods: {
+    getImage(id) {
+      return getImage(id);
+    },
   },
 };
 </script>

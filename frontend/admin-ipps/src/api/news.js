@@ -37,3 +37,25 @@ export function deleteNews(id) {
     method: 'DELETE',
   });
 }
+
+export function getNewsForCustomerProject(id) {
+  return request({
+    url: `/newsForCustomer/byProject/${id}/all/`,
+    method: 'GET',
+  });
+}
+
+export function createNewsForCustomer(data) {
+  return request({
+    url: '/newsForCustomer',
+    method: 'POST',
+    data,
+  });
+}
+
+export function deleteNewsForCustomer(id) {
+  return request({
+    url: `/newForCustomer/${id}`,
+    method: 'DELETE',
+  });
+}

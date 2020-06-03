@@ -28,6 +28,7 @@ export default {
   props: {
     codeLanguage: {
       type: String,
+      default: '',
     },
     title: {
       type: String,

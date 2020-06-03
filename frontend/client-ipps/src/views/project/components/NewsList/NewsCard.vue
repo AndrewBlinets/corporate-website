@@ -5,11 +5,8 @@
     <v-card-subtitle class="caption">{{ date | formatDate }}</v-card-subtitle>
 
     <v-card-text>
-      <p>{{ entrySpeech }}</p>
       <v-expand-transition>
-        <div v-if="showContent">
-          {{ content }}
-        </div>
+        <div v-if="showContent" class="content" v-html="content"></div>
       </v-expand-transition>
     </v-card-text>
 
@@ -20,8 +17,8 @@
 
       <v-spacer></v-spacer>
 
-      <v-icon v-if="read" color="primary">mdi-check-all</v-icon>
-      <v-icon v-else>mdi-check</v-icon>
+      <!-- <v-icon v-if="read" color="primary">mdi-check-all</v-icon>
+      <v-icon v-else>mdi-check</v-icon> -->
     </v-card-actions>
   </v-card>
 </template>
@@ -31,19 +28,8 @@ export default {
   name: 'NewsCard',
   props: {
     id: Number,
-    title: {
-      type: String,
-      default: 'Title Card',
-    },
-    date: {
-      type: String,
-      default: '2019-11-20T07:27:52.000+0000',
-    },
-    entrySpeech: {
-      type: String,
-      default:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum illo quam id impedit dolore facilis voluptate, iusto sit, consectetur ipsam, labore voluptatibus expedita ea nihil tenetur nisi ab harum officiis.',
-    },
+    title: String,
+    date: String,
     content: String,
   },
   data: () => ({
@@ -63,3 +49,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.content .image img {
+  width: 100%;
+  object-fit: contain;
+}
+</style>

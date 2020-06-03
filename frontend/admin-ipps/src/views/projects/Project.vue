@@ -1,16 +1,29 @@
 <template>
   <div class="page-container">
     <div class="title">
-      <el-row type="flex" justify="space-between">
+      <el-row type="flex" justify="space-between" class="mb-2">
         <el-col :span="12">
           <h1>Проект</h1>
         </el-col>
-        <el-col v-if="form.status" :span="6" class="status">
+        <el-col v-if="form.status" :span="12" class="status">
           <span :class="statusClassName(form.status)">
             {{ form.status | pluralizationStatus }}
           </span>
         </el-col>
       </el-row>
+      <el-button
+        v-if="form.id"
+        type="primary"
+        @click="$router.push({ name: 'customer-priject' })"
+      >
+        Работа с заказчиками
+      </el-button>
+
+      <el-switch
+        v-model="form.publicForClient"
+        inactive-text="Публикация на портале"
+        class="public-switch"
+      ></el-switch>
     </div>
 
     <div class="form-container mb-2">
@@ -30,7 +43,7 @@
     <el-row type="flex" justify="space-between">
       <el-col :span="12">
         <el-button type="success" @click="saveProject(1)">
-          Опубликовать
+          Сохранить
         </el-button>
 
         <el-button type="warning" plain @click="saveProject(3)">
@@ -57,6 +70,7 @@
 </template>
 
 <script>
+// import { publicForClient } from '@/api/project';
 import store from '@/store';
 import { mapState, mapActions } from 'vuex';
 import UploadFile from '@/components/UploadFile';
@@ -96,6 +110,7 @@ export default {
       ],
       datePublic: '',
       mainImage: null,
+      publicForClient: true,
     },
     dialogImageUrl: '',
     dialogVisible: false,
@@ -247,5 +262,9 @@ export default {
   .danger {
     color: #f56c6c;
   }
+}
+
+.public-switch {
+  margin-left: 20px;
 }
 </style>

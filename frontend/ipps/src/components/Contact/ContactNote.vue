@@ -13,7 +13,12 @@ export default {
 <style lang="stylus" scoped>
 .contact__note {
   padding-top: 0.5rem;
-  border-top: 1px solid #ddd;
+  themify(
+    $themes,
+    @($theme) {
+    border-top: 1px solid $theme.$third--light--color;
+  }
+  );
 
   .list:not(:last-child) {
     margin-bottom: 1rem;

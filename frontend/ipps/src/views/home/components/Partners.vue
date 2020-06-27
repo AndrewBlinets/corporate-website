@@ -1,7 +1,7 @@
 <template>
   <section id="partners">
     <div class="partners-img">
-      <app-image :id="21" name="партнёры"></app-image>
+      <app-image :id="21" name="Партнёры"></app-image>
     </div>
     <div class="app-container grid-area">
       <div class="section-header">
@@ -15,6 +15,7 @@
                 :id="partner.image"
                 :name="partner.name"
                 backgroundColor="#ffffff00"
+                class="img"
               />
             </div>
           </div>
@@ -58,8 +59,13 @@ export default {
     bottom: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(-45deg, rgba(88, 195, 255, 0.8) 0, rgba(0, 77, 230, 0.8) 40%, rgba(0, 59, 177, 0.8) 100%);
     z-index: -1;
+    themify(
+      $themes,
+      @($theme) {
+      background: $theme.$gradient--primary--color;
+    }
+    );
   }
 
   .partners-img {
@@ -72,10 +78,20 @@ export default {
   }
 
   .section-header {
-    color: #fff;
+    themify(
+      $themes,
+      @($theme) {
+      color: $theme.$primary--light--color;
+    }
+    );
 
     h2::after {
-      border-bottom-color: #fff;
+      themify(
+        $themes,
+        @($theme) {
+        border-bottom-color: $theme.$primary--light--color;
+      }
+      );
     }
   }
 }
@@ -92,7 +108,12 @@ export default {
     min-height: 80px;
 
     img {
-      transform: none;
+      themify(
+        $themes,
+        @($theme) {
+        filter: $theme.$image--invert--filter;
+      }
+      );
     }
   }
 }

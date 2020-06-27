@@ -44,7 +44,12 @@ export default {
   }
 
   h3 {
-    color: #1461ff;
+    themify(
+      $themes,
+      @($theme) {
+      color: $theme.$secondary--dark--color;
+    }
+    );
     font-weight: 300;
   }
 }

@@ -57,8 +57,13 @@ export default {
     width: 70%;
     height: 100vh;
     padding: 0 10px;
-    background: #fff;
     overflow: auto;
+    themify(
+      $themes,
+      @($theme) {
+      background: $theme.$navbar--background--color--scroll;
+    }
+    );
   }
 }
 

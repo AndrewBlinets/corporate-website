@@ -31,7 +31,7 @@
 import { getNewsById } from '@/api/news';
 import { Resize } from '@/directive/resize';
 import HeaderPage from '@/components/HeaderPage';
-import NewsDetails from '@/components/CardNews/NewsDetails';
+import NewsDetails from '@/components/NewsDetails';
 import ContentPage from '@/components/ContentPage';
 import LastNewsList from './components/LastNewsList';
 
@@ -113,13 +113,17 @@ export default {
   font-size: 18px;
   font-weight: 700;
   line-height: 1.612;
-  color: #777;
   margin-bottom: 20px;
+  themify(
+    $themes,
+    @($theme) {
+    color: $theme.$third--light--color;
+  }
+  );
 }
 
 .article-body {
   max-width: 700px;
   margin: 0 auto;
-  color: #333;
 }
 </style>

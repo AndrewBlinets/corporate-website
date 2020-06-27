@@ -29,6 +29,19 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  themify(
+    $themes,
+    @($theme) {
+    color: $theme.$primary--dark--color;
+    background: $theme.$background--primary--color;
+  }
+  );
+  fontSizefy(
+    $fontSizes,
+    @($fontSize) {
+    font-size: $fontSize.$font-size;
+  }
+  );
 
   .header {
     width: 100%;

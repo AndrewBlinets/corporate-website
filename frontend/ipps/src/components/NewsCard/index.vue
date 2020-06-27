@@ -61,26 +61,58 @@ export default {
   overflow: hidden;
 
   .image {
+    position: relative;
     width: 100%;
     height: 100%;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      themify(
+        $themes,
+        @($theme) {
+        background: $theme.$news--card--image-gradient;
+      }
+      );
+    }
   }
 
   .title {
+    position: relative;
     bottom: 15px;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.3rem;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    themify(
+      $themes,
+      @($theme) {
+      text-shadow: 1px 1px 1px $theme.$gradient--secondary--color;
+    }
+    );
   }
 
   .title-details {
+    position: relative;
     top: 15px;
+    z-index: 2;
   }
 
   .title, .title-details {
     position: absolute;
-    color: #fff;
     left: 15px;
     right: 15px;
+    themify(
+      $themes,
+      @($theme) {
+      color: $theme.$background--primary--color;
+    }
+    );
   }
 }
 
@@ -100,7 +132,12 @@ export default {
     right: 0;
     bottom: 0;
     height: 20px;
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0, #fff 100%);
+    themify(
+      $themes,
+      @($theme) {
+      background-image: $theme.$news--after--gradient;
+    }
+    );
   }
 }
 </style>

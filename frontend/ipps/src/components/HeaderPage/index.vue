@@ -40,24 +40,52 @@ export default {
     bottom: 0;
     right: 0;
     overflow: hidden;
-    z-index: -1;
+    z-index: 1;
 
     &:before {
       content: '';
       position: absolute;
-      z-index: 1;
       width: 100%;
       height: 100%;
-      background: -webkit-linear-gradient(-45deg, rgba(88, 195, 255, 0.7) 0, rgba(0, 77, 230, 0.7) 40%, rgba(0, 59, 177, 0.7) 100%);
+      themify(
+        $themes,
+        @($theme) {
+        background: $theme.$gradient--primary--color;
+      }
+      );
+      z-index: 3;
+    }
+
+    &:after {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      themify(
+        $themes,
+        @($theme) {
+        background: $theme.$gradient--secondary--color;
+      }
+      );
     }
   }
 
   .title {
+    position: relative;
     display: flex;
     flex-direction: column;
     padding-top: 200px;
     padding-bottom: 2rem;
-    color: #fff;
+    themify(
+      $themes,
+      @($theme) {
+      color: $theme.$primary--light--color;
+    }
+    );
+    z-index: 4;
   }
 }
 </style>

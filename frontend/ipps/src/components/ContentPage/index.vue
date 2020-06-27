@@ -74,8 +74,6 @@ export default {
 
 <style lang="stylus">
 .content-page {
-  color: #333;
-
   h2 {
     font-weight: 800;
     font-size: 1.75rem;
@@ -97,11 +95,22 @@ export default {
   }
 
   a {
-    color: #1461ff;
     font-weight: 600;
+    themify(
+      $themes,
+      @($theme) {
+      color: $theme.$secondary--dark--color;
+      text-decoration: $theme.$content--text--decoration;
+    }
+    );
 
     &:hover {
-      text-decoration: underline;
+      themify(
+        $themes,
+        @($theme) {
+        text-decoration: $theme.$content--text--decoration__hover;
+      }
+      );
     }
   }
 
@@ -113,11 +122,16 @@ export default {
   ul {
     li:before {
       content: '\2022';
-      color: #1461ff;
       font-weight: bold;
       display: inline-block;
       width: 1em;
       margin-left: -1em;
+      themify(
+        $themes,
+        @($theme) {
+        color: $theme.$secondary--dark--color;
+      }
+      );
     }
   }
 

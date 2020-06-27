@@ -59,11 +59,17 @@ export default {
 .information-statistic {
   h4 {
     padding-left: 10px;
-    color: #666;
+    color: #222;
     line-height: 2.2rem;
     text-align: center;
     font-style: italic;
-    border-left: 4px solid #1461ff;
+    themify(
+      $themes,
+      @($theme) {
+      color: $theme.$primary--dark--color;
+      border-left: 4px solid $theme.$secondary--dark--color;
+    }
+    );
   }
 }
 </style>

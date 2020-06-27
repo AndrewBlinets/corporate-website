@@ -91,10 +91,16 @@ export default {
   object-fit: cover;
   object-position: center center;
   transition: 0.3s;
-}
+  themify(
+    $themes,
+    @($theme) {
+    filter: $theme.$image--grayscale--filter;
+  }
+  );
 
-.blur-image {
-  filter: blur(20px);
-  transform: scale(1.1);
+  &.blur-image {
+    filter: blur(20px);
+    transform: scale(1.1);
+  }
 }
 </style>

@@ -29,12 +29,17 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #222;
   min-width: 50px;
   min-height: 50px;
   border-radius: 4px;
   cursor: pointer;
   z-index: 1;
+  themify(
+    $themes,
+    @($theme) {
+    color: $theme.$navbar--menu-link--dark--color;
+  }
+  );
 
   &::before {
     content: '';
@@ -54,7 +59,12 @@ export default {
   }
 
   &.dark-btn {
-    color: #fff;
+    themify(
+      $themes,
+      @($theme) {
+      color: $theme.$navbar--menu-link--color;
+    }
+    );
   }
 
   .icon {

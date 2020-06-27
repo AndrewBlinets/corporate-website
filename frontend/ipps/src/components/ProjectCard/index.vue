@@ -42,24 +42,43 @@ export default {
 .project-card {
   position: relative;
   overflow: hidden;
-  z-index: 3;
+  z-index: 1;
 
   &:hover {
     cursor: pointer;
 
-    .image {
-      z-index: 2000;
-      background: #000;
-    }
-
     .project-title {
-      background: #00000050;
+      themify(
+        $themes,
+        @($theme) {
+        background: $theme.$gradient--secondary--color;
+      }
+      );
     }
   }
 
   .image {
+    position: relative;
     width: 100%;
     height: 100%;
+    z-index: 2;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      themify(
+        $themes,
+        @($theme) {
+        background: $theme.$news--card--image-gradient;
+      }
+      );
+      z-index: 3;
+    }
   }
 
   .project-title {
@@ -72,12 +91,18 @@ export default {
     padding: 20px;
     -webkit-transition: 0.2s;
     transition: 0.2s;
+    z-index: 4;
 
     .title {
-      color: #fff;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
       margin: auto;
       text-align: center;
+      themify(
+        $themes,
+        @($theme) {
+        color: $theme.$background--primary--color;
+        text-shadow: 1px 1px 1px $theme.$gradient--secondary--color;
+      }
+      );
     }
   }
 }

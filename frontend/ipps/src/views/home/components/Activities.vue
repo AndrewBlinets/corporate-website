@@ -69,8 +69,12 @@ export default {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: -webkit-linear-gradient(-45deg, rgba(88, 195, 255, 0.8) 0, rgba(0, 77, 230, 0.8) 40%, rgba(0, 59, 177, 0.8) 100%);
-    z-index: -1;
+    themify(
+      $themes,
+      @($theme) {
+      background: $theme.$gradient--primary--color;
+    }
+    );
   }
 
   .services-img {
@@ -90,18 +94,31 @@ export default {
   padding: 20px;
   align-items: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.6, 1);
-  border-right: 2px solid #ffffff9e;
-  border-bottom: 2px solid #ffffff9e;
+  themify(
+    $themes,
+    @($theme) {
+    border-right: 2px solid $theme.$primary--light--color;
+    border-bottom: 2px solid $theme.$primary--light--color;
+  }
+  );
 
   h5 {
-    color: #fff;
+    themify(
+      $themes,
+      @($theme) {
+      color: $theme.$primary--light--color;
+    }
+    );
     transition: all 0.4s cubic-bezier(0.4, 0, 0.6, 1);
   }
 
   &:hover {
-    background-color: #1461FF;
-    border-right-color: #fff;
-    border-bottom-color: #fff;
+    themify(
+      $themes,
+      @($theme) {
+      background-color: $theme.$secondary--light--color;
+    }
+    );
 
     h5 {
       transform: translateY(-7px);
@@ -111,7 +128,7 @@ export default {
 
 @media (max-width: 649px) {
   .service-item {
-    height: 100px;
+    height: 150px;
   }
 }
 </style>

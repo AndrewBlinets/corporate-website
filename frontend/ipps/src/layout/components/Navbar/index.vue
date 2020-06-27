@@ -54,6 +54,51 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.navbar {
+  position: relative;
+  min-height: 50px;
+  z-index: 1000;
+
+  &.navbar-default {
+    width: 100%;
+    padding: 10px 0;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 50px;
+    }
+  }
+
+  &.navbar-fixed {
+    position: fixed;
+    right: 0;
+    left: 0;
+  }
+
+  &.menu-top {
+    themify(
+      $themes,
+      @($theme) {
+      background: $theme.$navbar--background--color;
+    }
+    );
+  }
+}
+
+.navbar-default.menu-shrink {
+  themify(
+    $themes,
+    @($theme) {
+    background-color: $theme.$navbar--background--color--scroll;
+  }
+  );
+  box-shadow: 0px 5px 10px rgba(20, 97, 255, 0.1);
+}
+
 .logo {
   width: 50px;
   height: 50px;

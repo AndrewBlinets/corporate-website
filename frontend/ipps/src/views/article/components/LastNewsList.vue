@@ -47,8 +47,13 @@ export default {
 .title {
   font-size: 20px;
   font-weight: 800;
-  color: #777;
   text-transform: uppercase;
+  themify(
+    $themes,
+    @($theme) {
+    color: $theme.$third--light--color;
+  }
+  );
 }
 
 .overflow-auto {

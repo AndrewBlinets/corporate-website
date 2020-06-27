@@ -25,8 +25,6 @@ export default {
 <style lang="stylus" scoped>
 .social-link {
   margin-right: 15px;
-  color: #fff;
-  border: 1px solid #fff;
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -35,10 +33,22 @@ export default {
   display: inline-block;
   font-size: 14px;
   transition: 0.5s;
+  themify(
+    $themes,
+    @($theme) {
+    border: 1px solid $theme.$primary--light--color;
+    color: $theme.$primary--light--color;
+  }
+  );
 
   &:hover {
-    color: #1461ff;
-    background: #fff;
+    themify(
+      $themes,
+      @($theme) {
+      color: $theme.$secondary--light--color;
+      background: $theme.$primary--light--color;
+    }
+    );
   }
 }
 </style>

@@ -10,10 +10,10 @@
             <img src="../../assets/baner.png" alt="" />
           </a>
           <a href="http://mpt.gov.by/ru/" target="_blank">
-            <img :src="getImage(3)" alt="" />
+            <img :src="getImage(3)" alt="" class="img-filter" />
           </a>
           <a href="http://portal.gov.by/" target="_blank">
-            <img :src="getImage(1)" alt="" />
+            <img :src="getImage(1)" alt="" class="img-filter" />
           </a>
           <a href="https://www.reestr-zalogov.by/" target="_blank">
             <img src="../../assets/reestr_imush.png" alt="" />
@@ -24,7 +24,7 @@
       <div class="app-container flex-container flex-md-row">
         <div class="content mb-md-0 mb-3">
           <div class="logo">
-            <img src="../../images/logoIPPS.png" alt="ИППС" />
+            <app-image :id="142" name="ИППС" backgroundColor="#ffffff00" />
           </div>
           <p>© НИРУП «Институт прикладных программных систем»</p>
         </div>
@@ -36,11 +36,13 @@
 
 <script>
 import { getImage } from '@/api/index';
+import AppImage from '@/components/AppImage/index.vue';
 import SocialLinks from '@/components/SocialLinks';
 
 export default {
   name: 'Footer',
   components: {
+    AppImage,
     SocialLinks,
   },
   methods: {
@@ -54,7 +56,13 @@ export default {
 <style lang="stylus" scoped>
 footer {
   margin: auto 0 0;
-  background: rgb(0, 59, 177);
+  themify(
+    $themes,
+    @($theme) {
+    background: $theme.$background--footer--color;
+    border-top: 2px solid $theme.$secondary--dark--color;
+  }
+  );
 
   .links-item {
     display: flex;
@@ -69,7 +77,6 @@ footer {
 
   .footer-container {
     padding: 30px 0;
-    border-top: 1px solid #ffffff50;
 
     .flex-container {
       display: flex;
@@ -92,7 +99,12 @@ footer {
       }
 
       p {
-        color: #fff;
+        themify(
+          $themes,
+          @($theme) {
+          color: $theme.$primary--light--color;
+        }
+        );
       }
     }
   }
@@ -116,6 +128,21 @@ footer {
     height: 100%;
     object-fit: contain;
     object-position: center center;
+    themify(
+      $themes,
+      @($theme) {
+      filter: $theme.$image--grayscale--filter;
+    }
+    );
+
+    &.img-filter {
+      themify(
+        $themes,
+        @($theme) {
+        filter: $theme.$image--invert--filter;
+      }
+      );
+    }
   }
 }
 </style>

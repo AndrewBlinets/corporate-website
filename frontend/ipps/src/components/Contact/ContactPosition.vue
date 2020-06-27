@@ -21,7 +21,12 @@ export default {
     display: block;
     width: 60px;
     margin-top: 6px;
-    border-bottom: 2px solid #222;
+    themify(
+      $themes,
+      @($theme) {
+      border-bottom: 2px solid $theme.$primary--dark--color;
+    }
+    );
   }
 }
 </style>

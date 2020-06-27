@@ -69,8 +69,13 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background: -webkit-linear-gradient(-45deg, rgba(88, 195, 255, 0.7) 0, rgba(0, 77, 230, 0.7) 40%, rgba(0, 59, 177, 0.7) 100%);
-    z-index: -1;
+    z-index: 3;
+    themify(
+      $themes,
+      @($theme) {
+      background: $theme.$gradient--primary--color;
+    }
+    );
   }
 
   &:after {
@@ -80,62 +85,55 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: -2;
+    z-index: 2;
+    themify(
+      $themes,
+      @($theme) {
+      background: $theme.$gradient--secondary--color;
+    }
+    );
   }
 
   .banner-image {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: -3;
+    z-index: 1;
   }
 
   .banner-content {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: baseline;
     justify-content: center;
     height: 100%;
+    z-index: 4;
 
     h1 {
       margin-bottom: 3rem;
-      color: #fff;
     }
 
     h4 {
-      color: #1461ff;
-      background: #fff;
       padding: 4px 18px;
       border-radius: 5px;
       margin-bottom: 1.5rem;
+      themify(
+        $themes,
+        @($theme) {
+        color: $theme.$secondary--light--color;
+        background: $theme.$primary--light--color;
+      }
+      );
     }
 
-    p {
-      color: #fff;
-    }
-
-    .banner__social-link {
-      display: flex;
-
-      .social-link {
-        margin-right: 15px;
-        color: #fff;
-        border: 1px solid #fff;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        border-radius: 50%;
-        text-align: center;
-        display: inline-block;
-        font-size: 14px;
-        transition: 0.5s;
+    h1, p {
+      themify(
+        $themes,
+        @($theme) {
+        color: $theme.$primary--light--color;
       }
-
-      .social-link:hover {
-        color: #1461ff;
-        background: #fff;
-      }
+      );
     }
   }
 }

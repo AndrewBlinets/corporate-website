@@ -37,8 +37,13 @@ export default {
 
   .views-block {
     display: flex;
-    background-color: #fff;
-    color: #1461ff;
+    themify(
+      $themes,
+      @($theme) {
+      color: $theme.$secondary--light--color;
+      background: $theme.$primary--light--color;
+    }
+    );
     padding: 6px 8px;
     border-radius: 5px;
     margin-right: 15px;

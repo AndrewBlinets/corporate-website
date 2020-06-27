@@ -3,6 +3,11 @@ const path = require('path');
 module.exports = {
   publicPath: '/',
   runtimeCompiler: true,
+  devServer: {
+    proxy: 'http://www.ipps.by:5454/client',
+  },
+  outputDir: 'target/dist',
+  assetsDir: 'static',
   chainWebpack: config => {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
     types.forEach(type =>

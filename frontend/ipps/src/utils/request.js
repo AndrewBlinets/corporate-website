@@ -2,7 +2,7 @@ import axios from 'axios';
 import router from '@/router';
 
 const service = axios.create({
-  baseURL: 'http://www.ipps.by:5454/client/api',
+  baseURL: '/api',
   timeout: 5000,
 });
 

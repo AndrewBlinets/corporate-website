@@ -1,15 +1,16 @@
 <template>
-  <div id="app">
+  <div id="app" :class="[theme, fontSize]">
     <router-view />
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'App',
   computed: {
+    ...mapState('app', ['theme', 'fontSize']),
     isMobile() {
       return (
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(

@@ -9,7 +9,6 @@ import Layout from '@/layout';
 export const constantRoutes = [
   {
     path: '/',
-    name: 'layout',
     component: Layout,
     children: [
       {
@@ -39,7 +38,7 @@ export const constantRoutes = [
       },
       {
         path: 'projects/:id',
-        name: 'projects',
+        name: 'projectsById',
         component: () => import('@/views/project'),
       },
       {

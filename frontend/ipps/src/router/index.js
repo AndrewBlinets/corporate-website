@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from '@/store';
 
 Vue.use(Router);
 
@@ -78,5 +79,18 @@ const createRouter = () =>
   });
 
 const router = createRouter();
+
+router.beforeEach((to, from, next) => {
+  const storageString = localStorage.getItem('ipps-site');
+  const stateLocal = JSON.parse(storageString);
+
+  if (Object.keys(stateLocal).length) {
+    const { theme, fontSize } = stateLocal;
+
+    theme && store.dispatch('app/setThemeApp', theme);
+    fontSize && store.dispatch('app/setFontSize', fontSize);
+  }
+  next();
+});
 
 export default router;

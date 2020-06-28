@@ -10,12 +10,16 @@
           <app-image :id="142" name="ИППС" backgroundColor="#ffffff00" />
         </div>
 
-        <button-menu
-          v-if="mobile"
-          :dark="!menuShrink"
-          @click="openSidebar"
-        ></button-menu>
-        <app-menu v-else :dark="menuShrink" />
+        <div class="navigation-panel">
+          <app-menu v-if="!mobile" :dark="menuShrink" />
+
+          <settings :dark="!menuShrink"></settings>
+          <menu-button
+            v-if="mobile"
+            :dark="!menuShrink"
+            @click="openSidebar"
+          ></menu-button>
+        </div>
       </div>
     </div>
   </header>
@@ -26,14 +30,16 @@ import { mapState, mapActions } from 'vuex';
 import { Scroll } from '@/directive/scroll';
 import AppMenu from './components/Menu.vue';
 import AppImage from '@/components/AppImage/index.vue';
-import ButtonMenu from './components/ButtonMenu.vue';
+import MenuButton from './components/MenuButton.vue';
+import Settings from './Settings';
 
 export default {
   name: 'Navbar',
   components: {
     AppMenu,
     AppImage,
-    ButtonMenu,
+    MenuButton,
+    Settings,
   },
   directives: {
     Scroll,
@@ -70,6 +76,12 @@ export default {
       justify-content: space-between;
       align-items: center;
       height: 50px;
+
+      .navigation-panel {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
     }
   }
 

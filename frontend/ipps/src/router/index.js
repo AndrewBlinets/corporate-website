@@ -81,7 +81,7 @@ const createRouter = () =>
 const router = createRouter();
 
 router.beforeEach((to, from, next) => {
-  const storageString = localStorage.getItem('ipps-site');
+  const storageString = localStorage.getItem('ipps-site') || '{}';
   const stateLocal = JSON.parse(storageString);
 
   if (Object.keys(stateLocal).length) {

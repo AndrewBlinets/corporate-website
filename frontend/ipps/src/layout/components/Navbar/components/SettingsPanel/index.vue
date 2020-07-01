@@ -6,15 +6,25 @@
         <div class="content">
           <div class="row mx-n1">
             <div class="col px-1">
-              <v-button @click="setFontSize('default')">A</v-button>
-            </div>
-            <div class="col px-1">
-              <v-button fontSize="medium" @click="setFontSize('medium')">
+              <v-button class="font-button" @click="setFontSize('default')">
                 A
               </v-button>
             </div>
             <div class="col px-1">
-              <v-button fontSize="large" @click="setFontSize('large')">
+              <v-button
+                class="font-button"
+                fontSize="medium"
+                @click="setFontSize('medium')"
+              >
+                A
+              </v-button>
+            </div>
+            <div class="col px-1">
+              <v-button
+                class="font-button"
+                fontSize="large"
+                @click="setFontSize('large')"
+              >
                 A
               </v-button>
             </div>
@@ -128,20 +138,11 @@ export default {
 }
 
 .slide-fade-enter-active, .slide-fade-leave-active {
-  transition: all 0.4s cubic-bezier(0.694, 0, 0.335, 1);
-  transform: translateY(-10%);
+  transition: all 0.3s cubic-bezier(0.694, 0, 0.335, 1);
 }
 
 .slide-fade-enter, .slide-fade-leave-to {
-  transform: translate(10%);
-  opacity: 0;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.4s cubic-bezier(0.694, 0, 0.335, 1);
-}
-
-.fade-enter, .fade-leave-to {
+  transform: translateY(-20px);
   opacity: 0;
 }
 </style>

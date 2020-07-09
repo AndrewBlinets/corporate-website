@@ -36,6 +36,13 @@
           >
             Национальный Технический Комитет
           </router-link>
+
+          <router-link
+            :to="{ name: 'electronic-appeal' }"
+            class="sub-nav--link"
+          >
+            Электронное обращение
+          </router-link>
         </div>
       </v-menu>
     </div>

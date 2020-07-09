@@ -57,6 +57,11 @@ export const constantRoutes = [
         component: () => import('@/views/about-us'),
       },
       {
+        path: 'electronic-appeal',
+        name: 'electronic-appeal',
+        component: () => import('@/views/electronic-appeal'),
+      },
+      {
         path: '404',
         name: '404',
         component: () => import('@/views/error-page/NotFound'),

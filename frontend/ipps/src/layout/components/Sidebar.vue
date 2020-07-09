@@ -58,6 +58,10 @@ export default {
         name: 'Национальный Технический Комитет',
         path: 'technical-committee',
       },
+      {
+        name: 'Электронное Обращение',
+        path: 'electronic-appeal',
+      },
     ],
   }),
   computed: {

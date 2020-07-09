@@ -4,7 +4,7 @@ module.exports = {
   publicPath: '/',
   runtimeCompiler: true,
   devServer: {
-    proxy: 'http://www.ipps.by:5454/client',
+    proxy: 'http://www.ipps.by:5454/',
   },
   outputDir: 'target/dist',
   assetsDir: 'static',

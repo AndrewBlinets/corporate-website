@@ -107,6 +107,7 @@ section {
       display: inline-block;
       font-size: 16px;
       font-weight: 600;
+      border: none;
     }
 
     .btn.btn-main {
@@ -163,6 +164,38 @@ section {
         color: $theme.$secondary--dark--color;
       }
       );
+    }
+  }
+}
+
+.v-list {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+
+  .v-list-item {
+    padding: 0 16px;
+
+    .v-list-item__content {
+      padding: 12px 0;
+
+      .v-list-item__subtitle {
+        font-size: 0.75rem;
+        line-height: 1.25rem;
+        font-weight: 500;
+        font-family: Roboto, sans-serif;
+        margin-bottom: 2px;
+        themify(
+          $themes,
+          @($theme) {
+          color: $theme.$third--light--color;
+        }
+        );
+
+        .red--text {
+          color: #ff5252;
+        }
+      }
     }
   }
 }

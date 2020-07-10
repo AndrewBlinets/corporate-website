@@ -38,10 +38,3 @@ export default {
   },
 };
 </script>
-
-<style lang="stylus" scoped>
-.body-page {
-  margin-top: 100px;
-  margin-bottom: 100px;
-}
-</style>

@@ -116,8 +116,13 @@ export default {
       font-weight: 500;
       line-height: 1rem;
       white-space: nowrap;
-      color: inherit;
       border-radius: 4px;
+      themify(
+        $themes,
+        @($theme) {
+        color: $theme.$navbar--menu-link--dark--color;
+      }
+      );
 
       &::before {
         content: '';

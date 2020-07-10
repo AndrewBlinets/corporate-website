@@ -6,11 +6,11 @@
           ПОЛНОЕ НАИМЕНОВАНИЕ ЮРИДИЧЕСКОГО ЛИЦА <span class="red--text">*</span>
         </div>
         <v-text-field
-          v-model.trim="jurName"
+          v-model.trim="form.jurName"
           hide-details="auto"
           :error-messages="jurNameErrors"
-          @input="$v.jurName.$touch()"
-          @blur="$v.jurName.$touch()"
+          @input="$v.form.jurName.$touch()"
+          @blur="$v.form.jurName.$touch()"
         ></v-text-field>
       </div>
     </div>
@@ -21,11 +21,11 @@
           ПОЧТОВЫЙ ИНДЕКС ЮРИДИЧЕСКОГО ЛИЦА <span class="red--text">*</span>
         </div>
         <v-text-field
-          v-model.number.trim="postcode"
+          v-model.number.trim="form.postcode"
           hide-details="auto"
           :error-messages="postcodeErrors"
-          @input="$v.postcode.$touch()"
-          @blur="$v.postcode.$touch()"
+          @input="$v.form.postcode.$touch()"
+          @blur="$v.form.postcode.$touch()"
         ></v-text-field>
       </div>
     </div>
@@ -36,11 +36,11 @@
           ПОЧТОВЫЙ АДРЕС ЮРИДИЧЕСКОГО ЛИЦА <span class="red--text">*</span>
         </div>
         <v-text-field
-          v-model.trim="address"
+          v-model.trim="form.address"
           hide-details="auto"
           :error-messages="addressErrors"
-          @input="$v.address.$touch()"
-          @blur="$v.address.$touch()"
+          @input="$v.form.address.$touch()"
+          @blur="$v.form.address.$touch()"
         ></v-text-field>
       </div>
     </div>
@@ -51,11 +51,12 @@
           АДРЕС ЭЛЕКТРОННОЙ ПОЧТЫ <span class="red--text">*</span>
         </div>
         <v-text-field
-          v-model.trim="email"
+          ref="email"
+          v-model.trim="form.email"
           hide-details="auto"
           :error-messages="emailErrors"
-          @input="$v.email.$touch()"
-          @blur="$v.email.$touch()"
+          @input="$v.form.email.$touch()"
+          @blur="$v.form.email.$touch()"
         ></v-text-field>
       </div>
     </div>
@@ -66,11 +67,11 @@
           ФАМИЛИЯ, СОБСТВЕННОЕ ИМЯ, ОТЧЕСТВО <span class="red--text">*</span>
         </div>
         <v-text-field
-          v-model.trim="name"
+          v-model.trim="form.name"
           hide-details="auto"
           :error-messages="nameErrors"
-          @input="$v.name.$touch()"
-          @blur="$v.name.$touch()"
+          @input="$v.form.name.$touch()"
+          @blur="$v.form.name.$touch()"
         ></v-text-field>
       </div>
     </div>
@@ -81,12 +82,12 @@
           ТЕКСТ ОБРАЩЕНИЯ <span class="red--text">*</span>
         </div>
         <v-textareas
-          v-model.trim="textAppeal"
+          v-model.trim="form.textAppeal"
           hide-details="auto"
           counter
           :error-messages="textAppealErrors"
-          @input="$v.textAppeal.$touch()"
-          @blur="$v.textAppeal.$touch()"
+          @input="$v.form.textAppeal.$touch()"
+          @blur="$v.form.textAppeal.$touch()"
         ></v-textareas>
       </div>
     </div>
@@ -96,7 +97,7 @@
         <div class="v-list-item__subtitle">
           ПРИКРЕПИТЬ ФАЙЛ
         </div>
-        <v-file-input v-model="file" hide-details="auto"></v-file-input>
+        <v-file-input v-model="form.file" hide-details="auto"></v-file-input>
       </div>
     </div>
 
@@ -121,24 +122,26 @@ export default {
   name: 'EntityForm',
   mixins: [formMixin],
   data: () => ({
-    type: 2,
-    jurName: '',
-    postcode: null,
+    form: {
+      type: 2,
+      jurName: '',
+      postcode: null,
+    },
   }),
   computed: {
     jurNameErrors() {
       const errors = [];
 
-      if (!this.$v.jurName.$dirty) return errors;
-      !this.$v.jurName.required && errors.push('Поле обязательно');
+      if (!this.$v.form.jurName.$dirty) return errors;
+      !this.$v.form.jurName.required && errors.push('Поле обязательно');
 
       return errors;
     },
     postcodeErrors() {
       const errors = [];
 
-      if (!this.$v.postcode.$dirty) return errors;
-      !this.$v.postcode.required && errors.push('Поле обязательно');
+      if (!this.$v.form.postcode.$dirty) return errors;
+      !this.$v.form.postcode.required && errors.push('Поле обязательно');
 
       return errors;
     },

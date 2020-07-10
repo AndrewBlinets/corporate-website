@@ -103,38 +103,11 @@ export default {
     display: flex;
     flex-wrap: wrap;
     padding: 0 16px;
+
+    .font-button {
+      color: #222;
+    }
   }
-}
-
-.btn {
-  width: 40px;
-  height: 40px;
-  margin: 0 5px;
-  border: 1px solid black;
-}
-
-.btn-color-default {
-  background-color: $themes.theme-default.$secondary--dark--color;
-}
-
-.btn-color-white {
-  background-color: $themes.theme-white.$secondary--light--color;
-}
-
-.btn-color-black {
-  background-color: $themes.theme-black.$secondary--light--color;
-}
-
-.btn-color-blue {
-  background-color: $themes.theme-blue.$secondary--light--color;
-}
-
-.btn-color-beige {
-  background-color: $themes.theme-beige.$secondary--light--color;
-}
-
-.btn-color-brown {
-  background-color: $themes.theme-brown.$secondary--light--color;
 }
 
 .slide-fade-enter-active, .slide-fade-leave-active {
